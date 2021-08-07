@@ -17,7 +17,7 @@ The model used to approximate the NEMDE includes the following components:
 - two pass solution algorithm and inflexibility profiles for fast-start units;
 - tie-breaking model for price-tied energy offers.
 
-The [model validation section](/model-validation/202011/model-validation) describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:
+The [model validation section](/nemde-api-docs/model-validation/202011/model-validation) describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:
 
 - FCAS prices are not reported;
 - generic constraint right-hand side (RHS) values are obtained from historical NEMDE solutions rather than computed from SCADA values;
@@ -36,25 +36,25 @@ The NEMDE API allows users to interact with an online queue that coordinates the
 - interconnector loss model factors;
 - generic constraint terms. 
 
-See the [parameter reference page](/parameter-reference) for more details regarding the data that can be submitted via the API. 
+See the [parameter reference page](/nemde-api-docs/parameter-reference) for more details regarding the data that can be submitted via the API. 
 
 Once a case file has been prepared, it can be submitted to an online queue via the NEMDE API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.
 
 The following diagram illustrates the workflow used when solving a model using the Dispatch API.
 
-![queue model](/images/dispatch-api-site.png)
+![queue model](/nemde-api-docs/images/dispatch-api-site.png)
 
 Multiple workers can monitor the queue simultaneously, allowing models to be solved in parallel. This capability allows large-scale scenario anlayses to be underaken.
 
 ## Getting started
 ### Tutorials
-The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The [Running a Model](/tutorials/running-a-model) tutorial is the recommended starting point for new users. 
+The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The [Running a Model](/nemde-api-docs/tutorials/running-a-model) tutorial is the recommended starting point for new users. 
 
 ### Case file reference
-The [parameter reference page](/parameter-reference) shows the parameters that can be meaningfully updated when modifying or constructing case files.
+The [parameter reference page](/nemde-api-docs/parameter-reference) shows the parameters that can be meaningfully updated when modifying or constructing case files.
 
 ### Model validation
-See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the [model validation section](/model-validation/202011/model-validation).
+See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the [model validation section](/nemde-api-docs/model-validation/202011/model-validation).
 
 ### Case studies
-See potential applications of the NEMDE API via [case studies](/case-studies/case-studies).
+See potential applications of the NEMDE API via [case studies](/nemde-api-docs/case-studies/case-studies).
