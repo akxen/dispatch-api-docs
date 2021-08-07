@@ -1,6 +1,6 @@
 # Scenario analysis - creating a heatmap
 
-The following sections extend the analysis presented in the [previous tutorial](/tutorials/scenario-analysis-line-plot). Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. 
+The following sections extend the analysis presented in the [previous tutorial](/nemde-api-docs/tutorials/scenario-analysis-line-plot). Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. 
 
 Building on the preceeding tutorial, in addition to augmenting the Demand Forecast for South Australia, the Demand Forecast for Victoria will also be modified. The goal of the analysis is to investigate how jointly varying these parameters would likely impact power flow over the Heywood interconnector, and also energy prices in South Australia. Results will be presented in the form of heatmaps, allowing the data to be visually represented in three dimensions. Note the same methods can be used to examine relationships between other system parameters and variables.
 

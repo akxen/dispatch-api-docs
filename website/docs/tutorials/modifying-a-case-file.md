@@ -46,9 +46,9 @@ casefile = convert_casefile('../../data/NEMSPDOutputs_2021040100100.loaded')
 ```
 
 ## Method 1 - Traverse dictionary
-The simplest strategy is to traverse the case file dictionary and update parameters directly. The [parameter reference page](/parameter-reference) can be used to see which parameters can be meaningfully updated.
+The simplest strategy is to traverse the case file dictionary and update parameters directly. The [parameter reference page](/nemde-api-docs/parameter-reference) can be used to see which parameters can be meaningfully updated.
 
-Let's update the Demand Forecast (`@DF`) parameter for South Australia as an example. This parameter corresponds to the amount by which demand is expected to change over the dispatch interval. From the [parameter reference page](/parameter-reference/#demand-forecast) we can see the path to this parameter is as follows:
+Let's update the Demand Forecast (`@DF`) parameter for South Australia as an example. This parameter corresponds to the amount by which demand is expected to change over the dispatch interval. From the [parameter reference page](/nemde-api-docs/parameter-reference/#demand-forecast) we can see the path to this parameter is as follows:
 
 ```
 NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.RegionPeriodCollection.RegionPeriod[?(@RegionID="{region_id}")].@DF
@@ -218,7 +218,7 @@ Checking the value has been updated.
 
 
 ### Submitting a modified case file
-The same steps outlined in the [previous tutorial](/tutorials/running-a-model) can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.
+The same steps outlined in the [previous tutorial](/nemde-api-docs/tutorials/running-a-model) can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.
 
 
 ```python
@@ -386,7 +386,7 @@ expression = ("NEMSPDCaseFile \
               .@DF")
 ```
 
-Note this expression corresponds to the path outlined on the [parameter reference page](/parameter-reference/#demand-forecast). When seeking to update parameters users can consult this document to find paths corresponding to parameters of interest. 
+Note this expression corresponds to the path outlined on the [parameter reference page](/nemde-api-docs/parameter-reference/#demand-forecast). When seeking to update parameters users can consult this document to find paths corresponding to parameters of interest. 
 
 The following functions can be used to get and update parameters using a JSON path expression.
 
