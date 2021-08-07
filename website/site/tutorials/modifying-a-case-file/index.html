@@ -1,0 +1,988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Modifying a case file - Dispatch API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modifying-a-case-file" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dispatch API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modifying a case file
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Dispatch API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Modifying a case file
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Modifying a case file
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    Approach
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-traverse-dictionary" class="md-nav__link">
+    Method 1 - Traverse dictionary
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 1 - Traverse dictionary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-modified-case-file" class="md-nav__link">
+    Submitting a modified case file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-using-json-path-syntax" class="md-nav__link">
+    Method 2 - Using JSON path syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    Approach
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-1-traverse-dictionary" class="md-nav__link">
+    Method 1 - Traverse dictionary
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 1 - Traverse dictionary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-modified-case-file" class="md-nav__link">
+    Submitting a modified case file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-2-using-json-path-syntax" class="md-nav__link">
+    Method 2 - Using JSON path syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="modifying-a-case-file">Modifying a case file</h1>
+<p>The Dispatch API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.</p>
+<p>The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The Dispatch API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.</p>
+<h2 id="imports-and-authentication">Imports and authentication</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
+<span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="c1"># Load environment variables</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Replace with your API token</span>
+<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
+<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
+
+<span class="c1"># A valid API token must be included when making requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
+</code></pre></div>
+<h2 id="approach">Approach</h2>
+<p>Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the Dispatch API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.</p>
+<p>For now let's use data from a historical case file and only modify selected components. We can proceed by first downloading a case file via the Dispatch API.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a case file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_url : str</span>
+<span class="sd">        Base URL for the Dispatch API</span>
+
+<span class="sd">    headers : dict</span>
+<span class="sd">        Contains auth token used to authenticate requests</span>
+
+<span class="sd">    case_id : str</span>
+<span class="sd">        Case ID to download e.g. &#39;20201101001&#39;. The format is as follows</span>
+<span class="sd">        {year}{month}{day}{interval_id} where interval_id is in [001, ..., 288]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Parameters describing the system&#39;s state</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Case file endpoint&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Load JSON response as Python dictionary</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+    <span class="k">return</span> <span class="n">casefile</span>
+
+
+<span class="c1"># Download case file and save it to disk</span>
+<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;20201101001&#39;</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Case file endpoint https://dispatch.envector.com/api/v1/data/casefile/20201101001
+</code></pre></div>
+<h2 id="method-1-traverse-dictionary">Method 1 - Traverse dictionary</h2>
+<p>The simplest strategy is to traverse the case file dictionary and update parameters directly. The <a href="/parameter-reference">parameter reference page</a> can be used to see which parameters can be meaningfully updated.</p>
+<p>Let's update the Demand Forecast (<code>@DF</code>) parameter for South Australia as an example. This parameter corresponds to the amount by which demand is expected to change over the dispatch interval. From the <a href="/parameter-reference/#demand-forecast">parameter reference page</a> we can see the path to this parameter is as follows:</p>
+<div class="highlight"><pre><span></span><code>NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.RegionPeriodCollection.RegionPeriod[?(@RegionID=&quot;{region_id}&quot;)].@DF
+</code></pre></div>
+<p>Using this path we can traverse nodes within the dictionary:</p>
+<div class="highlight"><pre><span></span><code><span class="n">regions</span> <span class="o">=</span> <span class="p">(</span><span class="n">casefile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NEMSPDCaseFile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NemSpdInputs&#39;</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
+<span class="n">regions</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
+  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;QLD1&#39;,
+  &#39;@DF&#39;: &#39;10.572998046875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;SA1&#39;,
+  &#39;@DF&#39;: &#39;0.441221952438354&#39;,
+  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;TAS1&#39;,
+  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
+  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
+ {&#39;@RegionID&#39;: &#39;VIC1&#39;,
+  &#39;@DF&#39;: &#39;15.550048828125&#39;,
+  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+</code></pre></div>
+<p>Once we reach the <code>RegionPeriod</code> node we encounter a list of dictionaries describing parameters for each region. We can loop through the list and update the <code>@DF</code> parameter for South Australia (i.e. the dictionary with <code>@RegionID == 'SA1'</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Updating the @DF parameter for South Australia</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;@RegionID&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;SA1&#39;</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">[</span><span class="s1">&#39;@DF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+</code></pre></div>
+<p><span style="color:blue"><strong>Note:</strong> By default all values within a case file are of type 'string'. Strings, floats or integers can be used when updating case file parameters as types are converted in a preprocessing step before formulating a mathematical program from the inputs. Strings should be used when updating flags e.g. parameters that take on a value of '1' or '0'.</span></p>
+<p>Checking the value has been updated.</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">casefile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NEMSPDCaseFile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NemSpdInputs&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
+  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;QLD1&#39;,
+  &#39;@DF&#39;: &#39;10.572998046875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;SA1&#39;,
+  &#39;@DF&#39;: 20,
+  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;TAS1&#39;,
+  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
+  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
+ {&#39;@RegionID&#39;: &#39;VIC1&#39;,
+  &#39;@DF&#39;: &#39;15.550048828125&#39;,
+  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+</code></pre></div>
+<h3 id="submitting-a-modified-case-file">Submitting a modified case file</h3>
+<p>The same steps outlined in the <a href="/tutorials/running-a-model">previous tutorial</a> can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Submit case file to job queue&quot;&quot;&quot;</span>
+
+    <span class="c1"># Construct request body and URL</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;casefile&#39;</span><span class="p">:</span> <span class="n">casefile</span><span class="p">,</span>
+        <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;return_casefile&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
+
+    <span class="c1"># Send job to queue and return job meta data</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Submit job and inspect job info</span>
+<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
+<span class="n">job_info</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;ae49d40f-c25f-4107-8bdb-e78c84c3b3d9&#39;,
+ &#39;created_at&#39;: &#39;2021-03-29T13:58:43.872325Z&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-03-29T13:58:43.983535Z&#39;,
+ &#39;timeout&#39;: 180,
+ &#39;status&#39;: &#39;queued&#39;,
+ &#39;label&#39;: None}
+</code></pre></div>
+<p>Once the model has finished solving we can access the results.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract job results from queue&quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>   
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Get job results from the queue</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
+<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>results</code> key returns two nested objects: <code>input</code> corresponds to the case file submitted to the queue, while <code>output</code> is the solution returned by the worker.</p>
+<div class="highlight"><pre><span></span><code><span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>dict_keys([&#39;input&#39;, &#39;output&#39;])
+</code></pre></div>
+<p>We can verify the updated case file was passed to the worker by inspecting the value corresponding to <code>input</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NEMSPDCaseFile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NemSpdInputs&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
+  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;QLD1&#39;,
+  &#39;@DF&#39;: &#39;10.572998046875&#39;,
+  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;SA1&#39;,
+  &#39;@DF&#39;: 20,
+  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+ {&#39;@RegionID&#39;: &#39;TAS1&#39;,
+  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
+  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
+ {&#39;@RegionID&#39;: &#39;VIC1&#39;,
+  &#39;@DF&#39;: &#39;15.550048828125&#39;,
+  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+</code></pre></div>
+<p>We can see our update is reflected in the case file consumed by the worker.</p>
+<h2 id="method-2-using-json-path-syntax">Method 2 - Using JSON path syntax</h2>
+<p>While the previous method is quite intuitive, it is not very robust - it's to lose track of which values have been updated when using loops. An alternative is to search and update the case file dictionary using JSON path syntax. Rather than loop through a list, expressions can be specified to find and update specific elements. See <a href="https://github.com/h2non/jsonpath-ng">jsonpath-ng</a> to learn more about the syntax.</p>
+<p>An expression targeting the <code>@DF</code> parameter for South Australia can be formulated as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to South Australia region period parameters</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;NEMSPDCaseFile </span><span class="se">\</span>
+<span class="s2">              .NemSpdInputs </span><span class="se">\</span>
+<span class="s2">              .PeriodCollection </span><span class="se">\</span>
+<span class="s2">              .Period </span><span class="se">\</span>
+<span class="s2">              .RegionPeriodCollection </span><span class="se">\</span>
+<span class="s2">              .RegionPeriod[?(@RegionID==&#39;SA1&#39;)] </span><span class="se">\</span>
+<span class="s2">              .@DF&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Note this expression corresponds to the path outlined on the <a href="/parameter-reference/#demand-forecast">parameter reference page</a>. When seeking to update parameters users can consult this document to find paths corresponding to parameters of interest. </p>
+<p>The following functions can be used to get and update parameters using a JSON path expression.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get parameter given a case file and JSON path expression</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        System parameters</span>
+
+<span class="sd">    expression : str</span>
+<span class="sd">        JSON path expression to value or object that should be</span>
+<span class="sd">        extracted</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Value corresponding to JSON path expression.    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">jsonpath_expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">jsonpath_expr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">casefile</span><span class="p">)]</span>
+
+    <span class="c1"># Check only one match found</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Expected 1 match, encountered </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">update_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Update case file parameter</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        System parameters</span>
+
+<span class="sd">    expression : str</span>
+<span class="sd">        JSON path to value or object that should be updated</span>
+
+<span class="sd">    new_value : str, float, or int</span>
+<span class="sd">        New value for parameter</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Updated case file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">jsonpath_expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">jsonpath_expr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">casefile</span><span class="p">)]</span>
+
+    <span class="c1"># Check only one match found</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Expected 1 match, encountered </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Update case file</span>
+    <span class="n">jsonpath_expr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+</code></pre></div>
+<p>Let's get the value of South Australia's <code>@DF</code> parameter.</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>20
+</code></pre></div>
+<p>Similarly, we can update values given an expression.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Update @DF parameter for SA1 - set @DF = 60</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">update_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">,</span> <span class="n">new_value</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Check the value has been updated</span>
+<span class="n">get_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>60
+</code></pre></div>
+<h2 id="summary">Summary</h2>
+<p>We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the Dispatch API.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../running-a-model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Running a model" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Running a model
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../scenario-analysis-line-plot/" class="md-footer__link md-footer__link--next" aria-label="Next: Scenario analysis - line plot" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Scenario analysis - line plot
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1500 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Model validation - Dispatch API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dispatch API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Dispatch API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    Sample
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    Metrics
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#period-solution" class="md-nav__link">
+    Period solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regions" class="md-nav__link">
+    Regions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interconnectors" class="md-nav__link">
+    Interconnectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traders" class="md-nav__link">
+    Traders
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="model-validation">Model validation</h1>
+<p>Historical NEMDE case files contain the inputs passed to the NEMDE, along with the outputs (dispatch targets and prices) returned by the program. Backtesting involves passing these same data to the Dispatch API's model and then comparing the outputs to those returned by the NEMDE. The degree to which the Dispatch API's solutions correspond to NEMDE outputs gives an indication as to the model's accuracy - the smaller the difference, the more accurate the approximation.</p>
+<h2 id="sample">Sample</h2>
+<p>Backtests are performed for all dispatch intervals between 2021-04-01 4:05:00 and 2021-05-01 4:00:00 (8640 dispatch intervals in total). </p>
+<h2 id="metrics">Metrics</h2>
+<p>Unless otherwise specified, summary statistics are computed for the difference between the Dispatch API's solution and NEMDE outputs, with the solution difference given by the following formula</p>
+<div class="highlight"><pre><span></span><code>Solution difference = Model solution - NEMDE solution.
+</code></pre></div>
+<p>Tables presenting summary statistics consist of columns corresponding to the key for which the solution difference has been computed, while rows display different metrics, the definitions of which are given in the following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="left">Sample size</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="left">Mean value</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="left">Standard deviation</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="left">Minimum value in sample</td>
+</tr>
+<tr>
+<td align="left">X %</td>
+<td align="left">X percentile</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="left">Maxiumum value in sample</td>
+</tr>
+</tbody>
+</table>
+<p>The raw data used to generate the following summary statistics can be downloaded <a href="https://storage.googleapis.com/dispatch-api-backtest-results/1a982d7df8454ee8905b9c09c3eeb27f.zip">here</a>.</p>
+<h3 id="period-solution">Period solution</h3>
+<p>Summary statistics for aggregate constraint violations and objective function values are shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">@TotalFastStartViolation</th>
+<th align="right">@TotalGenericViolation</th>
+<th align="right">@TotalInterconnectorViolation</th>
+<th align="right">@TotalMNSPCapacityViolation</th>
+<th align="right">@TotalMNSPOfferViolation</th>
+<th align="right">@TotalMNSPRampRateViolation</th>
+<th align="right">@TotalObjective</th>
+<th align="right">@TotalRampRateViolation</th>
+<th align="right">@TotalUIGFViolation</th>
+<th align="right">@TotalUnitMWCapacityViolation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+<td align="right">8640</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="right">-5.78704e-10</td>
+<td align="right">-0.000230032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-5.24741</td>
+<td align="right">-2.87037e-08</td>
+<td align="right">-4.6573e-07</td>
+<td align="right">-1.49676e-06</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="right">3.87875e-08</td>
+<td align="right">0.0213337</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">804.892</td>
+<td align="right">2.66806e-06</td>
+<td align="right">5.65038e-05</td>
+<td align="right">0.000107749</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="right">-3e-06</td>
+<td align="right">-1.983</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-8196.99</td>
+<td align="right">-0.000248</td>
+<td align="right">-0.0005</td>
+<td align="right">-0.0005</td>
+</tr>
+<tr>
+<td align="left">0.1%</td>
+<td align="right">0</td>
+<td align="right">-0.000482083</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-46.2393</td>
+<td align="right">0</td>
+<td align="right">-0.000494</td>
+<td align="right">-0.000499</td>
+</tr>
+<tr>
+<td align="left">1%</td>
+<td align="right">0</td>
+<td align="right">-1.8e-05</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-34.3667</td>
+<td align="right">0</td>
+<td align="right">-0.00025</td>
+<td align="right">-0.000440561</td>
+</tr>
+<tr>
+<td align="left">10%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-20.0326</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-8e-06</td>
+</tr>
+<tr>
+<td align="left">25%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-17.5938</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-3.59e-06</td>
+</tr>
+<tr>
+<td align="left">50%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-15.3853</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">75%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-13.1249</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">90%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-11.3609</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">8e-06</td>
+</tr>
+<tr>
+<td align="left">99%</td>
+<td align="right">0</td>
+<td align="right">1.2122e-05</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">7.45146</td>
+<td align="right">0</td>
+<td align="right">0.0002439</td>
+<td align="right">0.000426899</td>
+</tr>
+<tr>
+<td align="left">99.9%</td>
+<td align="right">0</td>
+<td align="right">0.000423971</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">706.385</td>
+<td align="right">0</td>
+<td align="right">0.000493936</td>
+<td align="right">0.000494574</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="right">0</td>
+<td align="right">0.0004973</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">74021.6</td>
+<td align="right">0</td>
+<td align="right">0.0005</td>
+<td align="right">0.00050146</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>@TotalObjective</code> metric is of particular interest. Small perturbations to input parameters or constraint formulations can lead to large changes in the objective function's value at optimality. As there can be considerable variability with respect to the magnitude of this metric additional context is provided by normalising the difference using the following formula:</p>
+<p><code>Normalised Difference = (Dispatch API Total Objective - NEMDE Total Objective) / NEMDE Total Objective</code>.</p>
+<p>Summary statistics for this normalised metric are shown below:</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">@TotalObjectiveNormalisedDifference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="right">8640</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="right">8.7459e-07</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="right">2.13632e-05</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="right">-0.000545912</td>
+</tr>
+<tr>
+<td align="left">0.1%</td>
+<td align="right">-6.55193e-05</td>
+</tr>
+<tr>
+<td align="left">1%</td>
+<td align="right">-3.78768e-06</td>
+</tr>
+<tr>
+<td align="left">10%</td>
+<td align="right">-3.54142e-07</td>
+</tr>
+<tr>
+<td align="left">25%</td>
+<td align="right">-4.97563e-08</td>
+</tr>
+<tr>
+<td align="left">50%</td>
+<td align="right">1.04533e-06</td>
+</tr>
+<tr>
+<td align="left">75%</td>
+<td align="right">1.38992e-06</td>
+</tr>
+<tr>
+<td align="left">90%</td>
+<td align="right">1.74495e-06</td>
+</tr>
+<tr>
+<td align="left">99%</td>
+<td align="right">6.26676e-06</td>
+</tr>
+<tr>
+<td align="left">99.9%</td>
+<td align="right">4.17993e-05</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="right">0.00120749</td>
+</tr>
+</tbody>
+</table>
+<p>The mean relative difference is 0.000087%, suggesting excellent correspondence for a vast majority of the dispatch intervals investigated. </p>
+<p>The following histograms plot the normalised difference.</p>
+<div class="highlight"><pre><span></span><code>/home/compo/miniconda3/envs/dispatch-api-tutorials/lib/python3.9/site-packages/pandas/plotting/_matplotlib/tools.py:400: MatplotlibDeprecationWarning: 
+The is_first_col function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use ax.get_subplotspec().is_first_col() instead.
+  if ax.is_first_col():
+</code></pre></div>
+<p><img alt="png" src="../model-validation_files/model-validation_7_1.png" /></p>
+<h3 id="regions">Regions</h3>
+<p>The difference between region solutions obtained from the Dispatch API and NEMDE are shown in the following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">@ClearedDemand</th>
+<th align="right">@DispatchedGeneration</th>
+<th align="right">@DispatchedLoad</th>
+<th align="right">@EnergyPrice</th>
+<th align="right">@FixedDemand</th>
+<th align="right">@L5Dispatch</th>
+<th align="right">@L5RegDispatch</th>
+<th align="right">@L60Dispatch</th>
+<th align="right">@L6Dispatch</th>
+<th align="right">@NetExport</th>
+<th align="right">@R5Dispatch</th>
+<th align="right">@R5RegDispatch</th>
+<th align="right">@R60Dispatch</th>
+<th align="right">@R6Dispatch</th>
+<th align="right">@SurplusGeneration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+<td align="right">43200</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="right">-0.00726389</td>
+<td align="right">-0.00724513</td>
+<td align="right">0.000256479</td>
+<td align="right">-0.0549102</td>
+<td align="right">-1.28787e-05</td>
+<td align="right">-0.0469272</td>
+<td align="right">7.34422e-06</td>
+<td align="right">-0.0928329</td>
+<td align="right">-0.0659896</td>
+<td align="right">-0.0075605</td>
+<td align="right">-0.181868</td>
+<td align="right">-0.000211147</td>
+<td align="right">-0.0129342</td>
+<td align="right">0.000143315</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="right">0.230423</td>
+<td align="right">3.11459</td>
+<td align="right">0.0441242</td>
+<td align="right">4.28704</td>
+<td align="right">0.00288432</td>
+<td align="right">1.5733</td>
+<td align="right">0.742168</td>
+<td align="right">1.95298</td>
+<td align="right">7.22621</td>
+<td align="right">3.12331</td>
+<td align="right">5.11396</td>
+<td align="right">0.771209</td>
+<td align="right">3.09734</td>
+<td align="right">1.77893</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="right">-15.8901</td>
+<td align="right">-170.276</td>
+<td align="right">-5</td>
+<td align="right">-576.211</td>
+<td align="right">-0.00499998</td>
+<td align="right">-72</td>
+<td align="right">-40</td>
+<td align="right">-62</td>
+<td align="right">-70</td>
+<td align="right">-170.278</td>
+<td align="right">-117</td>
+<td align="right">-33</td>
+<td align="right">-84</td>
+<td align="right">-46</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">0.1%</td>
+<td align="right">-2.89466</td>
+<td align="right">-20.0235</td>
+<td align="right">-0.00360901</td>
+<td align="right">-6.61755</td>
+<td align="right">-0.00499061</td>
+<td align="right">-21.0438</td>
+<td align="right">-9</td>
+<td align="right">-43.801</td>
+<td align="right">-40.0042</td>
+<td align="right">-21.1914</td>
+<td align="right">-65.0777</td>
+<td align="right">-9.40064</td>
+<td align="right">-30.9064</td>
+<td align="right">-18.9885</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">1%</td>
+<td align="right">-0.0049563</td>
+<td align="right">-0.00497</td>
+<td align="right">0</td>
+<td align="right">-0.00136307</td>
+<td align="right">-0.0049087</td>
+<td align="right">-1.71042</td>
+<td align="right">-0.00499952</td>
+<td align="right">-0.00487</td>
+<td align="right">-25</td>
+<td align="right">-0.00492488</td>
+<td align="right">-10.0038</td>
+<td align="right">-0.0049756</td>
+<td align="right">-9.99378</td>
+<td align="right">-3</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">10%</td>
+<td align="right">-0.00404488</td>
+<td align="right">-0.004</td>
+<td align="right">0</td>
+<td align="right">-2.23e-05</td>
+<td align="right">-0.00399141</td>
+<td align="right">-0.0016932</td>
+<td align="right">-2e-06</td>
+<td align="right">-0.0019</td>
+<td align="right">-0.004616</td>
+<td align="right">-0.003945</td>
+<td align="right">-0.003317</td>
+<td align="right">-0.00089856</td>
+<td align="right">-0.0039411</td>
+<td align="right">-0.0033334</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">25%</td>
+<td align="right">-0.00249697</td>
+<td align="right">-0.00248</td>
+<td align="right">0</td>
+<td align="right">-1e-06</td>
+<td align="right">-0.0025206</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.00230016</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.000548</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">50%</td>
+<td align="right">3.69658e-05</td>
+<td align="right">4.335e-05</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-1.47997e-05</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-5.52071e-05</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">75%</td>
+<td align="right">0.00255456</td>
+<td align="right">0.00259803</td>
+<td align="right">0</td>
+<td align="right">4e-06</td>
+<td align="right">0.00246805</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00244</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.000228425</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">90%</td>
+<td align="right">0.00409419</td>
+<td align="right">0.00406955</td>
+<td align="right">0</td>
+<td align="right">0.00024791</td>
+<td align="right">0.00399658</td>
+<td align="right">0.00149863</td>
+<td align="right">2e-06</td>
+<td align="right">0.00201015</td>
+<td align="right">0.00416214</td>
+<td align="right">0.00401877</td>
+<td align="right">0.003097</td>
+<td align="right">0.0007324</td>
+<td align="right">0.003333</td>
+<td align="right">0.0031746</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">99%</td>
+<td align="right">0.00594889</td>
+<td align="right">0.00553584</td>
+<td align="right">0</td>
+<td align="right">0.00150106</td>
+<td align="right">0.00490659</td>
+<td align="right">0.796617</td>
+<td align="right">0.005</td>
+<td align="right">0.0048288</td>
+<td align="right">29.6966</td>
+<td align="right">0.00627672</td>
+<td align="right">10</td>
+<td align="right">0.0049268</td>
+<td align="right">8.96169</td>
+<td align="right">2.22</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">99.9%</td>
+<td align="right">0.307791</td>
+<td align="right">18.8761</td>
+<td align="right">0.00317649</td>
+<td align="right">0.0632088</td>
+<td align="right">0.00499133</td>
+<td align="right">9.25666</td>
+<td align="right">9</td>
+<td align="right">0.005</td>
+<td align="right">49.5024</td>
+<td align="right">18.8804</td>
+<td align="right">39</td>
+<td align="right">9.5</td>
+<td align="right">30.0037</td>
+<td align="right">23.9121</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="right">8.62209</td>
+<td align="right">205.594</td>
+<td align="right">5</td>
+<td align="right">85.3612</td>
+<td align="right">0.00499974</td>
+<td align="right">23</td>
+<td align="right">55</td>
+<td align="right">23.16</td>
+<td align="right">70</td>
+<td align="right">205.593</td>
+<td align="right">100</td>
+<td align="right">33</td>
+<td align="right">50.5</td>
+<td align="right">46.0023</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interconnectors">Interconnectors</h3>
+<p>Summary statistics for the difference between interconnector solutions obtained from the Dispatch API and NEMDE outputs are shown in the following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">@Deficit</th>
+<th align="right">@Flow</th>
+<th align="right">@Losses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="right">51840</td>
+<td align="right">51840</td>
+<td align="right">51840</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="right">0</td>
+<td align="right">0.043914</td>
+<td align="right">-0.00630429</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="right">0</td>
+<td align="right">3.57264</td>
+<td align="right">0.340097</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="right">0</td>
+<td align="right">-188.532</td>
+<td align="right">-27.7887</td>
+</tr>
+<tr>
+<td align="left">0.1%</td>
+<td align="right">0</td>
+<td align="right">-9.47514</td>
+<td align="right">-2.74303</td>
+</tr>
+<tr>
+<td align="left">1%</td>
+<td align="right">0</td>
+<td align="right">-1e-05</td>
+<td align="right">-5e-06</td>
+</tr>
+<tr>
+<td align="left">10%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-4e-06</td>
+</tr>
+<tr>
+<td align="left">25%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-2.5e-06</td>
+</tr>
+<tr>
+<td align="left">50%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">75%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2.2625e-06</td>
+</tr>
+<tr>
+<td align="left">90%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3.95e-06</td>
+</tr>
+<tr>
+<td align="left">99%</td>
+<td align="right">0</td>
+<td align="right">1e-05</td>
+<td align="right">0.00911366</td>
+</tr>
+<tr>
+<td align="left">99.9%</td>
+<td align="right">0</td>
+<td align="right">29.9524</td>
+<td align="right">0.401957</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="right">0</td>
+<td align="right">215.551</td>
+<td align="right">22.8728</td>
+</tr>
+</tbody>
+</table>
+<h3 id="traders">Traders</h3>
+<p>Summary statistics for the difference between trader solutions obtained from the Dispatch API and outputs reported by the NEMDE are shown below:</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">@EnergyTarget</th>
+<th align="right">@FSTargetMode</th>
+<th align="right">@L5RegTarget</th>
+<th align="right">@L5RegViolation</th>
+<th align="right">@L5Target</th>
+<th align="right">@L5Violation</th>
+<th align="right">@L60Target</th>
+<th align="right">@L60Violation</th>
+<th align="right">@L6Target</th>
+<th align="right">@L6Violation</th>
+<th align="right">@R5RegTarget</th>
+<th align="right">@R5RegViolation</th>
+<th align="right">@R5Target</th>
+<th align="right">@R5Violation</th>
+<th align="right">@R60Target</th>
+<th align="right">@R60Violation</th>
+<th align="right">@R6Target</th>
+<th align="right">@R6Violation</th>
+<th align="right">@RampDnRate</th>
+<th align="right">@RampUpRate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">count</td>
+<td align="right">3.0648e+06</td>
+<td align="right">630694</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">3.0648e+06</td>
+<td align="right">2.90928e+06</td>
+<td align="right">2.90928e+06</td>
+</tr>
+<tr>
+<td align="left">mean</td>
+<td align="right">-9.88134e-05</td>
+<td align="right">0.00117965</td>
+<td align="right">-1.03417e-09</td>
+<td align="right">0</td>
+<td align="right">-0.000661336</td>
+<td align="right">0</td>
+<td align="right">-0.00130888</td>
+<td align="right">0</td>
+<td align="right">-0.000930919</td>
+<td align="right">0</td>
+<td align="right">-2.73462e-06</td>
+<td align="right">0</td>
+<td align="right">-0.00256321</td>
+<td align="right">0</td>
+<td align="right">-0.000180932</td>
+<td align="right">0</td>
+<td align="right">2.43402e-06</td>
+<td align="right">0</td>
+<td align="right">-0.000100076</td>
+<td align="right">-9.80774e-05</td>
+</tr>
+<tr>
+<td align="left">std</td>
+<td align="right">0.390342</td>
+<td align="right">0.166714</td>
+<td align="right">0.310275</td>
+<td align="right">0</td>
+<td align="right">0.795769</td>
+<td align="right">0</td>
+<td align="right">1.1752</td>
+<td align="right">0</td>
+<td align="right">1.06659</td>
+<td align="right">0</td>
+<td align="right">0.31334</td>
+<td align="right">0</td>
+<td align="right">1.25552</td>
+<td align="right">0</td>
+<td align="right">0.722973</td>
+<td align="right">0</td>
+<td align="right">0.591007</td>
+<td align="right">0</td>
+<td align="right">0.000727775</td>
+<td align="right">0.0007142</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="right">-146.461</td>
+<td align="right">-4</td>
+<td align="right">-50.0001</td>
+<td align="right">0</td>
+<td align="right">-116.757</td>
+<td align="right">0</td>
+<td align="right">-124.716</td>
+<td align="right">0</td>
+<td align="right">-115.321</td>
+<td align="right">0</td>
+<td align="right">-36.707</td>
+<td align="right">0</td>
+<td align="right">-107.657</td>
+<td align="right">0</td>
+<td align="right">-92.4525</td>
+<td align="right">0</td>
+<td align="right">-33</td>
+<td align="right">0</td>
+<td align="right">-0.005</td>
+<td align="right">-0.005</td>
+</tr>
+<tr>
+<td align="left">0.1%</td>
+<td align="right">-7.12462e-06</td>
+<td align="right">-1</td>
+<td align="right">-2</td>
+<td align="right">0</td>
+<td align="right">-3.93637</td>
+<td align="right">0</td>
+<td align="right">-6.73891</td>
+<td align="right">0</td>
+<td align="right">-14</td>
+<td align="right">0</td>
+<td align="right">-1.34313</td>
+<td align="right">0</td>
+<td align="right">-13.4952</td>
+<td align="right">0</td>
+<td align="right">-5.71423</td>
+<td align="right">0</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+<td align="right">-0.00499993</td>
+<td align="right">-0.00499993</td>
+</tr>
+<tr>
+<td align="left">1%</td>
+<td align="right">-1.1e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.00372711</td>
+<td align="right">-0.00372711</td>
+</tr>
+<tr>
+<td align="left">10%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">25%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">50%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">75%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">90%</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">99%</td>
+<td align="right">1e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">9.15527e-05</td>
+<td align="right">5.72205e-06</td>
+</tr>
+<tr>
+<td align="left">99.9%</td>
+<td align="right">5.5603e-06</td>
+<td align="right">4</td>
+<td align="right">1.89784</td>
+<td align="right">0</td>
+<td align="right">3.75162</td>
+<td align="right">0</td>
+<td align="right">6.26603</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">1.4188</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">5.74791</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0.00497025</td>
+<td align="right">0.00499995</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="right">175</td>
+<td align="right">4</td>
+<td align="right">50.0001</td>
+<td align="right">0</td>
+<td align="right">80</td>
+<td align="right">0</td>
+<td align="right">124</td>
+<td align="right">0</td>
+<td align="right">68.1516</td>
+<td align="right">0</td>
+<td align="right">42.375</td>
+<td align="right">0</td>
+<td align="right">83.5758</td>
+<td align="right">0</td>
+<td align="right">97.5939</td>
+<td align="right">0</td>
+<td align="right">49.5355</td>
+<td align="right">0</td>
+<td align="right">0.00499828</td>
+<td align="right">0.00499996</td>
+</tr>
+</tbody>
+</table>
+<p>Energy market dispatch targets obtained from the Dispatch API correpsond closely to those within NEMDE outputs, illustrated by the following histograms:</p>
+<p><img alt="png" src="../model-validation_files/model-validation_15_0.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

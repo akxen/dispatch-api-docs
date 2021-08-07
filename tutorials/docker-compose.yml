@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+    user: "root"
+
+networks:
+  default:
+    external: true
+    name: nemde-api_default

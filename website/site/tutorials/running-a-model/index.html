@@ -1,0 +1,1174 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Running a model - Dispatch API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-a-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dispatch API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Running a model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Dispatch API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Running a model
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Running a model
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-a-case-file" class="md-nav__link">
+    Download a case file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case-file-components" class="md-nav__link">
+    Case file components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-a-job" class="md-nav__link">
+    Submitting a job
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-results" class="md-nav__link">
+    Retrieving results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-a-case-file" class="md-nav__link">
+    Download a case file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case-file-components" class="md-nav__link">
+    Case file components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-a-job" class="md-nav__link">
+    Submitting a job
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-results" class="md-nav__link">
+    Retrieving results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="running-a-model">Running a model</h1>
+<p>An online queue is used to coordinate the task of formulating and solving mathematical programs. Users submit parameters to the queue via the Dispatch API, which creates a new 'job' within the queue. A pool of 'workers' monitor this queue for new jobs. If a worker is available (i.e. it is not currently processing a job) it will pick the job off the queue and then formulate and solve a mathematical program using the inputs provided. The worker then posts the optimisation model's results back to the queue, and marks the job as 'finished'. Results can then be accessed by the user. </p>
+<p>This notebook describes how to obtain historical data describing the NEM's state via the Dispatch API, along with the process of submitting a job to, and retrieving results from, the online queue.</p>
+<h2 id="imports-and-authentication">Imports and authentication</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">display</span>
+</code></pre></div>
+<p>A valid API token is required to use the Dispatch API, and must be included within the <code>headers</code> section of each request. Email <a href="mailto:contact@envector.com">contact@envector.com</a> if you would like to arrange a trial.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load environment variables</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Replace with your API token</span>
+<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
+<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
+
+<span class="c1"># Request headers are used to authenticate users via their access token</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
+</code></pre></div>
+<h2 id="download-a-case-file">Download a case file</h2>
+<p>Case files contain parameters used by the NEMDE when determining dispatch targets for generators and loads. The Dispatch API uses selected inputs from these case files when formulating a mathematical program that approximates the NEMDE's operation (see the <a href="/parameter-reference">parameter reference page</a> for a description of the inputs used).</p>
+<p>A limited library of case files containing historical data is accessible via the Dispatch API. Each case file is identified by a case ID, e.g. <code>20201101001</code>, which has the following format:</p>
+<div class="highlight"><pre><span></span><code>{year}{month}{day}{interval_id}
+</code></pre></div>
+<p>Interval IDs range from 001-288 and are used to identify each 5 minute interval within a 24 hour period. </p>
+<p>As each trading day begins at 4.00am, the case ID <code>20201101001</code> corresponds to the trading interval which starts at <code>2020-11-01 04:00:00</code> and ends at <code>2020-11-01 04:05:00</code>. When NEMDE is run at approximately <code>04:00:00</code> it produces dispatch targets that generators and loads should meet at <code>04:05:00</code>. The following table illustrates the mapping between case IDs and the start and end times for selected dispatch intervals.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Case ID</th>
+<th align="center">Interval start</th>
+<th align="center">Interval end</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">20201101001</td>
+<td align="center">2020-11-01 04:00:00</td>
+<td align="center">2020-11-01 04:05:00</td>
+</tr>
+<tr>
+<td align="center">20201101002</td>
+<td align="center">2020-11-01 04:05:00</td>
+<td align="center">2020-11-01 04:10:00</td>
+</tr>
+<tr>
+<td align="center">20201101003</td>
+<td align="center">2020-11-01 04:10:00</td>
+<td align="center">2020-11-01 04:15:00</td>
+</tr>
+<tr>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+</tr>
+<tr>
+<td align="center">20201101287</td>
+<td align="center">2020-11-02 03:50:00</td>
+<td align="center">2020-11-02 03:55:00</td>
+</tr>
+<tr>
+<td align="center">20201101288</td>
+<td align="center">2020-11-02 03:55:00</td>
+<td align="center">2020-11-02 04:00:00</td>
+</tr>
+</tbody>
+</table>
+<p>The following function downloads a case file, which is returned as a Python dictionary.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a case file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_url : str</span>
+<span class="sd">        Base URL for the Dispatch API</span>
+
+<span class="sd">    headers : dict</span>
+<span class="sd">        Contains auth token used to authenticate requests</span>
+
+<span class="sd">    case_id : str</span>
+<span class="sd">        Case ID to download e.g. &#39;20201101001&#39;. The format is as follows</span>
+<span class="sd">        {year}{month}{day}{interval_id} where interval_id is in [001, ..., 288]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Parameters describing the system&#39;s state</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Case file endpoint&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="c1"># Load JSON response as Python dictionary</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+
+
+<span class="c1"># Download case file and save it to disk</span>
+<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;20201101001&#39;</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Case file endpoint https://dispatch.envector.com/api/v1/data/casefile/20201101001
+</code></pre></div>
+<h2 id="case-file-components">Case file components</h2>
+<p>Case files describe the state of the system at the start of a dispatch interval, and also include forecasts for demand and intermittent generation at the end of the interval. A nested data structure, in this case a Python dictionary, organises data into logical components.</p>
+<p>Those familiar with NEMDE case files in XML format may recognise the following data structure. In fact, the dictionary is obtained by converting a NEMDE case file in XML format to a Python dictionary. See <a href="/tutorials/converting-a-case-file">this tutorial</a> to learn how to convert your own NEMDE XML files into a format that can be consumed by the Dispatch API.</p>
+<p>At the dictionary's root there is a single key, <code>NEMSPDCaseFile</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">casefile</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>dict_keys([&#39;NEMSPDCaseFile&#39;])
+</code></pre></div>
+<p>The dictionary can be traversed by 'getting' the value for a given key, in this case <code>NEMSPDCaseFile</code>, and looking at its constituent components. Here we can see there are three nested keys:</p>
+<div class="highlight"><pre><span></span><code><span class="n">casefile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NEMSPDCaseFile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>dict_keys([&#39;NemSpdInputs&#39;, &#39;NemSpdOutputs&#39;, &#39;SolutionAnalysis&#39;])
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NemSpdInputs</td>
+<td align="left">Parameters describing the system's state</td>
+</tr>
+<tr>
+<td align="left">NemSpdOutputs</td>
+<td align="left">NEMDE solution for each trader (generator / load), generic constraint, interconnector, and region</td>
+</tr>
+<tr>
+<td align="left">SolutionAnalysis</td>
+<td align="left">Price setting results</td>
+</tr>
+</tbody>
+</table>
+<p>While NEMDE case files provide a convenient data structure describing parameters used to set dispatch targets, there are a limitations associated with their design. For instance, some parameters are duplicated, while others may be ignored. Users seeking to modify case files should consult the <a href="/parameter-reference">parameter reference page</a> to see which parameters can be meaningfully modified when using the Dispatch API.</p>
+<h2 id="submitting-a-job">Submitting a job</h2>
+<p>For now let's run the case file without modifying any of its components. The body of the request is simply a dictionary with <code>"casefile"</code> as the key, and the case file dictionay as its corresponding value:</p>
+<div class="highlight"><pre><span></span><code>body = {&quot;casefile&quot;: casefile}
+</code></pre></div>
+<p>A POST request is submitted to <code>https://dispatch.envector.com/api/v1/jobs/create</code></p>
+<p>The response contains information pertaining to the newly created job, including a job ID which will be used when querying results once they become available.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Submit case file to the job queue&quot;&quot;&quot;</span>
+
+    <span class="c1"># Construct request body and URL</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;casefile&#39;</span><span class="p">:</span> <span class="n">casefile</span><span class="p">}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
+
+    <span class="c1"># Send job to queue and return job meta data</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Submit job and inspect meta data</span>
+<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
+<span class="n">job_info</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
+ &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280Z&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861Z&#39;,
+ &#39;timeout&#39;: 180,
+ &#39;status&#39;: &#39;queued&#39;,
+ &#39;label&#39;: None}
+</code></pre></div>
+<p>A pool of workers monitor the queue to which the job is posted. If a worker is available it will formulate and run the optimisation model using the inputs provided. Results are then posted back to the queue for retrieval by the user. </p>
+<p>The following URLs become available once a job has been submitted, allowing users to check the job's status, examine job results, or delete the job:</p>
+<table>
+<thead>
+<tr>
+<th align="left">URL</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/status</code></td>
+<td align="left">Get job status</td>
+</tr>
+<tr>
+<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/results</code></td>
+<td align="left">Get job results</td>
+</tr>
+<tr>
+<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/delete</code></td>
+<td align="left">Delete job</td>
+</tr>
+</tbody>
+</table>
+<p>For example, if the job ID is <code>04c66262-6144-444d-98bf-00c21cb955dd</code>, the URL to get the job's status would be:</p>
+<div class="highlight"><pre><span></span><code>https://dispatch.envector.com/api/v1/jobs/04c66262-6144-444d-98bf-00c21cb955dd/status
+</code></pre></div>
+<p>Let's check the job's status.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check job status given a job ID&quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/status&#39;</span>
+
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Check job status</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
+<span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
+ &#39;status&#39;: &#39;started&#39;,
+ &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861&#39;,
+ &#39;started_at&#39;: &#39;2021-03-29T13:46:48.773524&#39;,
+ &#39;ended_at&#39;: None,
+ &#39;timeout&#39;: 180,
+ &#39;label&#39;: None}
+</code></pre></div>
+<p>We can see a worker has started to process the job. It typically takes 30s for a worker to complete a job once started. After waiting a short period we can check the status again.</p>
+<div class="highlight"><pre><span></span><code><span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
+ &#39;status&#39;: &#39;finished&#39;,
+ &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861&#39;,
+ &#39;started_at&#39;: &#39;2021-03-29T13:46:48.887061&#39;,
+ &#39;ended_at&#39;: &#39;2021-03-29T13:47:13.268052&#39;,
+ &#39;timeout&#39;: 180,
+ &#39;label&#39;: None}
+</code></pre></div>
+<h2 id="retrieving-results">Retrieving results</h2>
+<p>Once the job has finished we can access its results.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract job results from the queue&quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>   
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Get job results from the queue</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+</code></pre></div>
+<p><span style="color:red">Note: completed jobs are only retained in the queue for 2 hours, at which point the job (and results) are deleted.</span></p>
+<p>The value corresponding to the <code>results</code> key contains the solution reported by the worker. Let's use Pandas to examine the output.</p>
+<div class="highlight"><pre><span></span><code><span class="n">region_solution</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">region_solution_md</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">region_solution</span><span class="p">)</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">region_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">@RegionID</th>
+<th align="right">@CaseID</th>
+<th align="right">@Intervention</th>
+<th align="right">@EnergyPrice</th>
+<th align="right">@DispatchedGeneration</th>
+<th align="right">@DispatchedLoad</th>
+<th align="right">@FixedDemand</th>
+<th align="right">@NetExport</th>
+<th align="right">@SurplusGeneration</th>
+<th align="right">@R6Dispatch</th>
+<th align="right">@R60Dispatch</th>
+<th align="right">@R5Dispatch</th>
+<th align="right">@R5RegDispatch</th>
+<th align="right">@L6Dispatch</th>
+<th align="right">@L60Dispatch</th>
+<th align="right">@L5Dispatch</th>
+<th align="right">@L5RegDispatch</th>
+<th align="right">@ClearedDemand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">41.6999</td>
+<td align="right">5818.37</td>
+<td align="right">0</td>
+<td align="right">5654.29</td>
+<td align="right">164.078</td>
+<td align="right">0</td>
+<td align="right">213</td>
+<td align="right">196</td>
+<td align="right">68</td>
+<td align="right">118.172</td>
+<td align="right">112.354</td>
+<td align="right">173</td>
+<td align="right">78.968</td>
+<td align="right">34</td>
+<td align="right">5660.54</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">41.2282</td>
+<td align="right">5232.56</td>
+<td align="right">0</td>
+<td align="right">5113.69</td>
+<td align="right">118.868</td>
+<td align="right">0</td>
+<td align="right">34.9091</td>
+<td align="right">34.9091</td>
+<td align="right">23</td>
+<td align="right">103</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">40</td>
+<td align="right">5113.56</td>
+</tr>
+<tr>
+<td align="left">SA1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">45.44</td>
+<td align="right">1001.83</td>
+<td align="right">0</td>
+<td align="right">1096.91</td>
+<td align="right">-95.0743</td>
+<td align="right">0</td>
+<td align="right">115</td>
+<td align="right">75</td>
+<td align="right">55.5582</td>
+<td align="right">79</td>
+<td align="right">97</td>
+<td align="right">73</td>
+<td align="right">67</td>
+<td align="right">108</td>
+<td align="right">1096.83</td>
+</tr>
+<tr>
+<td align="left">TAS1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">44.8781</td>
+<td align="right">734.724</td>
+<td align="right">0</td>
+<td align="right">957.232</td>
+<td align="right">-222.507</td>
+<td align="right">0</td>
+<td align="right">40.4435</td>
+<td align="right">59.8479</td>
+<td align="right">23.3362</td>
+<td align="right">5</td>
+<td align="right">23.197</td>
+<td align="right">57.8819</td>
+<td align="right">52.0513</td>
+<td align="right">10</td>
+<td align="right">957.232</td>
+</tr>
+<tr>
+<td align="left">VIC1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">44.3783</td>
+<td align="right">3653.47</td>
+<td align="right">15</td>
+<td align="right">3596.2</td>
+<td align="right">42.2753</td>
+<td align="right">0</td>
+<td align="right">88.4044</td>
+<td align="right">126</td>
+<td align="right">59</td>
+<td align="right">49.8276</td>
+<td align="right">70</td>
+<td align="right">76</td>
+<td align="right">64</td>
+<td align="right">18</td>
+<td align="right">3612.8</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">interconnector_solution</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;InterconnectorSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">interconnector_solution_md</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">interconnector_solution</span><span class="p">)</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">interconnector_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">@InterconnectorID</th>
+<th align="right">@CaseID</th>
+<th align="right">@Intervention</th>
+<th align="right">@Flow</th>
+<th align="right">@Losses</th>
+<th align="right">@Deficit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">N-Q-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">-33</td>
+<td align="right">-0.591673</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">NSW1-QLD1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">-86.0011</td>
+<td align="right">0.306671</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">T-V-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">-222.507</td>
+<td align="right">6.01955</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">V-S-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">45</td>
+<td align="right">-0.856901</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">V-SA</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">50</td>
+<td align="right">0.60394</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">VIC1-NSW1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">-276.834</td>
+<td align="right">10.8428</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">trader_solution</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TraderSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">trader_solution_md</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">trader_solution</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">trader_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">@TraderID</th>
+<th align="right">@CaseID</th>
+<th align="right">@Intervention</th>
+<th align="right">@EnergyTarget</th>
+<th align="right">@R6Target</th>
+<th align="right">@R60Target</th>
+<th align="right">@R5Target</th>
+<th align="right">@R5RegTarget</th>
+<th align="right">@L6Target</th>
+<th align="right">@L60Target</th>
+<th align="right">@L5Target</th>
+<th align="right">@L5RegTarget</th>
+<th align="right">@R6Violation</th>
+<th align="right">@R60Violation</th>
+<th align="right">@R5Violation</th>
+<th align="right">@R5RegViolation</th>
+<th align="right">@L6Violation</th>
+<th align="right">@L60Violation</th>
+<th align="right">@L5Violation</th>
+<th align="right">@L5RegViolation</th>
+<th align="right">@RampUpRate</th>
+<th align="right">@RampDnRate</th>
+<th align="right">@FSTargetMode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">AGLHAL</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">720</td>
+<td align="right">720</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">AGLSOM</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">360</td>
+<td align="right">360</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">ANGAST1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">840</td>
+<td align="right">840</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">APD01</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">31</td>
+<td align="right">70</td>
+<td align="right">30</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">ARWF1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="right">126.114</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1200</td>
+<td align="right">600</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p>This tutorial demonstrates the basic functionality of the Dispatch API. Two key components have been introduced: the ability to access historical data using the API, and methods that facilitate interaction with an online queue. Future tutorials will discuss how to modify case files, perform scenario analyses, and also introduce more advanced workflows using additional Dispatch API features.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../model-validation/202011/model-validation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Model validation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Model validation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../modifying-a-case-file/" class="md-footer__link md-footer__link--next" aria-label="Next: Modifying a case file" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Modifying a case file
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

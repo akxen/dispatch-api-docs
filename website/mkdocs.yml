@@ -1,0 +1,20 @@
+site_name: NEMDE API
+theme:
+    name: material
+    palette:
+      primary: white
+nav:
+    - Home: index.md
+    - Model validation: model-validation/202011/model-validation.md
+    - Tutorials: 
+      - Running a model: tutorials/running-a-model.md
+      - Modifying a case file: tutorials/modifying-a-case-file.md
+      - Scenario analysis - line plot: tutorials/scenario-analysis-line-plot.md
+      - Scenario analsyis - heatmap: tutorials/scenario-analysis-heatmap.md
+      - Converting a case file: tutorials/converting-a-case-file.md
+    - Case file parameters: parameter-reference.md
+    - Case studies: case-studies/case-studies.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
