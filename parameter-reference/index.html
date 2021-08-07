@@ -1,0 +1,1459 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Case file parameters - NEMDE API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#case-file-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NEMDE API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Case file parameters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    NEMDE API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Case file parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Case file parameters
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    Case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regions" class="md-nav__link">
+    Regions
+  </a>
+  
+    <nav class="md-nav" aria-label="Regions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demand-forecast" class="md-nav__link">
+    Demand Forecast
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traders" class="md-nav__link">
+    Traders
+  </a>
+  
+    <nav class="md-nav" aria-label="Traders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions_1" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#price-bands" class="md-nav__link">
+    Price bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantity-bands" class="md-nav__link">
+    Quantity bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uigf" class="md-nav__link">
+    UIGF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-start-unit-parameters" class="md-nav__link">
+    Fast-start unit parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interconnectors" class="md-nav__link">
+    Interconnectors
+  </a>
+  
+    <nav class="md-nav" aria-label="Interconnectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_1" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-flow-limits" class="md-nav__link">
+    Power flow limits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions_2" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loss-model" class="md-nav__link">
+    Loss model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basslink" class="md-nav__link">
+    Basslink
+  </a>
+  
+    <nav class="md-nav" aria-label="Basslink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#price-bands_1" class="md-nav__link">
+    Price bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantity-bands_1" class="md-nav__link">
+    Quantity bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ramp-rates-and-max-availability" class="md-nav__link">
+    Ramp rates and max availability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-loss-model-parameters" class="md-nav__link">
+    Additional loss model parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-constraints" class="md-nav__link">
+    Generic constraints
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_2" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervention-indicator" class="md-nav__link">
+    Intervention indicator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-hand-side-lhs-factor-collection" class="md-nav__link">
+    Left-hand side (LHS) factor collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-hand-side-rhs" class="md-nav__link">
+    Right-hand side (RHS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    Case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regions" class="md-nav__link">
+    Regions
+  </a>
+  
+    <nav class="md-nav" aria-label="Regions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demand-forecast" class="md-nav__link">
+    Demand Forecast
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traders" class="md-nav__link">
+    Traders
+  </a>
+  
+    <nav class="md-nav" aria-label="Traders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions_1" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#price-bands" class="md-nav__link">
+    Price bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantity-bands" class="md-nav__link">
+    Quantity bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uigf" class="md-nav__link">
+    UIGF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-start-unit-parameters" class="md-nav__link">
+    Fast-start unit parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interconnectors" class="md-nav__link">
+    Interconnectors
+  </a>
+  
+    <nav class="md-nav" aria-label="Interconnectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_1" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-flow-limits" class="md-nav__link">
+    Power flow limits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions_2" class="md-nav__link">
+    Initial conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loss-model" class="md-nav__link">
+    Loss model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basslink" class="md-nav__link">
+    Basslink
+  </a>
+  
+    <nav class="md-nav" aria-label="Basslink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#price-bands_1" class="md-nav__link">
+    Price bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantity-bands_1" class="md-nav__link">
+    Quantity bands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ramp-rates-and-max-availability" class="md-nav__link">
+    Ramp rates and max availability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-loss-model-parameters" class="md-nav__link">
+    Additional loss model parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-constraints" class="md-nav__link">
+    Generic constraints
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_2" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervention-indicator" class="md-nav__link">
+    Intervention indicator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-hand-side-lhs-factor-collection" class="md-nav__link">
+    Left-hand side (LHS) factor collection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-hand-side-rhs" class="md-nav__link">
+    Right-hand side (RHS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="case-file-parameters">Case file parameters</h1>
+<p>Case files submitted via the NEMDE API follow the same data structure as NEMDE case files (see <a href="/tutorials/converting-a-case-file">this tutorial</a> to learn how to convert historical NEMDE case files into a format that can be consumed by the NEMDE API). This assists development efforts as historical case files provide an excellent foundation on which new features can be built. However, there are limitations that arise from this approach. For instance, the NEMDE API only uses a subset of the data contained within historical case files when formulating a mathematical program. Ambiguities may also arise when inspecting case files as some parameters are duplicated while others may be ignored. The following sections seek to address these ambiguities by explicitly outlining the parameters used when formulating a mathematical program via the NEMDE API. Updates made to these parameters will be reflected in the formulated model, while changes to all other parameters are ignored and will have no effect. </p>
+<p>Paths to parameters within a JSON case file document are provided. Filters may need to be used when referencing specific elements (e.g. to identify a specific trader, interconnector, region, or constraint). Where practical, tables are used to summarise possible values for these query parameters. Note that this document may be updated over time as additional information is incorporated into the model used by the NEMDE API.</p>
+<h2 id="case">Case</h2>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@VoLL</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@EnergyDeficitPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@EnergySurplusPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@RampRatePrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@InterconnectorPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@CapacityPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@OfferPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@TieBreakPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@MNSPOfferPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@MNSPRampRatePrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@MNSPCapacityPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@FastStartPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@UIGFSurplusPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@ASMaxAvailPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@ASEnablementMinPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@ASEnablementMaxPrice</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="nd">@FastStartThreshold</span>
+</code></pre></div>
+<h2 id="regions">Regions</h2>
+<h3 id="initial-conditions">Initial conditions</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">RegionCollection</span><span class="o">.</span><span class="n">Region</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">RegionInitialConditionCollection</span><span class="o">.</span><span class="n">RegionInitialCondition</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InitialConditionID</span><span class="o">=</span><span class="s2">&quot;initial_condition_id&quot;</span><span class="p">})]</span><span class="o">.</span><span class="nd">@Value</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">region_id</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">SA1</td>
+<td align="left">South Australia</td>
+</tr>
+<tr>
+<td align="left">VIC1</td>
+<td align="left">Victoria</td>
+</tr>
+<tr>
+<td align="left">TAS1</td>
+<td align="left">Tasmania</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="left">New South Wales</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="left">Queensland</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">initial_condition_id</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ADE</td>
+<td align="left">Aggregate dispatch error at start of dispatch interval (MW)</td>
+</tr>
+<tr>
+<td align="left">InitialDemand</td>
+<td align="left">Demand at start of dispatch interval (MW)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="demand-forecast">Demand Forecast</h3>
+<p>The Demand Forecast (<code>@DF</code>) parameter denotes the difference between anticipated region demand at the end of the dispatch interval and region demand at the start of the interval. For example, if <code>@DF=20</code> it indicates demand is expected to be 20MW higher at the end of the interval relative to the start of the interval.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">RegionPeriodCollection</span><span class="o">.</span><span class="n">RegionPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@DF</span>
+</code></pre></div>
+<h2 id="traders">Traders</h2>
+<h3 id="metadata">Metadata</h3>
+<p>From TraderCollection:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@TraderID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@TraderType</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@SemiDispatch</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@TraderID</td>
+<td align="left">Unique trader ID. Same as Dispatchable Unit Identifier (DUID).</td>
+</tr>
+<tr>
+<td align="left">@TraderType</td>
+<td align="left">Either "GENERATOR", "LOAD", or "NORMALLY_ON_LOAD"</td>
+</tr>
+<tr>
+<td align="left">@SemiDispatch</td>
+<td align="left">Flag indicating if unit is semi-dispatchable. "1"=semi-dispatchable unit (e.g. wind / solar), "0"=dispatchable unit</td>
+</tr>
+</tbody>
+</table>
+<p>From TraderPeriodCollection:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RegionID</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@RegionID</td>
+<td align="left">Region in which trader is located</td>
+</tr>
+</tbody>
+</table>
+<h3 id="initial-conditions_1">Initial conditions</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TraderInitialConditionCollection</span><span class="o">.</span><span class="n">TraderInitialCondition</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InitialConditionID</span><span class="o">=</span><span class="s2">&quot;initial_condition_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@Value</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">initial_condition_id</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">AGCStatus</td>
+<td align="left">Unit AGC status ('1'=AGC enabled, '0'=AGC disabled)</td>
+</tr>
+<tr>
+<td align="left">HMW</td>
+<td align="left">Max output from SCADA telemetry (MW)</td>
+</tr>
+<tr>
+<td align="left">InitialMW</td>
+<td align="left">Trader output at start of dispatch interval (MW)</td>
+</tr>
+<tr>
+<td align="left">LMW</td>
+<td align="left">Min output from SCADA telemetry (MW)</td>
+</tr>
+<tr>
+<td align="left">WhatIfInitialMW</td>
+<td align="left">Trader initial MW value to use if intervention pricing run (MW)</td>
+</tr>
+<tr>
+<td align="left">SCADARampDnRate</td>
+<td align="left">Max ramp down rate reported by SCADA telemetry (MW/hour)</td>
+</tr>
+<tr>
+<td align="left">SCADARampUpRate</td>
+<td align="left">Max ramp up rate reported by SCADA telemetry (MW/hour)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="price-bands">Price bands</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@TradeType</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand1</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand2</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand3</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand4</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand5</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand6</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand7</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand8</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand9</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradePriceStructureCollection</span><span class="o">.</span><span class="n">TradePriceStructure</span><span class="o">.</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand10</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">trade_type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ENOF</td>
+<td align="left">Generator energy market offer</td>
+</tr>
+<tr>
+<td align="left">LDOF</td>
+<td align="left">Load energy market offer</td>
+</tr>
+<tr>
+<td align="left">R6SE</td>
+<td align="left">Contingency FCAS raise 6s offer</td>
+</tr>
+<tr>
+<td align="left">R60S</td>
+<td align="left">Contingency FCAS raise 60s offer</td>
+</tr>
+<tr>
+<td align="left">R5MI</td>
+<td align="left">Contingency FCAS raise 5min offer</td>
+</tr>
+<tr>
+<td align="left">R5RE</td>
+<td align="left">Regulation FCAS raise offer</td>
+</tr>
+<tr>
+<td align="left">L6SE</td>
+<td align="left">Contingency FCAS lower 6s offer</td>
+</tr>
+<tr>
+<td align="left">L60S</td>
+<td align="left">Contingency FCAS lower 60s offer</td>
+</tr>
+<tr>
+<td align="left">L5MI</td>
+<td align="left">Contingency FCAS lower 5min offer</td>
+</tr>
+<tr>
+<td align="left">L5RE</td>
+<td align="left">Regulation FCAS lower offer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quantity-bands">Quantity bands</h3>
+<p>Quantity bands and max availability for a given @TradeType:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@TradeType</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@MaxAvail</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail1</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail2</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail3</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail4</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail5</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail6</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail7</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail8</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail9</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@BandAvail10</span>
+</code></pre></div>
+<p>Ramp rate parameters must be included for energy market offers (i.e. @TradeType is either ENOF or LDOF):</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@RampUpRate</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@RampDnRate</span>
+</code></pre></div>
+<p>FCAS trapezium parameters must be included for FCAS offers (i.e. @TradeType is in [R6SE, R60S, R6MI, R5RE, L6SE, L60S, L5MI, L5RE]):</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@EnablementMin</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@EnablementMax</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@LowBreakpoint</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">TradeCollection</span><span class="o">.</span><span class="n">Trade</span><span class="p">[</span><span class="nd">@TradeType</span><span class="o">=</span><span class="s2">&quot;trade_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="nd">@HighBreakpoint</span>
+</code></pre></div>
+<h3 id="uigf">UIGF</h3>
+<p>The Unconstrained Intermittent Generation Forecast (UIGF) is defined for semi-scheduled units. The parameter denotes a unit's forecast max power output at the end of a dispatch interval.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">TraderPeriodCollection</span><span class="o">.</span><span class="n">TraderPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@UIGF</span>
+</code></pre></div>
+<h3 id="fast-start-unit-parameters">Fast-start unit parameters</h3>
+<p>The following parameters describe the inflexibility profile fast-start units are subject to once they come online.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@FastStart</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@MinLoadingMW</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@CurrentMode</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@CurrentModeTime</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@T1</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@T2</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@T3</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">TraderCollection</span><span class="o">.</span><span class="n">Trader</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@TraderID</span><span class="o">=</span><span class="s2">&quot;trader_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@T4</span>
+</code></pre></div>
+<h2 id="interconnectors">Interconnectors</h2>
+<h3 id="metadata_1">Metadata</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@InterconnectorID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@MNSP</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@FromRegion</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ToRegion</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@InterconnectorID</td>
+<td align="left">Unique identifier for interconnector</td>
+</tr>
+<tr>
+<td align="left">@MNSP</td>
+<td align="left">Flag indicating if interconnector is a Market Network Service Provider (MNSP). "1"=is a MNSP, "0"=not an MNSP.</td>
+</tr>
+<tr>
+<td align="left">@FromRegion</td>
+<td align="left">Interconnector's notional 'from' region</td>
+</tr>
+<tr>
+<td align="left">@ToRegion</td>
+<td align="left">Interconnector's notional 'to' region</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">interconnector_id</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">N-Q-MNSP1</td>
+<td align="left">Terranora</td>
+</tr>
+<tr>
+<td align="left">NSW1-QLD1</td>
+<td align="left">New South Wales to Queensland</td>
+</tr>
+<tr>
+<td align="left">VIC1-NSW1</td>
+<td align="left">Victoria to New South Wales</td>
+</tr>
+<tr>
+<td align="left">T-V-MNSP1</td>
+<td align="left">Basslink</td>
+</tr>
+<tr>
+<td align="left">V-SA</td>
+<td align="left">Heywood</td>
+</tr>
+<tr>
+<td align="left">V-S-MNSP1</td>
+<td align="left">Murraylink</td>
+</tr>
+</tbody>
+</table>
+<p>Interconnectors connect NEM regions. The @FromRegion and @ToRegion parameters define the direction of positive power flow over the interconnector. A net transfer out of @FromRegion into @ToRegion results in a positive flow value, while negative values correspond to a net transfer out of @ToRegion into @FromRegion.</p>
+<h3 id="power-flow-limits">Power flow limits</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@LowerLimit</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@UpperLimit</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@LowerLimit</td>
+<td align="left">Max flow in the direction @ToRegion &#8594; @FromRegion (MW)</td>
+</tr>
+<tr>
+<td align="left">@UpperLimit</td>
+<td align="left">Max flow in the direction @FromRegion &#8594; @ToRegion (MW)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="initial-conditions_2">Initial conditions</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">InterconnectorInitialConditionCollection</span><span class="o">.</span><span class="n">InterconnectorInitialCondition</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InitialConditionID</span><span class="o">=</span><span class="s2">&quot;initial_condition_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@Value</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">initial_condition_id</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">InitialMW</td>
+<td align="left">Power flow over interconnector at start of dispatch interval (MW)</td>
+</tr>
+<tr>
+<td align="left">WhatIfInitialMW</td>
+<td align="left">Initial power flow value to use if intervention pricing run (MW)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loss-model">Loss model</h3>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="nd">@LossLowerLimit</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="nd">@LossShare</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@LossLowerLimit</td>
+<td align="left">Left most edge of loss function curve (MW)</td>
+</tr>
+<tr>
+<td align="left">@LossShare</td>
+<td align="left">Interconnector losses are allocated to @FromRegion and @ToRegion in proportion to @LossShare. @LossShare denotes the proportion of interconnector losses assigned to @FromRegion. (1 - @LossShare) x InterconnectorLoss is assigned to @ToRegion.</td>
+</tr>
+</tbody>
+</table>
+<p>The interconnector loss model uses a piecewise linear function to describe interconnector losses as a function of interconnector power flow. Loss model segments denote marginal losses for each interval of the piecewise linear function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">SegmentCollection</span><span class="o">.</span><span class="n">Segment</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="nd">@Limit</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">LossModelCollection</span><span class="o">.</span><span class="n">SegmentCollection</span><span class="o">.</span><span class="n">Segment</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="nd">@Factor</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@Limit</td>
+<td align="left">Power flow value at right edge of segment bin (MW)</td>
+</tr>
+<tr>
+<td align="left">@Factor</td>
+<td align="left">Marginal loss over segment</td>
+</tr>
+</tbody>
+</table>
+<!-- #### Basslink loss model parameters -->
+<!-- Additional parameters defined for T-V-MNSP1: -->
+
+<!-- ```
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLF
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLF
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLFImport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLFExport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLFImport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLFExport
+``` -->
+
+<h3 id="basslink">Basslink</h3>
+<p>Market network service providers submit offers into the market for energy much like traders. Offers are made in the @FromRegion and @ToRegion for the interconnector.</p>
+<h4 id="price-bands_1">Price bands</h4>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RegionID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand1</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand2</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand3</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand4</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand5</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand6</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand7</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand8</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand9</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">InterconnectorCollection</span><span class="o">.</span><span class="n">Interconnector</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">MNSPPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPPriceStructure</span><span class="o">.</span><span class="n">MNSPRegionPriceStructureCollection</span><span class="o">.</span><span class="n">MNSPRegionPriceStructure</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@PriceBand10</span>
+</code></pre></div>
+<h4 id="quantity-bands_1">Quantity bands</h4>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RegionID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail1</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail2</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail3</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail4</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail5</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail6</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail7</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail8</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail9</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@BandAvail10</span>
+</code></pre></div>
+<h4 id="ramp-rates-and-max-availability">Ramp rates and max availability</h4>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@MaxAvail</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RampUpRate</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">MNSPOfferCollection</span><span class="o">.</span><span class="n">MNSPOffer</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@RegionID</span><span class="o">=</span><span class="s2">&quot;region_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RampDnRate</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@MaxAvail</td>
+<td align="left">Max offer quantity (MW)</td>
+</tr>
+<tr>
+<td align="left">@RampUpRate</td>
+<td align="left">Max ramp up rate (MW/hr)</td>
+</tr>
+<tr>
+<td align="left">@RampDnRate</td>
+<td align="left">Max ramp down rate (MW/hr)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="additional-loss-model-parameters">Additional loss model parameters</h4>
+<!-- NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.InterconnectorPeriodCollection.InterconnectorPeriod[?(@InterconnectorID="interconnector_id")].@FromRegionLF -->
+<!-- NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.InterconnectorPeriodCollection.InterconnectorPeriod[?(@InterconnectorID="interconnector_id")].@ToRegionLF -->
+
+<p>In addition to losses arising from power flow over the interconnector, there are also losses associated with power flow between the MNSP's connection points and their correspoding regional reference nodes. These marginal loss factors depend on the direction of power flow, with different factors used if the interconnector is importing or exporting power.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@FromRegionLFImport</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@FromRegionLFExport</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ToRegionLFImport</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">InterconnectorPeriodCollection</span><span class="o">.</span><span class="n">InterconnectorPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@InterconnectorID</span><span class="o">=</span><span class="s2">&quot;interconnector_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ToRegionLFExport</span>
+</code></pre></div>
+<h2 id="generic-constraints">Generic constraints</h2>
+<h3 id="metadata_2">Metadata</h3>
+<p>From GenericConstraintCollection:</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ConstraintID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@Type</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ViolationPrice</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Key</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@ConstraintID</td>
+<td align="left">Unique constraint ID</td>
+</tr>
+<tr>
+<td align="left">@Type</td>
+<td align="left">Type of constraint. Either "LE" (less than or equal to &lt;=), "GE" (greater than or equal to &gt;=), or "EQ" (equality constraint ==).</td>
+</tr>
+<tr>
+<td align="left">@ViolationPrice</td>
+<td align="left">Constraint violation price</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intervention-indicator">Intervention indicator</h3>
+<!-- During market intervention periods AEMO may envoke constraints that distort pricing outcomes in order to ensure the system operates safely. For instance, a generator may be directed to produce above a minimum output level. By adding generic constraints NEMDE can be forced to produce the desired dispatch outcome.  -->
+
+<p>The @Intervention flag denotes whether a constraint is associated with an intervention interval, or if it is a regular generic constraint ("1"=intervention constraint, "0"=regular generic constraint). While all generic constraints are used to identify dispatch targets, only constraints with @Intervention="0" are used when undertaking the pricing run for the intervention interval.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">GenericConstraintPeriodCollection</span><span class="o">.</span><span class="n">GenericConstraintPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@ConstraintID</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">PeriodCollection</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">GenericConstraintPeriodCollection</span><span class="o">.</span><span class="n">GenericConstraintPeriod</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@Intervention</span>
+</code></pre></div>
+<h3 id="left-hand-side-lhs-factor-collection">Left-hand side (LHS) factor collection</h3>
+<p>The LHS of a generic constraint can consist of trader, region, and interconnector variables.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">LHSFactorCollection</span><span class="o">.</span><span class="n">TraderFactor</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">LHSFactorCollection</span><span class="o">.</span><span class="n">RegionFactor</span>
+<span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdInputs</span><span class="o">.</span><span class="n">GenericConstraintCollection</span><span class="o">.</span><span class="n">GenericConstraint</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">LHSFactorCollection</span><span class="o">.</span><span class="n">InterconnectorFactor</span>
+</code></pre></div>
+<p>Example trader factors:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;TraderFactor&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;@Factor&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@TradeType&quot;</span><span class="p">:</span> <span class="s2">&quot;ENOF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@TraderID&quot;</span><span class="p">:</span> <span class="s2">&quot;LK_ECHO&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Example interconnector factors:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;InterconnectorFactor&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;@Factor&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@InterconnectorID&quot;</span><span class="p">:</span> <span class="s2">&quot;V-S-MNSP1&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Example region factors:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;RegionFactor&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;@Factor&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;@TradeType&quot;</span><span class="p">:</span> <span class="s2">&quot;R5MI&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;@RegionID&quot;</span><span class="p">:</span> <span class="s2">&quot;NSW1&quot;</span>
+    <span class="p">},</span>
+    <span class="o">...</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="right-hand-side-rhs">Right-hand side (RHS)</h3>
+<p><span style="color:red">This is parameter is obtained from NEMDE outputs. This is a limitation of the NEMDE API, as the NEMDE uses SCADA values to compute RHS values. Functionality to compute RHS values from SCADA values is under active development.</span></p>
+<div class="highlight"><pre><span></span><code><span class="n">NEMSPDCaseFile</span><span class="o">.</span><span class="n">NemSpdOutputs</span><span class="o">.</span><span class="n">ConstraintSolution</span><span class="p">[</span><span class="err">?</span><span class="p">(</span><span class="nd">@ConstraintID</span><span class="o">=</span><span class="s2">&quot;constraint_id&quot;</span> <span class="o">&amp;&amp;</span> <span class="nd">@Intervention</span><span class="o">=</span><span class="s2">&quot;intervention&quot;</span><span class="p">)]</span><span class="o">.</span><span class="nd">@RHS</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../tutorials/converting-a-case-file/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Converting a case file" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Converting a case file
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../case-studies/case-studies/" class="md-footer__link md-footer__link--next" aria-label="Next: Case studies" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Case studies
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

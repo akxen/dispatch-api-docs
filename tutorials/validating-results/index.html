@@ -1,0 +1,1364 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Validating results - NEMDE API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#validating-results" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NEMDE API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Validating results
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    NEMDE API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submit-validation-job" class="md-nav__link">
+    Submit validation job
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explore-results" class="md-nav__link">
+    Explore results
+  </a>
+  
+    <nav class="md-nav" aria-label="Explore results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#period-solution" class="md-nav__link">
+    Period solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-solution" class="md-nav__link">
+    Region solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trader-solution" class="md-nav__link">
+    Trader solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interconnector-solution" class="md-nav__link">
+    Interconnector solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraint-solution" class="md-nav__link">
+    Constraint solution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluating-the-dispatch-api" class="md-nav__link">
+    Evaluating the Dispatch API
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluating the Dispatch API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective-function-value" class="md-nav__link">
+    Objective function value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="validating-results">Validating results</h1>
+<p>It is useful to know how well the Dispatch API approximates NEMDE outputs when presented with historical data. As NEMDE outputs are contained within the <code>NemSpdOutput</code> section of historical case files it is possible to backtest the Dispatch API's results against these data. </p>
+<p>The following sections discuss a feature of the Dispatch API that makes it easy to backtest results.</p>
+<h2 id="imports-and-authentication">Imports and authentication</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
+<span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">display</span>
+
+<span class="c1"># Load environment variables</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Replace with your API token</span>
+<span class="c1"># E.g. TOKEN = &#39;d97f0be5-df17-4332-91d8-16c6bbca0b6d&#39;</span>
+<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
+
+<span class="c1"># A valid API token must be included when making requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
+<span class="c1"># base_url = &#39;https://dispatch.envector.com/api/v1/&#39;</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://dispatch.localhost/api/v1/&#39;</span>
+</code></pre></div>
+<h2 id="submit-validation-job">Submit validation job</h2>
+<p>In the pervious tutorials case files were submitted when creating jobs. Alternatively, the Dispatch API can be backtested against NEMDE by specifying a case ID, and including an option that will append the NEMDE solution to the results returned. This makes it easier to compare the solution returned by the Dispatch API with the 'actual' solution returned by NEMDE.</p>
+<p>For example, if we sought to validate the model using data obtained from a case file with case ID <code>20201101001</code> the request body would be formulated as:</p>
+<div class="highlight"><pre><span></span><code>body = {
+    &quot;case_id&quot;: &quot;20201101001&quot;,
+    &quot;options&quot;: {
+        &quot;solution_format&quot;: &quot;validation&quot;
+    }
+}
+</code></pre></div>
+<p>This instructs the Dispatch API to create a job using data from the specified case, and compares the results obtained with those found in the <code>NemSpdOutputs</code> section of the case file (i.e. the Dispatch API's results are compared against the solution obtained by NEMDE).</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_validation_job</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate Dispatch API results for a given case ID</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_url : str</span>
+<span class="sd">        Base URL for the Dispatch API</span>
+
+<span class="sd">    headers : dict</span>
+<span class="sd">        Contains auth token used to authenticate requests</span>
+
+<span class="sd">    case_id : str</span>
+<span class="sd">        Case ID for which validation should be performed e.g. &#39;20201101001&#39;. </span>
+<span class="sd">        The format for case_id is as follows: {year}{month}{day}{interval_id} </span>
+<span class="sd">        where interval_id is in [001, ..., 288].</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    job_info : dict</span>
+<span class="sd">        Response obtained from API when job is submitted. Includes the job&#39;s ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Construct URL request body</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
+
+    <span class="c1"># Request body</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;case_id&#39;</span><span class="p">:</span> <span class="n">case_id</span><span class="p">,</span>
+        <span class="s1">&#39;options&#39;</span><span class="p">:</span>
+            <span class="p">{</span><span class="s1">&#39;solution_format&#39;</span><span class="p">:</span> <span class="s1">&#39;validation&#39;</span><span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Make request</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="c1"># Information pertaining to the submitted job - includes job_id</span>
+    <span class="n">job_info</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">job_info</span>
+
+<span class="c1"># Submit validation job to the queue</span>
+<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_validation_job</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">)</span>
+<span class="n">job_info</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;4d0a835a-f91c-4db1-96cd-6587a5b8d720&#39;,
+ &#39;created_at&#39;: &#39;2021-03-12T06:26:41.249334Z&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-03-12T06:26:41.249445Z&#39;,
+ &#39;timeout&#39;: 180,
+ &#39;status&#39;: &#39;queued&#39;,
+ &#39;label&#39;: None}
+</code></pre></div>
+<h2 id="explore-results">Explore results</h2>
+<p>First, let's retrieve results from the queue.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract job results from the queue&quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>   
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Get job results from the queue</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
+<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+</code></pre></div>
+<p>Pandas can be used to observe the difference between results obtained from the Dispatch API and results obtained from NEMDE. Results obtained from the Dispatch API are in the <code>model</code> column, while results corresponding to the NEMDE solution are in the column titled <code>actual</code>.</p>
+<h3 id="period-solution">Period solution</h3>
+<p>This component of the solution provides the value of the objective function, along with aggregate metrics pertaining to constraint violations.</p>
+<div class="highlight"><pre><span></span><code><span class="n">period_solution</span> <span class="o">=</span> <span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PeriodSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">period_solution_md</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">period_solution</span><span class="p">)</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">period_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">case_id</th>
+<th align="right">intervention</th>
+<th align="left">key</th>
+<th align="right">model</th>
+<th align="right">actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalObjective</td>
+<td align="right">-1.05408e+07</td>
+<td align="right">-1.05408e+07</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalInterconnectorViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalGenericViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalRampRateViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalUnitMWCapacityViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalFastStartViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalMNSPRampRateViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalMNSPOfferViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalMNSPCapacityViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@TotalUIGFViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="region-solution">Region solution</h3>
+<p>Aggregate generation and load dispatched within each region, along with net power flow out of the region and the wholesale electricity price.</p>
+<div class="highlight"><pre><span></span><code><span class="n">region_solution</span> <span class="o">=</span> <span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">region_solution_md</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">region_solution</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">region_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">region_id</th>
+<th align="right">intervention</th>
+<th align="right">case_id</th>
+<th align="left">key</th>
+<th align="right">model</th>
+<th align="right">actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@DispatchedGeneration</td>
+<td align="right">5818.37</td>
+<td align="right">5818.37</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@DispatchedLoad</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@FixedDemand</td>
+<td align="right">5654.29</td>
+<td align="right">5654.29</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@NetExport</td>
+<td align="right">164.078</td>
+<td align="right">164.08</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@SurplusGeneration</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@EnergyPrice</td>
+<td align="right">41.6999</td>
+<td align="right">41.6997</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@R6Dispatch</td>
+<td align="right">213</td>
+<td align="right">213</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@R60Dispatch</td>
+<td align="right">196</td>
+<td align="right">196</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@R5Dispatch</td>
+<td align="right">68</td>
+<td align="right">52</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@R5RegDispatch</td>
+<td align="right">118.172</td>
+<td align="right">118.17</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@L6Dispatch</td>
+<td align="right">112.354</td>
+<td align="right">112.35</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@L60Dispatch</td>
+<td align="right">173</td>
+<td align="right">173</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@L5Dispatch</td>
+<td align="right">78.968</td>
+<td align="right">78.97</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@L5RegDispatch</td>
+<td align="right">34</td>
+<td align="right">34</td>
+</tr>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@ClearedDemand</td>
+<td align="right">5660.54</td>
+<td align="right">5660.54</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@DispatchedGeneration</td>
+<td align="right">5232.56</td>
+<td align="right">5232.56</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@DispatchedLoad</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@FixedDemand</td>
+<td align="right">5113.69</td>
+<td align="right">5113.69</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@NetExport</td>
+<td align="right">118.868</td>
+<td align="right">118.87</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">0</td>
+<td align="right">20201101001</td>
+<td align="left">@SurplusGeneration</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trader-solution">Trader solution</h3>
+<p>Dispatch targets for each trade type are reported. Ramp rates and fast start unit parameters are also included for some traders.</p>
+<div class="highlight"><pre><span></span><code><span class="n">trader_solution</span> <span class="o">=</span> <span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TraderSolution&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">trader_solution_md</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">trader_solution</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">trader_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">case_id</th>
+<th align="right">intervention</th>
+<th align="left">trader_id</th>
+<th align="left">key</th>
+<th align="right">model</th>
+<th align="right">actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R6Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R60Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R5Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R5RegTarget</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L6Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L60Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L5Target</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L5RegTarget</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R6Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R60Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R5Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@R5RegViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L6Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L60Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L5Violation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@L5RegViolation</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@EnergyTarget</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@RampUpRate</td>
+<td align="right">720</td>
+<td align="right">720</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@RampDnRate</td>
+<td align="right">720</td>
+<td align="right">720</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">AGLHAL</td>
+<td align="left">@FSTargetMode</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interconnector-solution">Interconnector solution</h3>
+<p>Power flow over each interconnector along with its associated losses are reported. The amount by which power flow constraints are violated is given by the value corresponding to the <code>@Deficit</code> key.</p>
+<div class="highlight"><pre><span></span><code><span class="n">interconnector_solution</span> <span class="o">=</span> <span class="p">(</span><span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
+                           <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;InterconnectorSolution&#39;</span><span class="p">))</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">interconnector_solution_md</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">interconnector_solution</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+                              <span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">interconnector_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">interconnector_id</th>
+<th align="right">case_id</th>
+<th align="right">intervention</th>
+<th align="left">key</th>
+<th align="right">model</th>
+<th align="right">actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">N-Q-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">-33</td>
+<td align="right">-33</td>
+</tr>
+<tr>
+<td align="left">N-Q-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">-0.591673</td>
+<td align="right">-0.59167</td>
+</tr>
+<tr>
+<td align="left">N-Q-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">NSW1-QLD1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">-86.0011</td>
+<td align="right">-86.0011</td>
+</tr>
+<tr>
+<td align="left">NSW1-QLD1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">0.306671</td>
+<td align="right">0.30667</td>
+</tr>
+<tr>
+<td align="left">NSW1-QLD1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">T-V-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">-222.507</td>
+<td align="right">-222.507</td>
+</tr>
+<tr>
+<td align="left">T-V-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">6.01955</td>
+<td align="right">6.01955</td>
+</tr>
+<tr>
+<td align="left">T-V-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">V-S-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">45</td>
+<td align="right">45</td>
+</tr>
+<tr>
+<td align="left">V-S-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">-0.856901</td>
+<td align="right">-0.8569</td>
+</tr>
+<tr>
+<td align="left">V-S-MNSP1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">V-SA</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">50</td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td align="left">V-SA</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">0.60394</td>
+<td align="right">0.60394</td>
+</tr>
+<tr>
+<td align="left">V-SA</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">VIC1-NSW1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Flow</td>
+<td align="right">-276.834</td>
+<td align="right">-276.834</td>
+</tr>
+<tr>
+<td align="left">VIC1-NSW1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Losses</td>
+<td align="right">10.8428</td>
+<td align="right">10.8428</td>
+</tr>
+<tr>
+<td align="left">VIC1-NSW1</td>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="constraint-solution">Constraint solution</h3>
+<p>The right-hand side (RHS) value of each constraint along with the amount by which it is violated, given by <code>@Deficit</code>, is reported in the constraint solution.</p>
+<p><span style="color:red">The Dispatch API obtains generic constraint RHS values from the <code>NemSpdOutputs</code> section of a case file when formulating the mathematical program to be solved. <strong>This is a limitation of the Dispatch API</strong>. Please the see the <a href="/caveats">caveats section</a> for more details. Consequently, there will be no difference between <code>model</code> and <code>actual</code> <code>@RHS</code> values for all constraints. However, the <code>@Deficit</code> attribute is obtained from the Dispatch API's solution, so differences may be observed for this key.
+</span></p>
+<div class="highlight"><pre><span></span><code><span class="n">constraint_solution</span> <span class="o">=</span> <span class="p">(</span><span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
+                       <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ConstraintSolution&#39;</span><span class="p">))</span>
+
+<span class="c1"># Convert to markdown to display results</span>
+<span class="n">constraint_solution_md</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">constraint_solution</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">constraint_solution_md</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">case_id</th>
+<th align="right">intervention</th>
+<th align="left">constraint_id</th>
+<th align="left">key</th>
+<th align="right">model</th>
+<th align="right">actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">#BBTHREE3_E</td>
+<td align="left">@RHS</td>
+<td align="right">25</td>
+<td align="right">25</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">#BBTHREE3_E</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">#BULGANA1_E</td>
+<td align="left">@RHS</td>
+<td align="right">100</td>
+<td align="right">100</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">#BULGANA1_E</td>
+<td align="left">@Deficit</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="right">20201101001</td>
+<td align="right">0</td>
+<td align="left">#COOPGWF1_E</td>
+<td align="left">@RHS</td>
+<td align="right">329</td>
+<td align="right">329</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evaluating-the-dispatch-api">Evaluating the Dispatch API</h2>
+<p>Let's use a few plots to see how dispatch targets obtained from the Dispatch API compare with results outputted by NEMDE.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">plot_solution</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot &#39;model&#39; vs &#39;actual&#39; solution for a given key&quot;&quot;&quot;</span>
+
+    <span class="c1"># Convert to DataFrame</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+
+    <span class="c1"># Initialise figure</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="c1"># Plot results for a given key</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;actual&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Plot line with slope = 1</span>
+    <span class="n">min_value</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;actual&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;actual&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">line_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">],</span> <span class="p">[</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">],</span> <span class="o">**</span><span class="n">line_style</span><span class="p">)</span>
+
+    <span class="c1"># Set title</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Model (MW)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Actual (MW)&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># Check the @EnergyTarget solution for all traders</span>
+<span class="n">plot_solution</span><span class="p">(</span><span class="n">solution</span><span class="o">=</span><span class="n">trader_solution</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;@EnergyTarget&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../validating-results_files/validating-results_17_0.png" /></p>
+<p>Each point corresponds to a trader. The horizontal axis corresponds to the target output level obtained from the Dispatch API, while the vertical axis shows targets produced by NEMDE. The dashed line has a slope equal to one, indicating the region over which the Dispatch API's solution equals the NEMDE solution. Points close to the dashed line indicate close correspondence between the Dispatch API's solution and the solution obtained by NEMDE.</p>
+<p>Plots can be constructed for the remaining trade types:</p>
+<div class="highlight"><pre><span></span><code><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;@R6Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@R60Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@R5Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@R5RegTarget&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;@L6Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@L60Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@L5Target&#39;</span><span class="p">,</span> <span class="s1">&#39;@L5RegTarget&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+    <span class="n">plot_solution</span><span class="p">(</span><span class="n">solution</span><span class="o">=</span><span class="n">trader_solution</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../validating-results_files/validating-results_19_0.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_1.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_2.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_3.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_4.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_5.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_6.png" /></p>
+<p><img alt="png" src="../validating-results_files/validating-results_19_7.png" /></p>
+<h3 id="objective-function-value">Objective function value</h3>
+<p>The value of the objective function at optimality provides a useful heuristic when comparing the solution obtained from the Dispatch API with the results outputted by NEMDE. Small perturbations to input parameters or constraint formulations can manifest as large differences in the objective function's value. It's unlikely there would be close correspondence between these values if the Dispatch API's formulation was a manifestly innaccurate approximation of NEMDE. </p>
+<p>Let's examine the objective function values:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># objective = period_solution.loc[&#39;@TotalObjective&#39;]</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">period_solution</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;@TotalObjective&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">objective</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;case_id&#39;: &#39;20201101001&#39;,
+ &#39;intervention&#39;: &#39;0&#39;,
+ &#39;key&#39;: &#39;@TotalObjective&#39;,
+ &#39;model&#39;: -10540805.66769616,
+ &#39;actual&#39;: -10540790.07213}
+</code></pre></div>
+<p>We can also compute the absolute and relative difference.</p>
+<div class="highlight"><pre><span></span><code><span class="n">difference</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">objective</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;actual&#39;</span><span class="p">)</span>
+<span class="n">relative_difference</span> <span class="o">=</span> <span class="n">difference</span> <span class="o">/</span> <span class="n">objective</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;actual&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference:&quot;</span><span class="p">,</span> <span class="n">difference</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Relative difference:&quot;</span><span class="p">,</span> <span class="n">relative_difference</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Difference: -15.595566159114242
+Relative difference: 1.4795443275498999e-06
+</code></pre></div>
+<p>The relative difference is very small at approximately <code>0.000148</code>%. At this level solver settings, such as tolerances, and floating point precision could be coming into play.</p>
+<h2 id="summary">Summary</h2>
+<p>This notebook examined strategies that can be used to validate model outputs. Reasons for discrepancies between the Dispatch API's solution and results obtained from NEMDE were also discussed, including features of the NEMDE's mathematical formulation that may result in non-unique solutions being returned. </p>
+<p>Without the ability to examine the mathematical forumulation used by NEMDE definitive model validation is impossible. Instead, we must adopt a data-driven approach when evaluating the Dispatch API's performance. The <a href="/model-validation">model validation section</a> extends the analysis presented above by comparing dispatch outcomes over thousands of dispatch intervals. This process of experimentation and followed by diagnostic analysis helps identify areas in which the Dispatch API's model formulation can be improved.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>

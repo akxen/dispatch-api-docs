@@ -1,0 +1,1390 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Rebid Analysis - NEMDE API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rebid-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NEMDE API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rebid Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    NEMDE API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/scenario-analysis-heatmap/" class="md-nav__link">
+        Scenario analsyis - heatmap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aims-and-scope" class="md-nav__link">
+    Aims and scope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    Validation
+  </a>
+  
+    <nav class="md-nav" aria-label="Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader-solution" class="md-nav__link">
+    Trader solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-solution" class="md-nav__link">
+    Region solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interconnector-solution" class="md-nav__link">
+    Interconnector solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-summary" class="md-nav__link">
+    Validation summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-of-rebid-to-region-price-change" class="md-nav__link">
+    Contribution of rebid to region price change
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="rebid-analysis">Rebid Analysis</h1>
+<p>The following sections demonstrate how the NEMDE API can be used estimate the contribution of a rebid to a change in dispatch prices.</p>
+<h2 id="overview">Overview</h2>
+<p>On 27 November 2020 at 4.15pm the dispatch price in NSW was approximately 96 $/MWh. Dispatch prices increased to 290 $/MWh in the following interval at 4.20pm before falling to 93 $/MWh at 4.25pm. Approximately 2 minutes before the interval in which the price spike occurred a unit at Bayswater power station (trader ID BW01) submitted a rebid which indicated the unit's max available capacity was 130 MW less than previously anticipated. The following figure plots the power output and max availability for this unit, along with NSW dispatch prices.</p>
+<p><img alt="png" src="../rebid-analysis_files/rebid-analysis_2_0.png" /></p>
+<p>When analysing historical data it is difficult to estimate the extent to which a change in max availbility for BW01 contributed to the price movement at 4.20pm. The NEMDE API addresses this limitation by allowing users to estimate dispatch outcomes under counterfactual scenarios. For instance, a scenario can be constructed in which BW01 does not reduce its max availability at 4.20pm. Dispatch prices for this scenario can then be compared to historical outputs. As all other system parameters are kept constant, it is possible to isolate the rebid's contribution to the change in dispatch prices.</p>
+<h2 id="aims-and-scope">Aims and scope</h2>
+<p>The following analysis investigates how the rebid submitted by BW01 impacted dispatch prices observed at 4.20pm on 27 Novermber 2020. First, model validation is undertaken to assess the NEMDE API's ability to emulate NEMDE outputs for the interval under investigation. If close correspondence is observed between NEMDE API and NEMDE solutions then counterfactual scenarios will be constructed to estimate dispatch prices that would have arisen if BW01 had not rebid its capacity. </p>
+<h2 id="validation">Validation</h2>
+<p>Historical NEMDE case files include the outputs returned by NEMDE when run for a given set of inputs describing the NEM's state. Model validation is performed by passing the same parameters to the NEMDE API as were passed to NEMDE, and comparing the NEMDE API's solution to historical NEMDE outputs. The degree to which solutions obtained from the NEMDE API correspond with NEMDE outputs indicates the NEMDE API's ability to emulate NEMDE for the dispatch interval under investigation. If close correspondence between the two solutions is observed then it is appropriate to proceed with the counterfactual scenario analysis.</p>
+<p>The following sections summarise the difference between the results obtained from the NEMDE API and historical NEMDE outputs for the dispatch interval ending at 4.20pm on 27 November 2020 - the interval for which the price spike is observed. </p>
+<h3 id="trader-solution">Trader solution</h3>
+<p>Summary statistics are computed for the difference between the NEMDE API's solution and NEMDE outputs, with the difference defined as follows: </p>
+<div class="highlight"><pre><span></span><code>Solution Difference = NEMDE API Solution - NEMDE Solution.
+</code></pre></div>
+<p>Statistics for the difference between the trader solution obtained from the NEMDE API and NEMDE are shown below.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="right">count</th>
+<th align="right">mean</th>
+<th align="right">std</th>
+<th align="right">min</th>
+<th align="right">25%</th>
+<th align="right">50%</th>
+<th align="right">75%</th>
+<th align="right">max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@EnergyTarget</td>
+<td align="right">340</td>
+<td align="right">4.92941e-08</td>
+<td align="right">1.20878e-06</td>
+<td align="right">-4.24e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2e-05</td>
+</tr>
+<tr>
+<td align="left">@FSTargetMode</td>
+<td align="right">74</td>
+<td align="right">0.0135135</td>
+<td align="right">0.116248</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">@L5RegTarget</td>
+<td align="right">340</td>
+<td align="right">8.82353e-10</td>
+<td align="right">1.69762e-07</td>
+<td align="right">-2e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2.4e-06</td>
+</tr>
+<tr>
+<td align="left">@L5RegViolation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@L5Target</td>
+<td align="right">340</td>
+<td align="right">5.22458e-18</td>
+<td align="right">3.84048e-07</td>
+<td align="right">-5e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5e-06</td>
+</tr>
+<tr>
+<td align="left">@L5Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@L60Target</td>
+<td align="right">340</td>
+<td align="right">5.88235e-09</td>
+<td align="right">2.42822e-07</td>
+<td align="right">-2e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4e-06</td>
+</tr>
+<tr>
+<td align="left">@L60Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@L6Target</td>
+<td align="right">340</td>
+<td align="right">4.11765e-09</td>
+<td align="right">1.51806</td>
+<td align="right">-20</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">17.9348</td>
+</tr>
+<tr>
+<td align="left">@L6Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R5RegTarget</td>
+<td align="right">340</td>
+<td align="right">6.47059e-10</td>
+<td align="right">1.16308e-07</td>
+<td align="right">-1.6e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.34e-06</td>
+</tr>
+<tr>
+<td align="left">@R5RegViolation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R5Target</td>
+<td align="right">340</td>
+<td align="right">-1.55882e-08</td>
+<td align="right">2.27902e-07</td>
+<td align="right">-4e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R5Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R60Target</td>
+<td align="right">340</td>
+<td align="right">2.05882e-08</td>
+<td align="right">0.397291</td>
+<td align="right">-5.17241</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5.17241</td>
+</tr>
+<tr>
+<td align="left">@R60Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R6Target</td>
+<td align="right">340</td>
+<td align="right">-8.52941e-09</td>
+<td align="right">3.7803e-07</td>
+<td align="right">-3.3e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5e-06</td>
+</tr>
+<tr>
+<td align="left">@R6Violation</td>
+<td align="right">340</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@RampDnRate</td>
+<td align="right">325</td>
+<td align="right">-0.000115572</td>
+<td align="right">0.000664364</td>
+<td align="right">-0.00499714</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00286621</td>
+</tr>
+<tr>
+<td align="left">@RampUpRate</td>
+<td align="right">325</td>
+<td align="right">-0.000129432</td>
+<td align="right">0.000710994</td>
+<td align="right">-0.00499714</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00229698</td>
+</tr>
+</tbody>
+</table>
+<p>The following figures visualise the correspondence between the dispatch targets obtained from the NEMDE API and those returned by NEMDE for each trade type. Each point represents a dispatch target for a given trader. The horizontal axis denotes the solution obtained from the NEMDE API, while the vertical axis denotes the solution obtained from NEMDE. The dashed line has a slope of one, and indicates perfect correspondence between the NEMDE API and NEMDE solutions.</p>
+<p><img alt="png" src="../rebid-analysis_files/rebid-analysis_7_0.png" /></p>
+<p>There is excellent correpondence between the two models with respect to dispatch targets. The symmetric dispersion of points around the dashed line for the L6Target is likely due to the absence of tie-breaking constraints for FCAS offers.</p>
+<h3 id="region-solution">Region solution</h3>
+<p>Summary statistics are presented for region solution metrics.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="right">count</th>
+<th align="right">mean</th>
+<th align="right">std</th>
+<th align="right">min</th>
+<th align="right">25%</th>
+<th align="right">50%</th>
+<th align="right">75%</th>
+<th align="right">max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@ClearedDemand</td>
+<td align="right">5</td>
+<td align="right">0.00134777</td>
+<td align="right">0.00385127</td>
+<td align="right">-0.00432637</td>
+<td align="right">-0.000960905</td>
+<td align="right">0.00368311</td>
+<td align="right">0.00372296</td>
+<td align="right">0.00462005</td>
+</tr>
+<tr>
+<td align="left">@DispatchedGeneration</td>
+<td align="right">5</td>
+<td align="right">-0.000654648</td>
+<td align="right">0.002728</td>
+<td align="right">-0.004063</td>
+<td align="right">-0.0026</td>
+<td align="right">-0.00066124</td>
+<td align="right">0.002015</td>
+<td align="right">0.002036</td>
+</tr>
+<tr>
+<td align="left">@DispatchedLoad</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@EnergyPrice</td>
+<td align="right">5</td>
+<td align="right">5.38e-05</td>
+<td align="right">0.0001203</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.000269</td>
+</tr>
+<tr>
+<td align="left">@FixedDemand</td>
+<td align="right">5</td>
+<td align="right">-0.000361337</td>
+<td align="right">0.00269196</td>
+<td align="right">-0.00409289</td>
+<td align="right">-0.00115808</td>
+<td align="right">-0.000441503</td>
+<td align="right">0.00056413</td>
+<td align="right">0.00332166</td>
+</tr>
+<tr>
+<td align="left">@L5Dispatch</td>
+<td align="right">5</td>
+<td align="right">0.00078</td>
+<td align="right">0.00216607</td>
+<td align="right">-0.000715</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.004615</td>
+</tr>
+<tr>
+<td align="left">@L5RegDispatch</td>
+<td align="right">5</td>
+<td align="right">6e-08</td>
+<td align="right">0.00312693</td>
+<td align="right">-0.004422</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0044223</td>
+</tr>
+<tr>
+<td align="left">@L60Dispatch</td>
+<td align="right">5</td>
+<td align="right">-0.0006936</td>
+<td align="right">0.00155094</td>
+<td align="right">-0.003468</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@L6Dispatch</td>
+<td align="right">5</td>
+<td align="right">-0.00069372</td>
+<td align="right">15.8944</td>
+<td align="right">-20</td>
+<td align="right">-4.33</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">24.3265</td>
+</tr>
+<tr>
+<td align="left">@NetExport</td>
+<td align="right">5</td>
+<td align="right">-0.000290892</td>
+<td align="right">0.00397442</td>
+<td align="right">-0.00463117</td>
+<td align="right">-0.003894</td>
+<td align="right">-0.000218443</td>
+<td align="right">0.00320717</td>
+<td align="right">0.00408198</td>
+</tr>
+<tr>
+<td align="left">@R5Dispatch</td>
+<td align="right">5</td>
+<td align="right">0.00100694</td>
+<td align="right">0.00162969</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0012887</td>
+<td align="right">0.003746</td>
+</tr>
+<tr>
+<td align="left">@R5RegDispatch</td>
+<td align="right">5</td>
+<td align="right">-0.00199996</td>
+<td align="right">0.00238176</td>
+<td align="right">-0.00499952</td>
+<td align="right">-0.0041116</td>
+<td align="right">-0.00088866</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@R60Dispatch</td>
+<td align="right">5</td>
+<td align="right">0.0015334</td>
+<td align="right">0.00160367</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0012887</td>
+<td align="right">0.003045</td>
+<td align="right">0.0033333</td>
+</tr>
+<tr>
+<td align="left">@R6Dispatch</td>
+<td align="right">5</td>
+<td align="right">0.00153342</td>
+<td align="right">0.0016037</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0012887</td>
+<td align="right">0.003045</td>
+<td align="right">0.0033334</td>
+</tr>
+<tr>
+<td align="left">@SurplusGeneration</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>There is good correspondence with respect to energy prices for the two models - an important requirement if seeking to estimate the contribution of a rebid to a change in dispatch prices.</p>
+<h3 id="interconnector-solution">Interconnector solution</h3>
+<p>Summary statistics are also presented for interconnector solution metrics.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="right">count</th>
+<th align="right">mean</th>
+<th align="right">std</th>
+<th align="right">min</th>
+<th align="right">25%</th>
+<th align="right">50%</th>
+<th align="right">75%</th>
+<th align="right">max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">@Deficit</td>
+<td align="right">6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">@Flow</td>
+<td align="right">6</td>
+<td align="right">1.66667e-06</td>
+<td align="right">4.08248e-06</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1e-05</td>
+</tr>
+<tr>
+<td align="left">@Losses</td>
+<td align="right">6</td>
+<td align="right">-1.66667e-07</td>
+<td align="right">3.14494e-06</td>
+<td align="right">-4e-06</td>
+<td align="right">-2.625e-06</td>
+<td align="right">-2.5e-07</td>
+<td align="right">2.425e-06</td>
+<td align="right">3.6e-06</td>
+</tr>
+</tbody>
+</table>
+<h3 id="validation-summary">Validation summary</h3>
+<p>Close correpsondence is observed between the NEMDE API's solution and outputs obtained from NEMDE, suggesting it is appropriate to undertake counterfactual scenario analysis for the interval in question.</p>
+<h2 id="contribution-of-rebid-to-region-price-change">Contribution of rebid to region price change</h2>
+<p>The bid for BW01 at 4.15pm is compared with the bid at 4.20pm in the following table.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">2020-11-27 16:15:00</th>
+<th align="right">2020-11-27 16:20:00</th>
+<th align="right">Difference (MW)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">MAXAVAIL</td>
+<td align="right">590</td>
+<td align="right">460</td>
+<td align="right">-130</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL1</td>
+<td align="right">330</td>
+<td align="right">330</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL4</td>
+<td align="right">330</td>
+<td align="right">330</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL7</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL8</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL9</td>
+<td align="right">40</td>
+<td align="right">40</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">BANDAVAIL10</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>The case file corresponding to the 4.20pm dispatch interval is updated such that the bid for BW01 applying at 4.15pm also applies at 4.20pm (the MaxAvail parameter for BW01 is set to 590MW for the 4.20pm case file). The NEMDE API is used to run the augmented case file, with region solution metrics corresponding to this scenario shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th align="left">@RegionID</th>
+<th align="right">@EnergyPrice</th>
+<th align="right">@DispatchedGeneration</th>
+<th align="right">@DispatchedLoad</th>
+<th align="right">@FixedDemand</th>
+<th align="right">@NetExport</th>
+<th align="right">@SurplusGeneration</th>
+<th align="right">@R6Dispatch</th>
+<th align="right">@R60Dispatch</th>
+<th align="right">@R5Dispatch</th>
+<th align="right">@R5RegDispatch</th>
+<th align="right">@L6Dispatch</th>
+<th align="right">@L60Dispatch</th>
+<th align="right">@L5Dispatch</th>
+<th align="right">@L5RegDispatch</th>
+<th align="right">@ClearedDemand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">288.246</td>
+<td align="right">9184.13</td>
+<td align="right">0</td>
+<td align="right">9820.01</td>
+<td align="right">-635.875</td>
+<td align="right">0</td>
+<td align="right">183</td>
+<td align="right">129</td>
+<td align="right">92</td>
+<td align="right">40.125</td>
+<td align="right">1</td>
+<td align="right">61</td>
+<td align="right">51.9093</td>
+<td align="right">35.3844</td>
+<td align="right">9808.92</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">278.971</td>
+<td align="right">7879.54</td>
+<td align="right">0</td>
+<td align="right">7538.32</td>
+<td align="right">341.223</td>
+<td align="right">0</td>
+<td align="right">72.3333</td>
+<td align="right">28.3333</td>
+<td align="right">49.2037</td>
+<td align="right">47.5659</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">25</td>
+<td align="right">7537.47</td>
+</tr>
+<tr>
+<td align="left">SA1</td>
+<td align="right">329.865</td>
+<td align="right">1922.82</td>
+<td align="right">0</td>
+<td align="right">2315.5</td>
+<td align="right">-392.685</td>
+<td align="right">0</td>
+<td align="right">155</td>
+<td align="right">170</td>
+<td align="right">103</td>
+<td align="right">198</td>
+<td align="right">175</td>
+<td align="right">106</td>
+<td align="right">90</td>
+<td align="right">50</td>
+<td align="right">2319.48</td>
+</tr>
+<tr>
+<td align="left">TAS1</td>
+<td align="right">75.5221</td>
+<td align="right">1523.41</td>
+<td align="right">0</td>
+<td align="right">1090.25</td>
+<td align="right">433.166</td>
+<td align="right">0</td>
+<td align="right">14.603</td>
+<td align="right">14.603</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">24.3265</td>
+<td align="right">72.0265</td>
+<td align="right">50.3846</td>
+<td align="right">50</td>
+<td align="right">1106.66</td>
+</tr>
+<tr>
+<td align="left">VIC1</td>
+<td align="right">299.5</td>
+<td align="right">7223.44</td>
+<td align="right">10</td>
+<td align="right">6930.94</td>
+<td align="right">282.501</td>
+<td align="right">0</td>
+<td align="right">112.241</td>
+<td align="right">195.241</td>
+<td align="right">79.2413</td>
+<td align="right">64.3091</td>
+<td align="right">15</td>
+<td align="right">82</td>
+<td align="right">55</td>
+<td align="right">49.6156</td>
+<td align="right">6960.81</td>
+</tr>
+</tbody>
+</table>
+<p>The NEMDE API is then used to run the base case scenario in which no changes are made to the historical case file. Note excellent correspondence was observed between NEMDE and NEMDE API energy prices in the model validation section. Region solution results for the base case are shown below.</p>
+<table>
+<thead>
+<tr>
+<th align="left">@RegionID</th>
+<th align="right">@EnergyPrice</th>
+<th align="right">@DispatchedGeneration</th>
+<th align="right">@DispatchedLoad</th>
+<th align="right">@FixedDemand</th>
+<th align="right">@NetExport</th>
+<th align="right">@SurplusGeneration</th>
+<th align="right">@R6Dispatch</th>
+<th align="right">@R60Dispatch</th>
+<th align="right">@R5Dispatch</th>
+<th align="right">@R5RegDispatch</th>
+<th align="right">@L6Dispatch</th>
+<th align="right">@L60Dispatch</th>
+<th align="right">@L5Dispatch</th>
+<th align="right">@L5RegDispatch</th>
+<th align="right">@ClearedDemand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">290.951</td>
+<td align="right">9171.51</td>
+<td align="right">0</td>
+<td align="right">9820.01</td>
+<td align="right">-648.5</td>
+<td align="right">0</td>
+<td align="right">183</td>
+<td align="right">129</td>
+<td align="right">92</td>
+<td align="right">40.125</td>
+<td align="right">1</td>
+<td align="right">61</td>
+<td align="right">51.9093</td>
+<td align="right">35.3844</td>
+<td align="right">9808.69</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">281.589</td>
+<td align="right">7879.54</td>
+<td align="right">0</td>
+<td align="right">7538.32</td>
+<td align="right">341.223</td>
+<td align="right">0</td>
+<td align="right">72.3333</td>
+<td align="right">28.3333</td>
+<td align="right">49.2037</td>
+<td align="right">47.5659</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">25</td>
+<td align="right">7537.47</td>
+</tr>
+<tr>
+<td align="left">SA1</td>
+<td align="right">329.865</td>
+<td align="right">1922.82</td>
+<td align="right">0</td>
+<td align="right">2315.5</td>
+<td align="right">-392.685</td>
+<td align="right">0</td>
+<td align="right">155</td>
+<td align="right">170</td>
+<td align="right">103</td>
+<td align="right">198</td>
+<td align="right">175</td>
+<td align="right">106</td>
+<td align="right">90</td>
+<td align="right">50</td>
+<td align="right">2319.48</td>
+</tr>
+<tr>
+<td align="left">TAS1</td>
+<td align="right">73.1068</td>
+<td align="right">1523.41</td>
+<td align="right">0</td>
+<td align="right">1090.25</td>
+<td align="right">433.166</td>
+<td align="right">0</td>
+<td align="right">14.603</td>
+<td align="right">14.603</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">24.3265</td>
+<td align="right">72.0265</td>
+<td align="right">50.3846</td>
+<td align="right">50</td>
+<td align="right">1106.66</td>
+</tr>
+<tr>
+<td align="left">VIC1</td>
+<td align="right">299.5</td>
+<td align="right">7235.69</td>
+<td align="right">10</td>
+<td align="right">6930.94</td>
+<td align="right">294.744</td>
+<td align="right">0</td>
+<td align="right">112.241</td>
+<td align="right">195.241</td>
+<td align="right">79.2413</td>
+<td align="right">64.3091</td>
+<td align="right">15</td>
+<td align="right">82</td>
+<td align="right">55</td>
+<td align="right">49.6156</td>
+<td align="right">6960.66</td>
+</tr>
+</tbody>
+</table>
+<p>The difference between the counterfactual scenario and the base case is as follows.</p>
+<table>
+<thead>
+<tr>
+<th align="left">@RegionID</th>
+<th align="right">@EnergyPrice</th>
+<th align="right">@DispatchedGeneration</th>
+<th align="right">@DispatchedLoad</th>
+<th align="right">@FixedDemand</th>
+<th align="right">@NetExport</th>
+<th align="right">@SurplusGeneration</th>
+<th align="right">@R6Dispatch</th>
+<th align="right">@R60Dispatch</th>
+<th align="right">@R5Dispatch</th>
+<th align="right">@R5RegDispatch</th>
+<th align="right">@L6Dispatch</th>
+<th align="right">@L60Dispatch</th>
+<th align="right">@L5Dispatch</th>
+<th align="right">@L5RegDispatch</th>
+<th align="right">@ClearedDemand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">NSW1</td>
+<td align="right">-2.7049</td>
+<td align="right">12.625</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">12.625</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.225084</td>
+</tr>
+<tr>
+<td align="left">QLD1</td>
+<td align="right">-2.61786</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">SA1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">TAS1</td>
+<td align="right">2.41522</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">VIC1</td>
+<td align="right">0</td>
+<td align="right">-12.2435</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-12.2435</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.156414</td>
+</tr>
+</tbody>
+</table>
+<p>The analysis suggests the rebid led to slightly higher prices in New South Wales and Queensland, but reduced prices in Tasmania. These price differences are small relative to the magnitude of the price spike, suggesting the rebid made by BW01 was not a determinative factor in the large price change observed.</p>
+<h2 id="summary">Summary</h2>
+<p>The NEMDE API has been used to estimate dispatch prices that would arise if BW01 had not rebid its max availability. Model validation is first performed to assess the NEMDE API's ability to emulate NEMDE outputs for the dispatch interval in question, with close correspondence between the NEMDE API's solution and NEMDE outputs observed. A counterfactual scenario is then constructed which assumes no reduction in max availablity for BW01 at 4.20pm. This scenario is compared with the base case in which BW01 does rebid its capacity, with the results suggesting the rebid has a negligible impact on prices at 4:20pm - it is likely other factors, unrelated to the rebid submitted by BW01, are driving the price movement in this dispatch interval.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
