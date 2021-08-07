@@ -511,7 +511,7 @@
 <li>two pass solution algorithm and inflexibility profiles for fast-start units;</li>
 <li>tie-breaking model for price-tied energy offers.</li>
 </ul>
-<p>The <a href="/model-validation/202011/model-validation">model validation section</a> describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:</p>
+<p>The <a href="/nemde-api-docs/model-validation/202011/model-validation">model validation section</a> describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:</p>
 <ul>
 <li>FCAS prices are not reported;</li>
 <li>generic constraint right-hand side (RHS) values are obtained from historical NEMDE solutions rather than computed from SCADA values;</li>
@@ -528,20 +528,20 @@
 <li>interconnector loss model factors;</li>
 <li>generic constraint terms. </li>
 </ul>
-<p>See the <a href="/parameter-reference">parameter reference page</a> for more details regarding the data that can be submitted via the API. </p>
+<p>See the <a href="/nemde-api-docs/parameter-reference">parameter reference page</a> for more details regarding the data that can be submitted via the API. </p>
 <p>Once a case file has been prepared, it can be submitted to an online queue via the NEMDE API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.</p>
 <p>The following diagram illustrates the workflow used when solving a model using the Dispatch API.</p>
-<p><img alt="queue model" src="/images/dispatch-api-site.png" /></p>
+<p><img alt="queue model" src="/nemde-api-docs/images/dispatch-api-site.png" /></p>
 <p>Multiple workers can monitor the queue simultaneously, allowing models to be solved in parallel. This capability allows large-scale scenario anlayses to be underaken.</p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="tutorials">Tutorials</h3>
-<p>The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The <a href="/tutorials/running-a-model">Running a Model</a> tutorial is the recommended starting point for new users. </p>
+<p>The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The <a href="/nemde-api-docs/tutorials/running-a-model">Running a Model</a> tutorial is the recommended starting point for new users. </p>
 <h3 id="case-file-reference">Case file reference</h3>
-<p>The <a href="/parameter-reference">parameter reference page</a> shows the parameters that can be meaningfully updated when modifying or constructing case files.</p>
+<p>The <a href="/nemde-api-docs/parameter-reference">parameter reference page</a> shows the parameters that can be meaningfully updated when modifying or constructing case files.</p>
 <h3 id="model-validation">Model validation</h3>
-<p>See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the <a href="/model-validation/202011/model-validation">model validation section</a>.</p>
+<p>See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the <a href="/nemde-api-docs/model-validation/202011/model-validation">model validation section</a>.</p>
 <h3 id="case-studies">Case studies</h3>
-<p>See potential applications of the NEMDE API via <a href="/case-studies/case-studies">case studies</a>.</p>
+<p>See potential applications of the NEMDE API via <a href="/nemde-api-docs/case-studies/case-studies">case studies</a>.</p>
                 
               
               
