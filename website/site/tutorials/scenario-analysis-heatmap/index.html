@@ -14,7 +14,7 @@
     
     
       
-        <title>Scenario analsyis - heatmap - Dispatch API</title>
+        <title>Scenario analsyis - heatmap - NEMDE API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dispatch API
+            NEMDE API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Dispatch API
+    NEMDE API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -302,8 +302,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-case-file" class="md-nav__link">
-    Download case file
+  <a href="#load-case-file" class="md-nav__link">
+    Load case file
   </a>
   
 </li>
@@ -445,8 +445,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-case-file" class="md-nav__link">
-    Download case file
+  <a href="#load-case-file" class="md-nav__link">
+    Load case file
   </a>
   
 </li>
@@ -521,6 +521,7 @@
 <span class="kn">import</span> <span class="nn">itertools</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">xmltodict</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 
@@ -530,60 +531,34 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
 
-
-<span class="c1"># Load environment variables</span>
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="c1"># Replace with your API token</span>
-<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
-<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
-
-<span class="c1"># Base URL endpoint for the Dispatch API</span>
-<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
-
-<span class="c1"># Headers must be included to authenticate requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+<span class="c1"># Base URL endpoint for the NEMDE API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
-<h2 id="download-case-file">Download case file</h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Download case file and save to disk&quot;&quot;&quot;</span>
+<h2 id="load-case-file">Load case file</h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_casefile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load a historical NEMDE case file and convert it to a dict&quot;&quot;&quot;</span>
 
-    <span class="c1"># URL to download case file</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download case file URL:&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="c1"># Read case file contents</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">casefile</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c1"># Download case file and save to disk</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="c1"># Force these nodes to always return lists</span>
+    <span class="n">force_list</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Trade&#39;</span><span class="p">,</span> <span class="s1">&#39;TradeTypePriceStructure&#39;</span><span class="p">,)</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">_casefile.json&#39;</span>
-    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">casefile</span>
+    <span class="k">return</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">force_list</span><span class="o">=</span><span class="n">force_list</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load case file&quot;&quot;&quot;</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">_casefile.json&#39;</span>
-    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">casefile</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c1"># Load case file and convert to JSON</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">convert_casefile</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../../data/NEMSPDOutputs_</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">00.loaded&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">casefile</span>
 
-
-<span class="c1"># Download case file</span>
-<span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">)</span>
-
 <span class="c1"># Load case file</span>
-<span class="n">casefile</span> <span class="o">=</span> <span class="n">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Download case file URL: https://dispatch.envector.com/api/v1/data/casefile/20201101001
+<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;20210401001&#39;</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="approach">Approach</h2>
 <p>As in the previous tutorial the downloaded case file will be treated as our canonical 'source of truth'. This 'base' case file will always be loaded prior to performing updates.</p>
@@ -666,7 +641,7 @@
     <span class="k">return</span> <span class="n">casefile</span>
 </code></pre></div>
 <p>Jobs can be submitted to the online queue, with job IDs recorded so it's possible to map job results to parameters.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">region_1</span><span class="p">,</span> <span class="n">region_2</span><span class="p">,</span> <span class="n">demand_forecasts</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">region_1</span><span class="p">,</span> <span class="n">region_2</span><span class="p">,</span> <span class="n">demand_forecasts</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Submit jobs to queue&quot;&quot;&quot;</span>
 
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">demand_forecasts</span><span class="p">,</span> <span class="n">demand_forecasts</span><span class="p">)]</span>
@@ -674,13 +649,13 @@
     <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">value_1</span><span class="p">,</span> <span class="n">value_2</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
         <span class="c1"># Construct request body - using augmented casefiles</span>
-        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;casefile&quot;</span><span class="p">:</span> <span class="n">update_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">,</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;casefile&quot;</span><span class="p">:</span> <span class="n">update_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20210401001&#39;</span><span class="p">,</span>
                                             <span class="n">region_1</span><span class="o">=</span><span class="n">region_1</span><span class="p">,</span> <span class="n">value_1</span><span class="o">=</span><span class="n">value_1</span><span class="p">,</span>
                                             <span class="n">region_2</span><span class="o">=</span><span class="n">region_2</span><span class="p">,</span> <span class="n">value_2</span><span class="o">=</span><span class="n">value_2</span><span class="p">)}</span>
 
         <span class="c1"># Submit request and extract job ID</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
         <span class="n">job_info</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
         <span class="c1"># Construct a map between the job ID, job info and the value of the parameter used in the analysis</span>
@@ -697,22 +672,22 @@
 
 <span class="c1"># Create jobs with different Demand Forecast parameters</span>
 <span class="n">demand_forecasts</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">100</span><span class="p">)]</span>
-<span class="n">jobs</span> <span class="o">=</span> <span class="n">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">region_1</span><span class="o">=</span><span class="s1">&#39;SA1&#39;</span><span class="p">,</span> <span class="n">region_2</span><span class="o">=</span><span class="s1">&#39;VIC1&#39;</span><span class="p">,</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="n">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">region_1</span><span class="o">=</span><span class="s1">&#39;SA1&#39;</span><span class="p">,</span> <span class="n">region_2</span><span class="o">=</span><span class="s1">&#39;VIC1&#39;</span><span class="p">,</span>
                    <span class="n">demand_forecasts</span><span class="o">=</span><span class="n">demand_forecasts</span><span class="p">)</span>
 </code></pre></div>
 <p>The status of all jobs can be checked by using the following endpoint:</p>
-<p><code>https://dispatch.envector.com/api/v1/jobs/status/list</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+<p><code>http://nemde-api-host/api/v1/jobs/status/list</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get job status list&quot;&quot;&quot;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/status/list&#39;</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Get status of each job</span>
-<span class="n">status</span> <span class="o">=</span> <span class="n">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">)</span>
 
 <span class="c1"># Number of remaining jobs</span>
 <span class="n">remaining_jobs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">status</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;finished&#39;</span><span class="p">])</span>
@@ -727,34 +702,34 @@
 
 
 
-[{&#39;job_id&#39;: &#39;27bd2dbc-f02f-4cb3-9afa-06d139563bac&#39;,
+[{&#39;job_id&#39;: &#39;f9c7a37b-aef9-47c0-bd99-f34b0b7376ba&#39;,
   &#39;status&#39;: &#39;finished&#39;,
-  &#39;created_at&#39;: &#39;2021-03-30T07:13:02.835957Z&#39;,
-  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:03.030410Z&#39;,
-  &#39;started_at&#39;: &#39;2021-03-30T07:25:05.961313Z&#39;,
-  &#39;ended_at&#39;: &#39;2021-03-30T07:25:41.337840Z&#39;,
+  &#39;created_at&#39;: &#39;2021-08-07T14:21:00.201861Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-08-07T14:21:00.336259Z&#39;,
+  &#39;started_at&#39;: &#39;2021-08-07T14:26:24.145864Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-08-07T14:27:07.703582Z&#39;,
   &#39;timeout&#39;: &#39;180&#39;,
   &#39;label&#39;: None},
- {&#39;job_id&#39;: &#39;e6de7c3b-7d41-4368-84b3-263fe1bb7eb7&#39;,
+ {&#39;job_id&#39;: &#39;c3a83710-3b93-4111-be28-c89fd1fcdab9&#39;,
   &#39;status&#39;: &#39;finished&#39;,
-  &#39;created_at&#39;: &#39;2021-03-30T07:13:01.427608Z&#39;,
-  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:01.619619Z&#39;,
-  &#39;started_at&#39;: &#39;2021-03-30T07:24:30.010635Z&#39;,
-  &#39;ended_at&#39;: &#39;2021-03-30T07:25:05.805712Z&#39;,
+  &#39;created_at&#39;: &#39;2021-08-07T14:20:57.995084Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-08-07T14:20:58.150456Z&#39;,
+  &#39;started_at&#39;: &#39;2021-08-07T14:25:49.352415Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-08-07T14:26:35.754458Z&#39;,
   &#39;timeout&#39;: &#39;180&#39;,
   &#39;label&#39;: None},
- {&#39;job_id&#39;: &#39;c69efbe-94db-418b-b860-6ba9ad2b0b9a&#39;,
+ {&#39;job_id&#39;: &#39;9211fab6-b322-413d-92d5-c4b2fde95087&#39;,
   &#39;status&#39;: &#39;finished&#39;,
-  &#39;created_at&#39;: &#39;2021-03-30T07:13:00.276323Z&#39;,
-  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:00.472272Z&#39;,
-  &#39;started_at&#39;: &#39;2021-03-30T07:23:40.928030Z&#39;,
-  &#39;ended_at&#39;: &#39;2021-03-30T07:24:29.853803Z&#39;,
+  &#39;created_at&#39;: &#39;2021-08-07T14:20:55.740010Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-08-07T14:20:55.891435Z&#39;,
+  &#39;started_at&#39;: &#39;2021-08-07T14:25:38.257121Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-08-07T14:26:23.892678Z&#39;,
   &#39;timeout&#39;: &#39;180&#39;,
   &#39;label&#39;: None}]
 </code></pre></div>
 <h2 id="retrieve-results">Retrieve results</h2>
 <p>Once the jobs have finished results can be retrieved from the queue.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_ids</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_ids</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get job results&quot;&quot;&quot;</span>
 
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
@@ -764,7 +739,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job results URL:&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
         <span class="c1"># Submit request and retrieve job results</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 
     <span class="k">return</span> <span class="n">results</span>
@@ -774,33 +749,33 @@
 <span class="n">job_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_info&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">]</span>
 
 <span class="c1"># Load job results</span>
-<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_ids</span><span class="o">=</span><span class="n">job_ids</span><span class="p">)</span>
+<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_ids</span><span class="o">=</span><span class="n">job_ids</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Job results URL: https://dispatch.envector.com/api/v1/jobs/1296572a-39f8-4cc3-a096-b84e1c81447a/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/6c8bc245-2821-4afb-89ad-7702b07ad4d4/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/8a601e7e-a7c6-48d9-9815-52519ae68440/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/5d1bf2d8-0826-4a9c-852e-ad51ad3c15ac/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/847f151b-96d8-46bd-8460-88773aaabdd9/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/740f9614-e3d9-402a-9229-237ea03ded07/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/9387a290-8807-4790-91ea-0e80e0ef33f8/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/9aaf5979-2d5f-4c74-b613-83a6832a618b/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/1ef75782-e4ed-49ae-ba9d-0483506cabf5/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/3b271233-bec1-4b64-9412-4e132b61109a/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/b050d586-464c-4868-9177-2c5717f2098f/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/c1712a50-91e8-441e-be30-d388552c8bba/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/eea1aa21-f6c6-426d-879a-26a12f7f57ae/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/4b7f866a-19f3-41a5-bb9d-3c1883ada1d0/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/6952a4f0-c31a-43ed-8505-ac011b3f78c3/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/52d34171-1315-42b7-8a7b-9f63e2535500/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/e295ed4d-b6d8-4584-a406-0955762ef5e2/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/f847228d-4418-40ce-8e5e-c4d781b42214/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/ad51c5df-b17a-40f3-824b-97f6b112abea/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/6de17032-8c8f-40a4-aaef-77e7ef1a2cbb/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/6fd8ae7c-afca-4404-8acb-7d3f7f5792f2/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/103501cd-5476-4dbb-96bf-0913719dfe41/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/bc69efbe-94db-418b-b860-6ba9ad2b0b9a/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/e6de7c3b-7d41-4368-84b3-263fe1bb7eb7/results
-Job results URL: https://dispatch.envector.com/api/v1/jobs/27bd2dbc-f02f-4cb3-9afa-06d139563bac/results
+<div class="highlight"><pre><span></span><code>Job results URL: http://nemde-api-host:8080/api/v1/jobs/901d2cf9-6339-42c3-9fad-9deeb78ae8fa/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/d9aabe8f-65f1-4175-a3bf-e6c7c5ca329d/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/53d6b4a8-c53f-4bf2-9206-f24b63281737/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/61055210-54b4-49b8-aca1-fd1d62de3220/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/2bff544e-0ef4-4d9c-9eeb-9dae1a46272f/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/36e1c546-ef8b-46ba-b238-fe8bc3dcaed2/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/ce00c3a2-dcb3-4a0d-9374-d24300916fbd/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/6b46cf58-17da-46e2-93bd-d89fa3155c00/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/8003b171-6082-4439-86ce-dfeacc240ef3/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/b280a52f-8e49-4555-804a-cb5ae3177e95/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/d96676d5-e369-4e36-8fa8-8c85aed1f141/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/3ddd698b-2f1e-4567-ba19-a8bfad097dbd/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/2bc5b0af-42c4-493e-81f2-22d304886743/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/d2dc03a1-402f-4b59-be92-e40cbc59124a/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/a4bec036-a97e-4363-af3b-94566c4c8690/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/7cf6af48-e401-438b-8a8d-a6a577961cf4/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/36e31456-6faa-442b-8ee1-9036383b952b/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/8f5dfec3-6d8d-4022-9318-9ae0c801a2d7/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/ccf34d87-e65b-454f-a8cf-bb406ad8754a/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/a6ed7d79-690f-4e03-82bc-d2ba719401e5/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/e080ce8b-dadc-4ecf-aa97-2cb4e3335946/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/b31ab31a-47a4-4f48-80df-0b49b1dd2f9b/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/9211fab6-b322-413d-92d5-c4b2fde95087/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/c3a83710-3b93-4111-be28-c89fd1fcdab9/results
+Job results URL: http://nemde-api-host:8080/api/v1/jobs/f9c7a37b-aef9-47c0-bd99-f34b0b7376ba/results
 </code></pre></div>
 <h3 id="map-parameters-to-job-ids">Map parameters to job IDs</h3>
 <p>The first step is to map job IDs to job parameters.</p>
@@ -1008,7 +983,7 @@ Job results URL: https://dispatch.envector.com/api/v1/jobs/27bd2dbc-f02f-4cb3-9a
 <p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_0.png" /></p>
 <p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_1.png" /></p>
 <h2 id="summary">Summary</h2>
-<p>The Dispatch API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the Dispatch API when exploring the likely solution space of dispatch outcomes.</p>
+<p>The NEMDE API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the NEMDE API when exploring the likely solution space of dispatch outcomes.</p>
                 
               
               
