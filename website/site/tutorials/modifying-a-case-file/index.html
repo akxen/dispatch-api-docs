@@ -14,7 +14,7 @@
     
     
       
-        <title>Modifying a case file - Dispatch API</title>
+        <title>Modifying a case file - NEMDE API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dispatch API
+            NEMDE API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Dispatch API
+    NEMDE API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -485,73 +485,39 @@
                 
                 
                 <h1 id="modifying-a-case-file">Modifying a case file</h1>
-<p>The Dispatch API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.</p>
-<p>The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The Dispatch API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.</p>
+<p>The NEMDE API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.</p>
+<p>The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The NEMDE API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.</p>
 <h2 id="imports-and-authentication">Imports and authentication</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">xmltodict</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
 <span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
 
-<span class="c1"># Load environment variables</span>
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="c1"># Replace with your API token</span>
-<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
-<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
-
-<span class="c1"># A valid API token must be included when making requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
-
-<span class="c1"># Base URL endpoint for the Dispatch API</span>
-<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
+<span class="c1"># Base URL endpoint for the NEMDE API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
 <h2 id="approach">Approach</h2>
-<p>Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the Dispatch API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.</p>
-<p>For now let's use data from a historical case file and only modify selected components. We can proceed by first downloading a case file via the Dispatch API.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Download a case file</span>
+<p>Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the NEMDE API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.</p>
+<p>For now let's use data from a historical case file and only modify selected components. We can proceed by first loading a case file.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_casefile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load a historical NEMDE case file and convert it to a dict&quot;&quot;&quot;</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    base_url : str</span>
-<span class="sd">        Base URL for the Dispatch API</span>
+    <span class="c1"># Read case file contents</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">casefile</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="sd">    headers : dict</span>
-<span class="sd">        Contains auth token used to authenticate requests</span>
+    <span class="c1"># Force these nodes to always return lists</span>
+    <span class="n">force_list</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Trade&#39;</span><span class="p">,</span> <span class="s1">&#39;TradeTypePriceStructure&#39;</span><span class="p">,)</span>
 
-<span class="sd">    case_id : str</span>
-<span class="sd">        Case ID to download e.g. &#39;20201101001&#39;. The format is as follows</span>
-<span class="sd">        {year}{month}{day}{interval_id} where interval_id is in [001, ..., 288]</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    casefile : dict</span>
-<span class="sd">        Parameters describing the system&#39;s state</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Case file endpoint&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-
-    <span class="c1"># Load JSON response as Python dictionary</span>
-    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">force_list</span><span class="o">=</span><span class="n">force_list</span><span class="p">)</span>
 
 
-    <span class="k">return</span> <span class="n">casefile</span>
-
-
-<span class="c1"># Download case file and save it to disk</span>
-<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;20201101001&#39;</span>
-<span class="n">casefile</span> <span class="o">=</span> <span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Case file endpoint https://dispatch.envector.com/api/v1/data/casefile/20201101001
+<span class="c1"># Load case file and convert to JSON</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">convert_casefile</span><span class="p">(</span><span class="s1">&#39;../../data/NEMSPDOutputs_2021040100100.loaded&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="method-1-traverse-dictionary">Method 1 - Traverse dictionary</h2>
 <p>The simplest strategy is to traverse the case file dictionary and update parameters directly. The <a href="/parameter-reference">parameter reference page</a> can be used to see which parameters can be meaningfully updated.</p>
@@ -564,66 +530,66 @@
            <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
 <span class="n">regions</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
-  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;QLD1&#39;,
-  &#39;@DF&#39;: &#39;10.572998046875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;SA1&#39;,
-  &#39;@DF&#39;: &#39;0.441221952438354&#39;,
-  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;TAS1&#39;,
-  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
-  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
- {&#39;@RegionID&#39;: &#39;VIC1&#39;,
-  &#39;@DF&#39;: &#39;15.550048828125&#39;,
-  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+<div class="highlight"><pre><span></span><code>[OrderedDict([(&#39;@RegionID&#39;, &#39;NSW1&#39;),
+              (&#39;@DF&#39;, &#39;50.11376953125&#39;),
+              (&#39;@DemandForecast&#39;, &#39;6575.22802734375&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;34.66&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;QLD1&#39;),
+              (&#39;@DF&#39;, &#39;1.39823298286458&#39;),
+              (&#39;@DemandForecast&#39;, &#39;5362.80249&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;35.01&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;SA1&#39;),
+              (&#39;@DF&#39;, &#39;5.0419807434082&#39;),
+              (&#39;@DemandForecast&#39;, &#39;1075.27025222778&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;32.23&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;2.93&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.37&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.7&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;TAS1&#39;),
+              (&#39;@DF&#39;, &#39;2.3228759765625&#39;),
+              (&#39;@DemandForecast&#39;, &#39;997.246337890625&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;26.84&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;9.46&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;8.99&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.91&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.16&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;1.27&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;2.21&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.35&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.15&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;VIC1&#39;),
+              (&#39;@DF&#39;, &#39;49.33447265625&#39;),
+              (&#39;@DemandForecast&#39;, &#39;4157.650390625&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;22.54&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)])]
 </code></pre></div>
 <p>Once we reach the <code>RegionPeriod</code> node we encounter a list of dictionaries describing parameters for each region. We can loop through the list and update the <code>@DF</code> parameter for South Australia (i.e. the dictionary with <code>@RegionID == 'SA1'</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Updating the @DF parameter for South Australia</span>
@@ -637,70 +603,70 @@
  <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
  <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
-  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;QLD1&#39;,
-  &#39;@DF&#39;: &#39;10.572998046875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;SA1&#39;,
-  &#39;@DF&#39;: 20,
-  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
- {&#39;@RegionID&#39;: &#39;TAS1&#39;,
-  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
-  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
- {&#39;@RegionID&#39;: &#39;VIC1&#39;,
-  &#39;@DF&#39;: &#39;15.550048828125&#39;,
-  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+<div class="highlight"><pre><span></span><code>[OrderedDict([(&#39;@RegionID&#39;, &#39;NSW1&#39;),
+              (&#39;@DF&#39;, &#39;50.11376953125&#39;),
+              (&#39;@DemandForecast&#39;, &#39;6575.22802734375&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;34.66&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;QLD1&#39;),
+              (&#39;@DF&#39;, &#39;1.39823298286458&#39;),
+              (&#39;@DemandForecast&#39;, &#39;5362.80249&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;35.01&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;SA1&#39;),
+              (&#39;@DF&#39;, 20),
+              (&#39;@DemandForecast&#39;, &#39;1075.27025222778&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;32.23&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;2.93&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.37&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.7&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;TAS1&#39;),
+              (&#39;@DF&#39;, &#39;2.3228759765625&#39;),
+              (&#39;@DemandForecast&#39;, &#39;997.246337890625&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;26.84&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;9.46&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;8.99&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.91&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.16&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;1.27&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;2.21&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.35&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.15&#39;)]),
+ OrderedDict([(&#39;@RegionID&#39;, &#39;VIC1&#39;),
+              (&#39;@DF&#39;, &#39;49.33447265625&#39;),
+              (&#39;@DemandForecast&#39;, &#39;4157.650390625&#39;),
+              (&#39;@Suspension_Schedule_Energy_Price&#39;, &#39;22.54&#39;),
+              (&#39;@Suspension_Schedule_R6_Price&#39;, &#39;1.01&#39;),
+              (&#39;@Suspension_Schedule_R60_Price&#39;, &#39;1.41&#39;),
+              (&#39;@Suspension_Schedule_R5_Price&#39;, &#39;0.76&#39;),
+              (&#39;@Suspension_Schedule_RReg_Price&#39;, &#39;11.18&#39;),
+              (&#39;@Suspension_Schedule_L6_Price&#39;, &#39;0.45&#39;),
+              (&#39;@Suspension_Schedule_L60_Price&#39;, &#39;1.19&#39;),
+              (&#39;@Suspension_Schedule_L5_Price&#39;, &#39;0.39&#39;),
+              (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)])]
 </code></pre></div>
 <h3 id="submitting-a-modified-case-file">Submitting a modified case file</h3>
 <p>The same steps outlined in the <a href="/tutorials/running-a-model">previous tutorial</a> can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Submit case file to job queue&quot;&quot;&quot;</span>
 
     <span class="c1"># Construct request body and URL</span>
@@ -714,35 +680,35 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
 
     <span class="c1"># Send job to queue and return job meta data</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Submit job and inspect job info</span>
-<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
+<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
 <span class="n">job_info</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;ae49d40f-c25f-4107-8bdb-e78c84c3b3d9&#39;,
- &#39;created_at&#39;: &#39;2021-03-29T13:58:43.872325Z&#39;,
- &#39;enqueued_at&#39;: &#39;2021-03-29T13:58:43.983535Z&#39;,
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;8b8a7dc5-6048-44c8-91fb-022b3b28cc53&#39;,
+ &#39;created_at&#39;: &#39;2021-08-07T13:51:17.444858Z&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-08-07T13:51:17.578846Z&#39;,
  &#39;timeout&#39;: 180,
  &#39;status&#39;: &#39;queued&#39;,
  &#39;label&#39;: None}
 </code></pre></div>
 <p>Once the model has finished solving we can access the results.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Extract job results from queue&quot;&quot;&quot;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>   
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Get job results from the queue</span>
 <span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
-<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
 </code></pre></div>
 <p>The <code>results</code> key returns two nested objects: <code>input</code> corresponds to the case file submitted to the queue, while <code>output</code> is the solution returned by the worker.</p>
 <div class="highlight"><pre><span></span><code><span class="n">job_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
@@ -756,65 +722,65 @@
  <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriodCollection&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RegionPeriod&#39;</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>[{&#39;@RegionID&#39;: &#39;NSW1&#39;,
-  &#39;@DF&#39;: &#39;-6.88232421875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5661.46337890625&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.88&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+  &#39;@DF&#39;: &#39;50.11376953125&#39;,
+  &#39;@DemandForecast&#39;: &#39;6575.22802734375&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;34.66&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;1.01&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;1.41&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.76&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;11.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;0.45&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.19&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.39&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.72&#39;},
  {&#39;@RegionID&#39;: &#39;QLD1&#39;,
-  &#39;@DF&#39;: &#39;10.572998046875&#39;,
-  &#39;@DemandForecast&#39;: &#39;5113.60864257812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;29.97&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;5.22&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;7.35&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+  &#39;@DF&#39;: &#39;1.39823298286458&#39;,
+  &#39;@DemandForecast&#39;: &#39;5362.80249&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;35.01&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;1.01&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;1.41&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.76&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;11.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;0.45&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.19&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.39&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.72&#39;},
  {&#39;@RegionID&#39;: &#39;SA1&#39;,
   &#39;@DF&#39;: 20,
-  &#39;@DemandForecast&#39;: &#39;1096.76959109306&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.08&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;},
+  &#39;@DemandForecast&#39;: &#39;1075.27025222778&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;32.23&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;1.01&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;1.41&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.76&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;11.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;0.39&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;2.93&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.37&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.7&#39;},
  {&#39;@RegionID&#39;: &#39;TAS1&#39;,
-  &#39;@DF&#39;: &#39;3.51705932617188&#39;,
-  &#39;@DemandForecast&#39;: &#39;950.733245849609&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;40.55&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;3.42&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.92&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.9&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;8.6&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.56&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.17&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.78&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;4.17&#39;},
+  &#39;@DF&#39;: &#39;2.3228759765625&#39;,
+  &#39;@DemandForecast&#39;: &#39;997.246337890625&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;26.84&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;9.46&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;8.99&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.91&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;11.16&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;1.27&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;2.21&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.35&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.15&#39;},
  {&#39;@RegionID&#39;: &#39;VIC1&#39;,
-  &#39;@DF&#39;: &#39;15.550048828125&#39;,
-  &#39;@DemandForecast&#39;: &#39;3611.78051757812&#39;,
-  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;18.48&#39;,
-  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;2.13&#39;,
-  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;2.79&#39;,
-  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.88&#39;,
-  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;7.18&#39;,
-  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;3.41&#39;,
-  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;6.04&#39;,
-  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;4.38&#39;,
-  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.02&#39;}]
+  &#39;@DF&#39;: &#39;49.33447265625&#39;,
+  &#39;@DemandForecast&#39;: &#39;4157.650390625&#39;,
+  &#39;@Suspension_Schedule_Energy_Price&#39;: &#39;22.54&#39;,
+  &#39;@Suspension_Schedule_R6_Price&#39;: &#39;1.01&#39;,
+  &#39;@Suspension_Schedule_R60_Price&#39;: &#39;1.41&#39;,
+  &#39;@Suspension_Schedule_R5_Price&#39;: &#39;0.76&#39;,
+  &#39;@Suspension_Schedule_RReg_Price&#39;: &#39;11.18&#39;,
+  &#39;@Suspension_Schedule_L6_Price&#39;: &#39;0.45&#39;,
+  &#39;@Suspension_Schedule_L60_Price&#39;: &#39;1.19&#39;,
+  &#39;@Suspension_Schedule_L5_Price&#39;: &#39;0.39&#39;,
+  &#39;@Suspension_Schedule_LReg_Price&#39;: &#39;9.72&#39;}]
 </code></pre></div>
 <p>We can see our update is reflected in the case file consumed by the worker.</p>
 <h2 id="method-2-using-json-path-syntax">Method 2 - Using JSON path syntax</h2>
@@ -907,7 +873,7 @@
 <div class="highlight"><pre><span></span><code>60
 </code></pre></div>
 <h2 id="summary">Summary</h2>
-<p>We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the Dispatch API.</p>
+<p>We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the NEMDE API.</p>
                 
               
               

@@ -14,7 +14,7 @@
     
     
       
-        <title>Running a model - Dispatch API</title>
+        <title>Running a model - NEMDE API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dispatch API
+            NEMDE API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Dispatch API
+    NEMDE API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -266,8 +266,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-a-case-file" class="md-nav__link">
-    Download a case file
+  <a href="#load-case-file" class="md-nav__link">
+    Load case file
   </a>
   
 </li>
@@ -425,8 +425,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-a-case-file" class="md-nav__link">
-    Download a case file
+  <a href="#load-case-file" class="md-nav__link">
+    Load case file
   </a>
   
 </li>
@@ -473,35 +473,25 @@
                 
                 
                 <h1 id="running-a-model">Running a model</h1>
-<p>An online queue is used to coordinate the task of formulating and solving mathematical programs. Users submit parameters to the queue via the Dispatch API, which creates a new 'job' within the queue. A pool of 'workers' monitor this queue for new jobs. If a worker is available (i.e. it is not currently processing a job) it will pick the job off the queue and then formulate and solve a mathematical program using the inputs provided. The worker then posts the optimisation model's results back to the queue, and marks the job as 'finished'. Results can then be accessed by the user. </p>
-<p>This notebook describes how to obtain historical data describing the NEM's state via the Dispatch API, along with the process of submitting a job to, and retrieving results from, the online queue.</p>
+<p>An online queue is used to coordinate the task of formulating and solving mathematical programs. Users submit parameters to the queue which creates a new 'job'. A pool of 'workers' monitor this queue for new jobs. If a worker is available (i.e. it is not currently processing a job) it will pick the job off the queue and then formulate and solve a mathematical program using the inputs provided. The worker then posts the optimisation model's results back to the queue, and marks the job as 'finished'. Results can then be accessed by the user.</p>
+<p>This notebook describes how to submit a case file parameters and retrieve results from the queue.</p>
 <h2 id="imports-and-authentication">Imports and authentication</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">xmltodict</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 
 <span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">display</span>
 </code></pre></div>
-<p>A valid API token is required to use the Dispatch API, and must be included within the <code>headers</code> section of each request. Email <a href="mailto:contact@envector.com">contact@envector.com</a> if you would like to arrange a trial.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Load environment variables</span>
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="c1"># Replace with your API token</span>
-<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
-<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
-
-<span class="c1"># Request headers are used to authenticate users via their access token</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
-
-<span class="c1"># Base URL endpoint for the Dispatch API</span>
-<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
+<p>First specify the base URL for API calls.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Base URL endpoint for the Dispatch API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
-<h2 id="download-a-case-file">Download a case file</h2>
-<p>Case files contain parameters used by the NEMDE when determining dispatch targets for generators and loads. The Dispatch API uses selected inputs from these case files when formulating a mathematical program that approximates the NEMDE's operation (see the <a href="/parameter-reference">parameter reference page</a> for a description of the inputs used).</p>
-<p>A limited library of case files containing historical data is accessible via the Dispatch API. Each case file is identified by a case ID, e.g. <code>20201101001</code>, which has the following format:</p>
+<h2 id="load-case-file">Load case file</h2>
+<p>Case files contain parameters used by the NEMDE when determining dispatch targets for generators and loads. The API uses selected inputs from these case files when formulating a mathematical program that approximates the NEMDE's operation (see the <a href="/parameter-reference">parameter reference page</a> for a description of the inputs used).</p>
+<p>Each case file is identified by a case ID, e.g. <code>20201101001</code>, which has the following format:</p>
 <div class="highlight"><pre><span></span><code>{year}{month}{day}{interval_id}
 </code></pre></div>
 <p>Interval IDs range from 001-288 and are used to identify each 5 minute interval within a 24 hour period. </p>
@@ -547,45 +537,20 @@
 </tr>
 </tbody>
 </table>
-<p>The following function downloads a case file, which is returned as a Python dictionary.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Download a case file</span>
+<p>The following function loads a case file in XML format and converts it to a Python dictionary.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_casefile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load a historical NEMDE case file and convert it to a dict&quot;&quot;&quot;</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    base_url : str</span>
-<span class="sd">        Base URL for the Dispatch API</span>
+    <span class="c1"># Read case file contents</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">casefile</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="sd">    headers : dict</span>
-<span class="sd">        Contains auth token used to authenticate requests</span>
+    <span class="c1"># Force these nodes to always return lists</span>
+    <span class="n">force_list</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Trade&#39;</span><span class="p">,</span> <span class="s1">&#39;TradeTypePriceStructure&#39;</span><span class="p">,)</span>
 
-<span class="sd">    case_id : str</span>
-<span class="sd">        Case ID to download e.g. &#39;20201101001&#39;. The format is as follows</span>
-<span class="sd">        {year}{month}{day}{interval_id} where interval_id is in [001, ..., 288]</span>
+    <span class="k">return</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">force_list</span><span class="o">=</span><span class="n">force_list</span><span class="p">)</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    casefile : dict</span>
-<span class="sd">        Parameters describing the system&#39;s state</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Case file endpoint&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-
-    <span class="c1"># Load JSON response as Python dictionary</span>
-    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">casefile</span>
-
-
-<span class="c1"># Download case file and save it to disk</span>
-<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;20201101001&#39;</span>
-<span class="n">casefile</span> <span class="o">=</span> <span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Case file endpoint https://dispatch.envector.com/api/v1/data/casefile/20201101001
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">convert_casefile</span><span class="p">(</span><span class="s1">&#39;../../data/NEMSPDOutputs_2021040100100.loaded&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="case-file-components">Case file components</h2>
 <p>Case files describe the state of the system at the start of a dispatch interval, and also include forecasts for demand and intermittent generation at the end of the interval. A nested data structure, in this case a Python dictionary, organises data into logical components.</p>
@@ -593,12 +558,12 @@
 <p>At the dictionary's root there is a single key, <code>NEMSPDCaseFile</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">casefile</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>dict_keys([&#39;NEMSPDCaseFile&#39;])
+<div class="highlight"><pre><span></span><code>odict_keys([&#39;NEMSPDCaseFile&#39;])
 </code></pre></div>
 <p>The dictionary can be traversed by 'getting' the value for a given key, in this case <code>NEMSPDCaseFile</code>, and looking at its constituent components. Here we can see there are three nested keys:</p>
 <div class="highlight"><pre><span></span><code><span class="n">casefile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NEMSPDCaseFile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>dict_keys([&#39;NemSpdInputs&#39;, &#39;NemSpdOutputs&#39;, &#39;SolutionAnalysis&#39;])
+<div class="highlight"><pre><span></span><code>odict_keys([&#39;NemSpdInputs&#39;, &#39;NemSpdOutputs&#39;, &#39;SolutionAnalysis&#39;])
 </code></pre></div>
 <table>
 <thead>
@@ -629,7 +594,7 @@
 </code></pre></div>
 <p>A POST request is submitted to <code>https://dispatch.envector.com/api/v1/jobs/create</code></p>
 <p>The response contains information pertaining to the newly created job, including a job ID which will be used when querying results once they become available.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Submit case file to the job queue&quot;&quot;&quot;</span>
 
     <span class="c1"># Construct request body and URL</span>
@@ -637,18 +602,18 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
 
     <span class="c1"># Send job to queue and return job meta data</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Submit job and inspect meta data</span>
-<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
+<span class="n">job_info</span> <span class="o">=</span> <span class="n">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">)</span>
 <span class="n">job_info</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
- &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280Z&#39;,
- &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861Z&#39;,
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;77b379d4-26e6-401b-8152-ca2e5482c658&#39;,
+ &#39;created_at&#39;: &#39;2021-08-07T13:38:20.741817Z&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-08-07T13:38:20.884427Z&#39;,
  &#39;timeout&#39;: 180,
  &#39;status&#39;: &#39;queued&#39;,
  &#39;label&#39;: None}
@@ -664,69 +629,69 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/status</code></td>
+<td align="left"><code>http://nemde-api-host/api/v1/jobs/{job_id}/status</code></td>
 <td align="left">Get job status</td>
 </tr>
 <tr>
-<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/results</code></td>
+<td align="left"><code>http://nemde-api-host/api/v1/jobs/{job_id}/results</code></td>
 <td align="left">Get job results</td>
 </tr>
 <tr>
-<td align="left"><code>https://dispatch.envector.com/api/v1/jobs/{job_id}/delete</code></td>
+<td align="left"><code>http://nemde-api-host/api/v1/jobs/{job_id}/delete</code></td>
 <td align="left">Delete job</td>
 </tr>
 </tbody>
 </table>
 <p>For example, if the job ID is <code>04c66262-6144-444d-98bf-00c21cb955dd</code>, the URL to get the job's status would be:</p>
-<div class="highlight"><pre><span></span><code>https://dispatch.envector.com/api/v1/jobs/04c66262-6144-444d-98bf-00c21cb955dd/status
+<div class="highlight"><pre><span></span><code>http://nemde-api-host/api/v1/jobs/04c66262-6144-444d-98bf-00c21cb955dd/status
 </code></pre></div>
 <p>Let's check the job's status.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check job status given a job ID&quot;&quot;&quot;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/status&#39;</span>
 
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Check job status</span>
 <span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
-<span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+<span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;77b379d4-26e6-401b-8152-ca2e5482c658&#39;,
  &#39;status&#39;: &#39;started&#39;,
- &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280&#39;,
- &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861&#39;,
- &#39;started_at&#39;: &#39;2021-03-29T13:46:48.773524&#39;,
+ &#39;created_at&#39;: &#39;2021-08-07T13:38:20.741817&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-08-07T13:38:20.884427&#39;,
+ &#39;started_at&#39;: &#39;2021-08-07T13:38:21.221078&#39;,
  &#39;ended_at&#39;: None,
  &#39;timeout&#39;: 180,
  &#39;label&#39;: None}
 </code></pre></div>
 <p>We can see a worker has started to process the job. It typically takes 30s for a worker to complete a job once started. After waiting a short period we can check the status again.</p>
-<div class="highlight"><pre><span></span><code><span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">check_job_status</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;b62fbf33-e73a-468e-8d1f-83f3a1f435d1&#39;,
+<div class="highlight"><pre><span></span><code>{&#39;job_id&#39;: &#39;77b379d4-26e6-401b-8152-ca2e5482c658&#39;,
  &#39;status&#39;: &#39;finished&#39;,
- &#39;created_at&#39;: &#39;2021-03-29T13:46:48.398280&#39;,
- &#39;enqueued_at&#39;: &#39;2021-03-29T13:46:48.512861&#39;,
- &#39;started_at&#39;: &#39;2021-03-29T13:46:48.887061&#39;,
- &#39;ended_at&#39;: &#39;2021-03-29T13:47:13.268052&#39;,
+ &#39;created_at&#39;: &#39;2021-08-07T13:38:20.741817&#39;,
+ &#39;enqueued_at&#39;: &#39;2021-08-07T13:38:20.884427&#39;,
+ &#39;started_at&#39;: &#39;2021-08-07T13:38:21.386579&#39;,
+ &#39;ended_at&#39;: &#39;2021-08-07T13:39:12.951867&#39;,
  &#39;timeout&#39;: 180,
  &#39;label&#39;: None}
 </code></pre></div>
 <h2 id="retrieving-results">Retrieving results</h2>
 <p>Once the job has finished we can access its results.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Extract job results from the queue&quot;&quot;&quot;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>   
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 
 <span class="c1"># Get job results from the queue</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
 </code></pre></div>
 <p><span style="color:red">Note: completed jobs are only retained in the queue for 2 hours, at which point the job (and results) are deleted.</span></p>
 <p>The value corresponding to the <code>results</code> key contains the solution reported by the worker. Let's use Pandas to examine the output.</p>
@@ -762,103 +727,103 @@
 <tbody>
 <tr>
 <td align="left">NSW1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">41.6999</td>
-<td align="right">5818.37</td>
+<td align="right">38.2172</td>
+<td align="right">5127.54</td>
+<td align="right">200</td>
+<td align="right">6330.79</td>
+<td align="right">-1403.26</td>
 <td align="right">0</td>
-<td align="right">5654.29</td>
-<td align="right">164.078</td>
-<td align="right">0</td>
-<td align="right">213</td>
-<td align="right">196</td>
-<td align="right">68</td>
-<td align="right">118.172</td>
-<td align="right">112.354</td>
-<td align="right">173</td>
-<td align="right">78.968</td>
-<td align="right">34</td>
-<td align="right">5660.54</td>
+<td align="right">261</td>
+<td align="right">251</td>
+<td align="right">141</td>
+<td align="right">88</td>
+<td align="right">91</td>
+<td align="right">142</td>
+<td align="right">67</td>
+<td align="right">33</td>
+<td align="right">6576.14</td>
 </tr>
 <tr>
 <td align="left">QLD1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">41.2282</td>
-<td align="right">5232.56</td>
+<td align="right">32.25</td>
+<td align="right">6278.72</td>
 <td align="right">0</td>
-<td align="right">5113.69</td>
-<td align="right">118.868</td>
+<td align="right">5322.13</td>
+<td align="right">956.591</td>
 <td align="right">0</td>
-<td align="right">34.9091</td>
-<td align="right">34.9091</td>
-<td align="right">23</td>
-<td align="right">103</td>
+<td align="right">75</td>
+<td align="right">53</td>
+<td align="right">107.915</td>
+<td align="right">23.2</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">40</td>
-<td align="right">5113.56</td>
+<td align="right">59.875</td>
+<td align="right">5362.13</td>
 </tr>
 <tr>
 <td align="left">SA1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">45.44</td>
-<td align="right">1001.83</td>
+<td align="right">37.2465</td>
+<td align="right">810.756</td>
+<td align="right">10</td>
+<td align="right">1065.3</td>
+<td align="right">-264.539</td>
 <td align="right">0</td>
-<td align="right">1096.91</td>
-<td align="right">-95.0743</td>
-<td align="right">0</td>
-<td align="right">115</td>
-<td align="right">75</td>
-<td align="right">55.5582</td>
-<td align="right">79</td>
-<td align="right">97</td>
-<td align="right">73</td>
-<td align="right">67</td>
-<td align="right">108</td>
-<td align="right">1096.83</td>
+<td align="right">142.829</td>
+<td align="right">77.5837</td>
+<td align="right">121</td>
+<td align="right">54.8</td>
+<td align="right">137</td>
+<td align="right">69</td>
+<td align="right">86</td>
+<td align="right">57.125</td>
+<td align="right">1077.47</td>
 </tr>
 <tr>
 <td align="left">TAS1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">44.8781</td>
-<td align="right">734.724</td>
+<td align="right">31.7702</td>
+<td align="right">1224.95</td>
 <td align="right">0</td>
-<td align="right">957.232</td>
-<td align="right">-222.507</td>
+<td align="right">991.98</td>
+<td align="right">232.971</td>
 <td align="right">0</td>
-<td align="right">40.4435</td>
-<td align="right">59.8479</td>
-<td align="right">23.3362</td>
-<td align="right">5</td>
-<td align="right">23.197</td>
-<td align="right">57.8819</td>
-<td align="right">52.0513</td>
-<td align="right">10</td>
-<td align="right">957.232</td>
+<td align="right">33</td>
+<td align="right">82.2457</td>
+<td align="right">0</td>
+<td align="right">49</td>
+<td align="right">56.166</td>
+<td align="right">152.495</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">996.513</td>
 </tr>
 <tr>
 <td align="left">VIC1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">44.3783</td>
-<td align="right">3653.47</td>
-<td align="right">15</td>
-<td align="right">3596.2</td>
-<td align="right">42.2753</td>
+<td align="right">34.4678</td>
+<td align="right">4729.57</td>
 <td align="right">0</td>
-<td align="right">88.4044</td>
-<td align="right">126</td>
-<td align="right">59</td>
-<td align="right">49.8276</td>
-<td align="right">70</td>
-<td align="right">76</td>
-<td align="right">64</td>
-<td align="right">18</td>
-<td align="right">3612.8</td>
+<td align="right">4134.2</td>
+<td align="right">595.377</td>
+<td align="right">0</td>
+<td align="right">105</td>
+<td align="right">153</td>
+<td align="right">98</td>
+<td align="right">5</td>
+<td align="right">25</td>
+<td align="right">31</td>
+<td align="right">52.5805</td>
+<td align="right">10</td>
+<td align="right">4159.28</td>
 </tr>
 </tbody>
 </table>
@@ -882,50 +847,50 @@
 <tbody>
 <tr>
 <td align="left">N-Q-MNSP1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">-33</td>
-<td align="right">-0.591673</td>
+<td align="right">-97</td>
+<td align="right">5.32865</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">NSW1-QLD1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">-86.0011</td>
-<td align="right">0.306671</td>
+<td align="right">-819.585</td>
+<td align="right">65.3249</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">T-V-MNSP1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">-222.507</td>
-<td align="right">6.01955</td>
+<td align="right">228.438</td>
+<td align="right">4.53231</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">V-S-MNSP1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">45</td>
-<td align="right">-0.856901</td>
+<td align="right">63</td>
+<td align="right">0.102114</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">V-SA</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">50</td>
-<td align="right">0.60394</td>
+<td align="right">203.717</td>
+<td align="right">8.27106</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">VIC1-NSW1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">-276.834</td>
-<td align="right">10.8428</td>
+<td align="right">532.012</td>
+<td align="right">24.9029</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -967,7 +932,7 @@
 <tbody>
 <tr>
 <td align="left">AGLHAL</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -992,7 +957,7 @@
 </tr>
 <tr>
 <td align="left">AGLSOM</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -1011,13 +976,13 @@
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">360</td>
-<td align="right">360</td>
+<td align="right">480</td>
+<td align="right">480</td>
 <td align="right">0</td>
 </tr>
 <tr>
 <td align="left">ANGAST1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -1042,12 +1007,12 @@
 </tr>
 <tr>
 <td align="left">APD01</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">31</td>
-<td align="right">70</td>
-<td align="right">30</td>
+<td align="right">90</td>
+<td align="right">45</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -1067,9 +1032,9 @@
 </tr>
 <tr>
 <td align="left">ARWF1</td>
-<td align="right">20201101001</td>
+<td align="right">20210401001</td>
 <td align="right">0</td>
-<td align="right">126.114</td>
+<td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -1093,7 +1058,7 @@
 </tbody>
 </table>
 <h2 id="summary">Summary</h2>
-<p>This tutorial demonstrates the basic functionality of the Dispatch API. Two key components have been introduced: the ability to access historical data using the API, and methods that facilitate interaction with an online queue. Future tutorials will discuss how to modify case files, perform scenario analyses, and also introduce more advanced workflows using additional Dispatch API features.</p>
+<p>This tutorial demonstrates the basic functionality of the NEMDE API. Two key components have been introduced: the ability to interact with historical case files, and methods that facilitate interaction with an online queue. Future tutorials will discuss how to modify case files, perform scenario analyses, and also introduce more advanced workflows using additional NEMDE API features.</p>
                 
               
               
