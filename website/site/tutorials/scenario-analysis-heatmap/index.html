@@ -1,0 +1,1089 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.7">
+    
+    
+      
+        <title>Scenario analsyis - heatmap - Dispatch API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scenario-analysis-creating-a-heatmap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dispatch API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scenario analsyis - heatmap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Dispatch API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-validation/202011/model-validation/" class="md-nav__link">
+        Model validation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-a-model/" class="md-nav__link">
+        Running a model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modifying-a-case-file/" class="md-nav__link">
+        Modifying a case file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scenario-analysis-line-plot/" class="md-nav__link">
+        Scenario analysis - line plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Scenario analsyis - heatmap
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Scenario analsyis - heatmap
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-case-file" class="md-nav__link">
+    Download case file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    Approach
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-results" class="md-nav__link">
+    Retrieve results
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrieve results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map-parameters-to-job-ids" class="md-nav__link">
+    Map parameters to job IDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-results-to-job-ids" class="md-nav__link">
+    Map results to job IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting" class="md-nav__link">
+    Plotting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../converting-a-case-file/" class="md-nav__link">
+        Converting a case file
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameter-reference/" class="md-nav__link">
+        Case file parameters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/case-studies/" class="md-nav__link">
+        Case studies
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports-and-authentication" class="md-nav__link">
+    Imports and authentication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-case-file" class="md-nav__link">
+    Download case file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    Approach
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieve-results" class="md-nav__link">
+    Retrieve results
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrieve results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map-parameters-to-job-ids" class="md-nav__link">
+    Map parameters to job IDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-results-to-job-ids" class="md-nav__link">
+    Map results to job IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting" class="md-nav__link">
+    Plotting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="scenario-analysis-creating-a-heatmap">Scenario analysis - creating a heatmap</h1>
+<p>The following sections extend the analysis presented in the <a href="/tutorials/scenario-analysis-line-plot">previous tutorial</a>. Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. </p>
+<p>Building on the preceeding tutorial, in addition to augmenting the Demand Forecast for South Australia, the Demand Forecast for Victoria will also be modified. The goal of the analysis is to investigate how jointly varying these parameters would likely impact power flow over the Heywood interconnector, and also energy prices in South Australia. Results will be presented in the form of heatmaps, allowing the data to be visually represented in three dimensions. Note the same methods can be used to examine relationships between other system parameters and variables.</p>
+<h2 id="imports-and-authentication">Imports and authentication</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
+<span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+
+
+<span class="c1"># Load environment variables</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Replace with your API token</span>
+<span class="c1"># E.g. TOKEN = &#39;3zd62ngkjzkqleo3ibvjsnq359n23b4gjdvbk41f&#39;</span>
+<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TOKEN&#39;</span><span class="p">)</span>
+
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://dispatch.envector.com/api/v1/&#39;</span>
+
+<span class="c1"># Headers must be included to authenticate requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="download-case-file">Download case file</h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Download case file and save to disk&quot;&quot;&quot;</span>
+
+    <span class="c1"># URL to download case file</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;data/casefile/</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download case file URL:&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Download case file and save to disk</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">_casefile.json&#39;</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+
+
+<span class="k">def</span> <span class="nf">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load case file&quot;&quot;&quot;</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">_casefile.json&#39;</span>
+    <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">casefile</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+
+
+<span class="c1"># Download case file</span>
+<span class="n">download_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">)</span>
+
+<span class="c1"># Load case file</span>
+<span class="n">casefile</span> <span class="o">=</span> <span class="n">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Download case file URL: https://dispatch.envector.com/api/v1/data/casefile/20201101001
+</code></pre></div>
+<h2 id="approach">Approach</h2>
+<p>As in the previous tutorial the downloaded case file will be treated as our canonical 'source of truth'. This 'base' case file will always be loaded prior to performing updates.</p>
+<p>The following two functions are used to update Demand Forecast parameters within a case file.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_region_demand_forecast</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">region_id</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load case file and update demand forecast for a given region</span>
+
+<span class="sd">    Parameter</span>
+<span class="sd">    ---------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Case information</span>
+
+<span class="sd">    region_id : str</span>
+<span class="sd">        Region for which Demand Forecast should be modified</span>
+
+<span class="sd">    value : float</span>
+<span class="sd">        New value for Demand Forecast parameter</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Case file with updated Demand Forecast parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Construct JSON path expression</span>
+    <span class="n">expression</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NEMSPDCaseFile </span><span class="se">\</span>
+<span class="s2">                  .NemSpdInputs </span><span class="se">\</span>
+<span class="s2">                  .PeriodCollection </span><span class="se">\</span>
+<span class="s2">                  .Period </span><span class="se">\</span>
+<span class="s2">                  .RegionPeriodCollection </span><span class="se">\</span>
+<span class="s2">                  .RegionPeriod[?(@RegionID==&#39;</span><span class="si">{</span><span class="n">region_id</span><span class="si">}</span><span class="s2">&#39;)] </span><span class="se">\</span>
+<span class="s2">                  .@DF&quot;</span><span class="p">)</span>
+
+    <span class="n">jsonpath_expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+
+    <span class="c1"># Update value</span>
+    <span class="n">jsonpath_expr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+
+
+<span class="k">def</span> <span class="nf">update_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="p">,</span> <span class="n">region_1</span><span class="p">,</span> <span class="n">value_1</span><span class="p">,</span> <span class="n">region_2</span><span class="p">,</span> <span class="n">value_2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Update Demand Forecast parameters in two regions</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    case_id : str</span>
+<span class="sd">        Case ID for base case file</span>
+
+<span class="sd">    region_1 : str</span>
+<span class="sd">        First NEM region for which Demand Forecast should be updated</span>
+
+<span class="sd">    value_1 : float</span>
+<span class="sd">        New Demand Forecast value for region_1</span>
+
+<span class="sd">    region_2 : str</span>
+<span class="sd">        Second NEM region for which Demand Forecast should be updated</span>
+
+<span class="sd">    value_2 : float</span>
+<span class="sd">        New Demand Forecast value for region_2</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    casefile : dict</span>
+<span class="sd">        Updated case file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Load &#39;base&#39; case file</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">load_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="n">case_id</span><span class="p">)</span>
+
+    <span class="c1"># Update parameters in both regions</span>
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">update_region_demand_forecast</span><span class="p">(</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">,</span> <span class="n">region_id</span><span class="o">=</span><span class="n">region_1</span><span class="p">,</span> 
+                                            <span class="n">value</span><span class="o">=</span><span class="n">value_1</span><span class="p">)</span>
+
+    <span class="n">casefile</span> <span class="o">=</span> <span class="n">update_region_demand_forecast</span><span class="p">(</span><span class="n">casefile</span><span class="o">=</span><span class="n">casefile</span><span class="p">,</span> <span class="n">region_id</span><span class="o">=</span><span class="n">region_2</span><span class="p">,</span> 
+                                            <span class="n">value</span><span class="o">=</span><span class="n">value_2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">casefile</span>
+</code></pre></div>
+<p>Jobs can be submitted to the online queue, with job IDs recorded so it's possible to map job results to parameters.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">region_1</span><span class="p">,</span> <span class="n">region_2</span><span class="p">,</span> <span class="n">demand_forecasts</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Submit jobs to queue&quot;&quot;&quot;</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">demand_forecasts</span><span class="p">,</span> <span class="n">demand_forecasts</span><span class="p">)]</span>
+
+    <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">value_1</span><span class="p">,</span> <span class="n">value_2</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="c1"># Construct request body - using augmented casefiles</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;casefile&quot;</span><span class="p">:</span> <span class="n">update_casefile</span><span class="p">(</span><span class="n">case_id</span><span class="o">=</span><span class="s1">&#39;20201101001&#39;</span><span class="p">,</span>
+                                            <span class="n">region_1</span><span class="o">=</span><span class="n">region_1</span><span class="p">,</span> <span class="n">value_1</span><span class="o">=</span><span class="n">value_1</span><span class="p">,</span>
+                                            <span class="n">region_2</span><span class="o">=</span><span class="n">region_2</span><span class="p">,</span> <span class="n">value_2</span><span class="o">=</span><span class="n">value_2</span><span class="p">)}</span>
+
+        <span class="c1"># Submit request and extract job ID</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/create&#39;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">job_info</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="c1"># Construct a map between the job ID, job info and the value of the parameter used in the analysis</span>
+        <span class="n">job_id</span> <span class="o">=</span> <span class="n">job_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;region_1&#39;</span><span class="p">:</span> <span class="n">region_1</span><span class="p">,</span> <span class="s1">&#39;value_1&#39;</span><span class="p">:</span> <span class="n">value_1</span><span class="p">,</span>
+            <span class="s1">&#39;region_2&#39;</span><span class="p">:</span> <span class="n">region_2</span><span class="p">,</span> <span class="s1">&#39;value_2&#39;</span><span class="p">:</span> <span class="n">value_2</span>
+        <span class="p">}</span>
+
+        <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;job_info&#39;</span><span class="p">:</span> <span class="n">job_info</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">jobs</span>        
+
+<span class="c1"># Create jobs with different Demand Forecast parameters</span>
+<span class="n">demand_forecasts</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">100</span><span class="p">)]</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="n">submit_jobs</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">region_1</span><span class="o">=</span><span class="s1">&#39;SA1&#39;</span><span class="p">,</span> <span class="n">region_2</span><span class="o">=</span><span class="s1">&#39;VIC1&#39;</span><span class="p">,</span>
+                   <span class="n">demand_forecasts</span><span class="o">=</span><span class="n">demand_forecasts</span><span class="p">)</span>
+</code></pre></div>
+<p>The status of all jobs can be checked by using the following endpoint:</p>
+<p><code>https://dispatch.envector.com/api/v1/jobs/status/list</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get job status list&quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s1">&#39;jobs/status/list&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="c1"># Get status of each job</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">get_status_list</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="c1"># Number of remaining jobs</span>
+<span class="n">remaining_jobs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">status</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;finished&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Jobs remaining:&#39;</span><span class="p">,</span> <span class="n">remaining_jobs</span><span class="p">)</span>
+
+<span class="c1"># Only print the first three jobs (to save space)</span>
+<span class="n">status</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Jobs remaining: 0
+
+
+
+
+
+[{&#39;job_id&#39;: &#39;27bd2dbc-f02f-4cb3-9afa-06d139563bac&#39;,
+  &#39;status&#39;: &#39;finished&#39;,
+  &#39;created_at&#39;: &#39;2021-03-30T07:13:02.835957Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:03.030410Z&#39;,
+  &#39;started_at&#39;: &#39;2021-03-30T07:25:05.961313Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-03-30T07:25:41.337840Z&#39;,
+  &#39;timeout&#39;: &#39;180&#39;,
+  &#39;label&#39;: None},
+ {&#39;job_id&#39;: &#39;e6de7c3b-7d41-4368-84b3-263fe1bb7eb7&#39;,
+  &#39;status&#39;: &#39;finished&#39;,
+  &#39;created_at&#39;: &#39;2021-03-30T07:13:01.427608Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:01.619619Z&#39;,
+  &#39;started_at&#39;: &#39;2021-03-30T07:24:30.010635Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-03-30T07:25:05.805712Z&#39;,
+  &#39;timeout&#39;: &#39;180&#39;,
+  &#39;label&#39;: None},
+ {&#39;job_id&#39;: &#39;c69efbe-94db-418b-b860-6ba9ad2b0b9a&#39;,
+  &#39;status&#39;: &#39;finished&#39;,
+  &#39;created_at&#39;: &#39;2021-03-30T07:13:00.276323Z&#39;,
+  &#39;enqueued_at&#39;: &#39;2021-03-30T07:13:00.472272Z&#39;,
+  &#39;started_at&#39;: &#39;2021-03-30T07:23:40.928030Z&#39;,
+  &#39;ended_at&#39;: &#39;2021-03-30T07:24:29.853803Z&#39;,
+  &#39;timeout&#39;: &#39;180&#39;,
+  &#39;label&#39;: None}]
+</code></pre></div>
+<h2 id="retrieve-results">Retrieve results</h2>
+<p>Once the jobs have finished results can be retrieved from the queue.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">job_ids</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get job results&quot;&quot;&quot;</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">job_id</span> <span class="ow">in</span> <span class="n">job_ids</span><span class="p">:</span>
+        <span class="c1"># Construct URL used to obtain results</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;jobs/</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">/results&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job results URL:&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+        <span class="c1"># Submit request and retrieve job results</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+
+<span class="c1"># Get all job IDs for which results should be returned</span>
+<span class="n">job_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_info&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">]</span>
+
+<span class="c1"># Load job results</span>
+<span class="n">job_results</span> <span class="o">=</span> <span class="n">get_job_results</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">job_ids</span><span class="o">=</span><span class="n">job_ids</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Job results URL: https://dispatch.envector.com/api/v1/jobs/1296572a-39f8-4cc3-a096-b84e1c81447a/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/6c8bc245-2821-4afb-89ad-7702b07ad4d4/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/8a601e7e-a7c6-48d9-9815-52519ae68440/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/5d1bf2d8-0826-4a9c-852e-ad51ad3c15ac/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/847f151b-96d8-46bd-8460-88773aaabdd9/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/740f9614-e3d9-402a-9229-237ea03ded07/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/9387a290-8807-4790-91ea-0e80e0ef33f8/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/9aaf5979-2d5f-4c74-b613-83a6832a618b/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/1ef75782-e4ed-49ae-ba9d-0483506cabf5/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/3b271233-bec1-4b64-9412-4e132b61109a/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/b050d586-464c-4868-9177-2c5717f2098f/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/c1712a50-91e8-441e-be30-d388552c8bba/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/eea1aa21-f6c6-426d-879a-26a12f7f57ae/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/4b7f866a-19f3-41a5-bb9d-3c1883ada1d0/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/6952a4f0-c31a-43ed-8505-ac011b3f78c3/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/52d34171-1315-42b7-8a7b-9f63e2535500/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/e295ed4d-b6d8-4584-a406-0955762ef5e2/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/f847228d-4418-40ce-8e5e-c4d781b42214/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/ad51c5df-b17a-40f3-824b-97f6b112abea/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/6de17032-8c8f-40a4-aaef-77e7ef1a2cbb/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/6fd8ae7c-afca-4404-8acb-7d3f7f5792f2/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/103501cd-5476-4dbb-96bf-0913719dfe41/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/bc69efbe-94db-418b-b860-6ba9ad2b0b9a/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/e6de7c3b-7d41-4368-84b3-263fe1bb7eb7/results
+Job results URL: https://dispatch.envector.com/api/v1/jobs/27bd2dbc-f02f-4cb3-9afa-06d139563bac/results
+</code></pre></div>
+<h3 id="map-parameters-to-job-ids">Map parameters to job IDs</h3>
+<p>The first step is to map job IDs to job parameters.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_job_parameters</span><span class="p">(</span><span class="n">jobs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract job parameters and map to job ID&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_info&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">):</span> <span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">}</span>
+
+
+<span class="n">job_parameters</span> <span class="o">=</span> <span class="n">get_job_parameters</span><span class="p">(</span><span class="n">jobs</span><span class="o">=</span><span class="n">jobs</span><span class="p">)</span>
+</code></pre></div>
+<p>Optionally save results. It is good practice to save results after retrieving them from the queue. Re-analysing results simply requires loading the saved results, rather than having to re-run jobs.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="k">def</span> <span class="nf">save_results</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Save results to notebook directory&quot;&quot;&quot;</span>
+
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;job_results.pickle&#39;</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">job_results</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;job_parameters.pickle&#39;</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_results</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Save results to notebook directory&quot;&quot;&quot;</span>
+
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;job_results.pickle&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">job_results</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;job_parameters.pickle&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span>
+
+
+<span class="c1"># Save / load results if required</span>
+<span class="n">save_results</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">)</span>
+<span class="c1"># job_parameters, job_results = load_results()</span>
+</code></pre></div>
+<h3 id="map-results-to-job-ids">Map results to job IDs</h3>
+<p>The next step is to map results to job IDs. The following function searches a results dictionary for a target value corresponding to a given JSON path expression.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_target_value</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract value from results dictionary given a JSON path expression&quot;&quot;&quot;</span>
+
+    <span class="n">jsonpath_expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>   
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">jsonpath_expr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">results</span><span class="p">)]</span>
+
+    <span class="c1"># Only one value should be returned</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Should only return 1 value, encountered&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<p>Functions can now be used to extract target values (energy prices in South Australia and power flow over the Heywood interconnector) and map them to their respective job IDs.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_sa_energy_price</span><span class="p">(</span><span class="n">job_results</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract energy price from results dictionary&quot;&quot;&quot;</span>
+
+    <span class="n">expression</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results </span><span class="se">\</span>
+<span class="s2">                  .output </span><span class="se">\</span>
+<span class="s2">                  .RegionSolution[?(@RegionID=&#39;SA1&#39;)] </span><span class="se">\</span>
+<span class="s2">                  .@EnergyPrice&quot;</span><span class="p">)</span>
+
+    <span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">):</span> <span class="n">get_target_value</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">)</span>
+              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">job_results</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">prices</span>
+
+
+<span class="k">def</span> <span class="nf">get_v_sa_flow</span><span class="p">(</span><span class="n">job_results</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract V-SA (Heywood) interconnector flow&quot;&quot;&quot;</span>
+
+    <span class="n">expression</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results </span><span class="se">\</span>
+<span class="s2">                  .output </span><span class="se">\</span>
+<span class="s2">                  .InterconnectorSolution[?(@InterconnectorID=&#39;V-SA&#39;)] </span><span class="se">\</span>
+<span class="s2">                  .@Flow&quot;</span><span class="p">)</span>
+
+    <span class="n">flow</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;job_id&#39;</span><span class="p">):</span> <span class="n">get_target_value</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">job_results</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">flow</span>
+</code></pre></div>
+<h2 id="plotting">Plotting</h2>
+<p>A heatmap can be used to visualise the results in three dimensions. The horizontal and vertical axes will display the Demand Forecast parameters used when running the model, while colour will indicate value of the variable under investigation.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_plot_data</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Organise plot data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    job_parameters : dict</span>
+<span class="sd">        Parameters used when augmenting case files</span>
+
+<span class="sd">    job_results : list</span>
+<span class="sd">        Contains solution to mathematical program reported by worker</span>
+
+<span class="sd">    func : function</span>
+<span class="sd">        Function used to extract values from job_results</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    x : numpy array</span>
+<span class="sd">        x-axis values used in plot</span>
+
+<span class="sd">    y : numpy array</span>
+<span class="sd">        y-axis values used in plot</span>
+
+<span class="sd">    z : numpy array</span>
+<span class="sd">        z-axis values used in plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Extract job results - dict indexed by job ID {job_id: target_value, ...}</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">job_results</span><span class="p">)</span>
+
+    <span class="c1"># Organise results {(DF_region_1, DF_region_2): target_value, ...}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{(</span><span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value_1&#39;</span><span class="p">),</span> <span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value_2&#39;</span><span class="p">)):</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">job_id</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">job_parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="c1"># Extract x, y, z components</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+
+    <span class="c1"># Add shape information to array - required when plotting</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">z</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+
+<span class="k">def</span> <span class="nf">format_tick_locations</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adjust tick spacing&quot;&quot;&quot;</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="k">def</span> <span class="nf">plot_v_sa_flow</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;V-SA interconnector flow as a function of SA and VIC demand forecasts&quot;&quot;&quot;</span>
+
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">get_plot_data</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> 
+                            <span class="n">func</span><span class="o">=</span><span class="n">get_v_sa_flow</span><span class="p">)</span>
+
+    <span class="c1"># Create heatmap and add colour bar</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="n">shading</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">)</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+
+    <span class="c1"># Format labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Heywood power flow&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;SA Demand Forecast (MW)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;VIC Demand Forecast (MW)&#39;</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;V-SA flow (MW)&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">format_tick_locations</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">plot_sa_energy_price</span><span class="p">(</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;SA energy price as a function of SA and VIC demand forecasts&quot;&quot;&quot;</span>
+
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">get_plot_data</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> 
+                            <span class="n">func</span><span class="o">=</span><span class="n">get_sa_energy_price</span><span class="p">)</span>
+
+    <span class="c1"># Create heatmap and add colour bar</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="n">shading</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">)</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+
+    <span class="c1"># Format labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SA energy price&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;SA Demand Forecast (MW)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;VIC Demand Forecast (MW)&#39;</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;SA energy price ($/MWh)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Format ticks and add grid lines</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">format_tick_locations</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># Create plots</span>
+<span class="n">plot_v_sa_flow</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plot_sa_energy_price</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_21_0.png" /></p>
+<p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_21_1.png" /></p>
+<p>The resolution of the these plots can be increased by providing a more granual grid over which to explore the solution space. The trade-off is solution time - more jobs must be completed and processed. Interpolation can also be used to smooth the gradient, making it easier to visualise the results.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create plots with interpolation</span>
+<span class="n">plot_v_sa_flow</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;gouraud&#39;</span><span class="p">)</span>
+<span class="n">plot_sa_energy_price</span><span class="p">(</span><span class="n">job_parameters</span><span class="o">=</span><span class="n">job_parameters</span><span class="p">,</span> <span class="n">job_results</span><span class="o">=</span><span class="n">job_results</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;gouraud&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_0.png" /></p>
+<p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_1.png" /></p>
+<h2 id="summary">Summary</h2>
+<p>The Dispatch API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the Dispatch API when exploring the likely solution space of dispatch outcomes.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../scenario-analysis-line-plot/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Scenario analysis - line plot" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Scenario analysis - line plot
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../converting-a-case-file/" class="md-footer__link md-footer__link--next" aria-label="Next: Converting a case file" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Converting a case file
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
