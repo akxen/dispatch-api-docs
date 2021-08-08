@@ -14,7 +14,7 @@
     
     
       
-        <title>Modifying a case file - NEMDE API</title>
+        <title>Modifying a case file - Dispatch API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            NEMDE API
+            Dispatch API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    NEMDE API
+    Dispatch API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -485,8 +485,8 @@
                 
                 
                 <h1 id="modifying-a-case-file">Modifying a case file</h1>
-<p>The NEMDE API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.</p>
-<p>The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The NEMDE API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.</p>
+<p>The Dispatch API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.</p>
+<p>The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The Dispatch API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.</p>
 <h2 id="imports-and-authentication">Imports and authentication</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -497,11 +497,11 @@
 <span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
 <span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
 
-<span class="c1"># Base URL endpoint for the NEMDE API</span>
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
 <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
 <h2 id="approach">Approach</h2>
-<p>Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the NEMDE API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.</p>
+<p>Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the Dispatch API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.</p>
 <p>For now let's use data from a historical case file and only modify selected components. We can proceed by first loading a case file.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_casefile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load a historical NEMDE case file and convert it to a dict&quot;&quot;&quot;</span>
@@ -873,7 +873,7 @@
 <div class="highlight"><pre><span></span><code>60
 </code></pre></div>
 <h2 id="summary">Summary</h2>
-<p>We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the NEMDE API.</p>
+<p>We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the Dispatch API.</p>
                 
               
               

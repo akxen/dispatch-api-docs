@@ -14,7 +14,7 @@
     
     
       
-        <title>Scenario analsyis - heatmap - NEMDE API</title>
+        <title>Scenario analsyis - heatmap - Dispatch API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            NEMDE API
+            Dispatch API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    NEMDE API
+    Dispatch API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -513,7 +513,7 @@
                 
                 
                 <h1 id="scenario-analysis-creating-a-heatmap">Scenario analysis - creating a heatmap</h1>
-<p>The following sections extend the analysis presented in the <a href="/nemde-api-docs/tutorials/scenario-analysis-line-plot">previous tutorial</a>. Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. </p>
+<p>The following sections extend the analysis presented in the <a href="/dispatch-api-docs/tutorials/scenario-analysis-line-plot">previous tutorial</a>. Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. </p>
 <p>Building on the preceeding tutorial, in addition to augmenting the Demand Forecast for South Australia, the Demand Forecast for Victoria will also be modified. The goal of the analysis is to investigate how jointly varying these parameters would likely impact power flow over the Heywood interconnector, and also energy prices in South Australia. Results will be presented in the form of heatmaps, allowing the data to be visually represented in three dimensions. Note the same methods can be used to examine relationships between other system parameters and variables.</p>
 <h2 id="imports-and-authentication">Imports and authentication</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -531,7 +531,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
 
-<span class="c1"># Base URL endpoint for the NEMDE API</span>
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
 <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
 <h2 id="load-case-file">Load case file</h2>
@@ -983,7 +983,7 @@ Job results URL: http://nemde-api-host:8080/api/v1/jobs/f9c7a37b-aef9-47c0-bd99-
 <p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_0.png" /></p>
 <p><img alt="png" src="../scenario-analysis-heatmap_files/scenario-analysis-heatmap_23_1.png" /></p>
 <h2 id="summary">Summary</h2>
-<p>The NEMDE API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the NEMDE API when exploring the likely solution space of dispatch outcomes.</p>
+<p>The Dispatch API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the Dispatch API when exploring the likely solution space of dispatch outcomes.</p>
                 
               
               
