@@ -14,7 +14,7 @@
     
     
       
-        <title>NEMDE API</title>
+        <title>Dispatch API</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nemde-api-documentation" class="md-skip">
+        <a href="#dispatch-api-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            NEMDE API
+            Dispatch API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    NEMDE API
+    Dispatch API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -496,8 +496,8 @@
               
                 
                 
-                <h1 id="nemde-api-documentation">NEMDE API Documentation</h1>
-<p>The NEMDE API allows users to interact with a mathematical program that approximates Australia's National Electricity Market Dispatch Engine (NEMDE). The model is formulated as a single period economic dispatch problem that seeks to dispatch generators and loads such that demand is met at the lowest cost while respecting unit, network, and system constraints.</p>
+                <h1 id="dispatch-api-documentation">Dispatch API Documentation</h1>
+<p>The Dispatch API allows users to interact with a mathematical program that approximates Australia's National Electricity Market Dispatch Engine (NEMDE). The model is formulated as a single period economic dispatch problem that seeks to dispatch generators and loads such that demand is met at the lowest cost while respecting unit, network, and system constraints.</p>
 <p>The API can be used to investigate relationships between system parameters and dispatch outcomes, with possible applications including ex-post scenario and sensitivity analyses, or the tool's integration within forecasting frameworks.</p>
 <h2 id="features-and-known-limitations">Features and known limitations</h2>
 <p>The model used to approximate the NEMDE includes the following components:</p>
@@ -511,7 +511,7 @@
 <li>two pass solution algorithm and inflexibility profiles for fast-start units;</li>
 <li>tie-breaking model for price-tied energy offers.</li>
 </ul>
-<p>The <a href="/nemde-api-docs/model-validation/202011/model-validation">model validation section</a> describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:</p>
+<p>The <a href="/dispatch-api-docs/model-validation/202011/model-validation">model validation section</a> describes the data-driven approach used to assess the Dispatch API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the Dispatch API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:</p>
 <ul>
 <li>FCAS prices are not reported;</li>
 <li>generic constraint right-hand side (RHS) values are obtained from historical NEMDE solutions rather than computed from SCADA values;</li>
@@ -519,29 +519,29 @@
 <li>prices are not adjusted to the market price floor or cap if these thresholds are exceeded;</li>
 <li>constraint relaxation algorithms are not implemented.</li>
 </ul>
-<p>The above list represents known material limitations associated with the model. Work is underway to address each of these points, with updates likely to be incorporated within future versions of the NEMDE API.</p>
+<p>The above list represents known material limitations associated with the model. Work is underway to address each of these points, with updates likely to be incorporated within future versions of the Dispatch API.</p>
 <h2 id="how-it-works">How it works</h2>
-<p>The NEMDE API allows users to interact with an online queue that coordinates the process of formulating and solving a model which approximates the NEMDE. Users first prepare parameters describing the National Electricity Market's state in the form of a case file. Parameters include:</p>
+<p>The Dispatch API allows users to interact with an online queue that coordinates the process of formulating and solving a model which approximates the NEMDE. Users first prepare parameters describing the National Electricity Market's state in the form of a case file. Parameters include:</p>
 <ul>
 <li>offers and bids made by generators and loads;</li>
 <li>initial conditions for units, interconnectors, and regions;</li>
 <li>interconnector loss model factors;</li>
 <li>generic constraint terms. </li>
 </ul>
-<p>See the <a href="/nemde-api-docs/parameter-reference">parameter reference page</a> for more details regarding the data that can be submitted via the API. </p>
-<p>Once a case file has been prepared, it can be submitted to an online queue via the NEMDE API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.</p>
+<p>See the <a href="/dispatch-api-docs/parameter-reference">parameter reference page</a> for more details regarding the data that can be submitted via the API. </p>
+<p>Once a case file has been prepared, it can be submitted to an online queue via the Dispatch API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.</p>
 <p>The following diagram illustrates the workflow used when solving a model using the Dispatch API.</p>
-<p><img alt="queue model" src="/nemde-api-docs/images/dispatch-api-site.png" /></p>
+<p><img alt="queue model" src="/dispatch-api-docs/images/dispatch-api-site.png" /></p>
 <p>Multiple workers can monitor the queue simultaneously, allowing models to be solved in parallel. This capability allows large-scale scenario anlayses to be underaken.</p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="tutorials">Tutorials</h3>
-<p>The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The <a href="/nemde-api-docs/tutorials/running-a-model">Running a Model</a> tutorial is the recommended starting point for new users. </p>
+<p>The tutorials section gives an overview of the Dispatch API's features and provides examples on how to setup scenario analyses and associated workflows. The <a href="/dispatch-api-docs/tutorials/running-a-model">Running a Model</a> tutorial is the recommended starting point for new users. </p>
 <h3 id="case-file-reference">Case file reference</h3>
-<p>The <a href="/nemde-api-docs/parameter-reference">parameter reference page</a> shows the parameters that can be meaningfully updated when modifying or constructing case files.</p>
+<p>The <a href="/dispatch-api-docs/parameter-reference">parameter reference page</a> shows the parameters that can be meaningfully updated when modifying or constructing case files.</p>
 <h3 id="model-validation">Model validation</h3>
-<p>See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the <a href="/nemde-api-docs/model-validation/202011/model-validation">model validation section</a>.</p>
+<p>See how the solution returned by the Dispatch API compares to results obtained from NEMDE in the <a href="/dispatch-api-docs/model-validation/202011/model-validation">model validation section</a>.</p>
 <h3 id="case-studies">Case studies</h3>
-<p>See potential applications of the NEMDE API via <a href="/nemde-api-docs/case-studies/case-studies">case studies</a>.</p>
+<p>See potential applications of the Dispatch API via <a href="/dispatch-api-docs/case-studies/case-studies">case studies</a>.</p>
                 
               
               

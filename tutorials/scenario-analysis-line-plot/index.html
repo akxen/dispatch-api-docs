@@ -14,7 +14,7 @@
     
     
       
-        <title>Scenario analysis - line plot - NEMDE API</title>
+        <title>Scenario analysis - line plot - Dispatch API</title>
       
     
     
@@ -74,7 +74,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="NEMDE API" class="md-header__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-header__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            NEMDE API
+            Dispatch API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -154,13 +154,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="NEMDE API" class="md-nav__button md-logo" aria-label="NEMDE API" data-md-component="logo">
+    <a href="../.." title="Dispatch API" class="md-nav__button md-logo" aria-label="Dispatch API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    NEMDE API
+    Dispatch API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -459,7 +459,7 @@
                 
                 
                 <h1 id="scenario-analysis-creating-a-line-plot">Scenario analysis - creating a line plot</h1>
-<p>The ability to examine relationships between system parameters and system variables is a powerful capability offered by the NEMDE API. This notebook outlines a workflow that can be used to perform ex-post scenario analyses using historical case file data. While the following sections examine how changes to demand forecasts would likely influences prices in a given region, the same principles can be applied to examine other relationships.</p>
+<p>The ability to examine relationships between system parameters and system variables is a powerful capability offered by the Dispatch API. This notebook outlines a workflow that can be used to perform ex-post scenario analyses using historical case file data. While the following sections examine how changes to demand forecasts would likely influences prices in a given region, the same principles can be applied to examine other relationships.</p>
 <h2 id="imports-and-authentication">Imports and authentication</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -470,7 +470,7 @@
 <span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">jsonpath</span>
 <span class="kn">from</span> <span class="nn">jsonpath_ng.ext</span> <span class="kn">import</span> <span class="n">parse</span>
 
-<span class="c1"># Base URL endpoint for the NEMDE API</span>
+<span class="c1"># Base URL endpoint for the Dispatch API</span>
 <span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;http://nemde-api-host:8080/api/v1/&#39;</span>
 </code></pre></div>
 <h2 id="load-case-file">Load case file</h2>
@@ -685,8 +685,8 @@ Job results URL: http://nemde-api-host:8080/api/v1/jobs/774da812-739b-4dad-aeae-
 <p><img alt="png" src="../scenario-analysis-line-plot_files/scenario-analysis-line-plot_17_0.png" /></p>
 <p>The plot illustrates the range of <code>@DF</code> values over which the energy price in South Australia is unaffected, and also the <code>@DF</code> values which begin to alter prices. This type of analysis can help identify how sensitive prices are to changes in demand.</p>
 <h2 id="summary">Summary</h2>
-<p>This notebook outlines a workflow that can be used to perform sensitivity analyses. Relationships between other parameters and variables can be readily investigated, making the NEMDE API a flexibile tool that can facilitate a number of different studies. For instance, one may wish to know how prices or other system variables are impacted by a contingency such as sudden reduction in interconnector power flow limits, or the tripping of a generator.</p>
-<p>While this tutorial has used historical data to perform an ex-post sensitivity analysis, the NEMDE API can also be used with customised case files. This lends the NEMDE API to a number of forecasting applications - user supplied forecasts for case file parameters could allow sensitivies to be computed in real time.</p>
+<p>This notebook outlines a workflow that can be used to perform sensitivity analyses. Relationships between other parameters and variables can be readily investigated, making the Dispatch API a flexibile tool that can facilitate a number of different studies. For instance, one may wish to know how prices or other system variables are impacted by a contingency such as sudden reduction in interconnector power flow limits, or the tripping of a generator.</p>
+<p>While this tutorial has used historical data to perform an ex-post sensitivity analysis, the Dispatch API can also be used with customised case files. This lends the Dispatch API to a number of forecasting applications - user supplied forecasts for case file parameters could allow sensitivies to be computed in real time.</p>
                 
               
               
