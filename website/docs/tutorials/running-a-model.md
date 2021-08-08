@@ -310,4 +310,4 @@ display.Markdown(trader_solution_md)
 
 
 ## Summary
-This tutorial demonstrates the basic functionality of the NEMDE API. Two key components have been introduced: the ability to interact with historical case files, and methods that facilitate interaction with an online queue. Future tutorials will discuss how to modify case files, perform scenario analyses, and also introduce more advanced workflows using additional NEMDE API features.
+This tutorial demonstrates the basic functionality of the Dispatch API. Two key components have been introduced: the ability to interact with historical case files, and methods that facilitate interaction with an online queue. Future tutorials will discuss how to modify case files, perform scenario analyses, and also introduce more advanced workflows using additional Dispatch API features.

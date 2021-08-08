@@ -1,6 +1,6 @@
 # Converting a case file
 
-Historical NEMDE case files are easily converted into a format that can be consumed by the NEMDE API by using the following code snippet.
+Historical NEMDE case files are easily converted into a format that can be consumed by the Dispatch API by using the following code snippet.
 
 
 ```python

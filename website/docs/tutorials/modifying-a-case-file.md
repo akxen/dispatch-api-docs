@@ -1,8 +1,8 @@
 # Modifying a case file
 
-The NEMDE API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.
+The Dispatch API allows users to perform numerical experiments. By augmenting a selected case file parameter, while keeping all other parameters constant, the relationship between dispatch outcomes and the parameter under investigation can be examined.
 
-The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The NEMDE API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.
+The following sections discuss strategies that can be used to modify case files. While this notebook uses Python, it's possible to use other programming languages and workflows. The Dispatch API simply expects data in JSON format - so long as the inputs are correctly structured, the API is agnostic as to the technology used to edit and submit the case file.
 
 ## Imports and authentication
 
@@ -17,12 +17,12 @@ import pandas as pd
 from jsonpath_ng import jsonpath
 from jsonpath_ng.ext import parse
 
-# Base URL endpoint for the NEMDE API
+# Base URL endpoint for the Dispatch API
 base_url = 'http://nemde-api-host:8080/api/v1/'
 ```
 
 ## Approach
-Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the NEMDE API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.
+Case files contain tens of thousands of parameters. While it's possible to design a completely customised case file, users should note the Dispatch API expects case files to be submitted in a standard format. Errors introduced when constructing a case file will almost certainly result in the model failing to return a solution.
 
 For now let's use data from a historical case file and only modify selected components. We can proceed by first loading a case file.
 
@@ -487,4 +487,4 @@ get_casefile_parameter(casefile=casefile, expression=expression)
 
 
 ## Summary
-We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the NEMDE API.
+We've explored two ways to update case file parameters. The first method can be useful if seeking to explore a case file's structure, and augment parameters in an ad hoc manner. The second method is more precise in its ability to target specific parameters within a case file as it avoids the use of loops. The following tutorials will build upon these tools when conducting scenario analyses using the Dispatch API.

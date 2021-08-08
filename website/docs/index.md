@@ -1,6 +1,6 @@
-# NEMDE API Documentation
+# Dispatch API Documentation
 
-The NEMDE API allows users to interact with a mathematical program that approximates Australia's National Electricity Market Dispatch Engine (NEMDE). The model is formulated as a single period economic dispatch problem that seeks to dispatch generators and loads such that demand is met at the lowest cost while respecting unit, network, and system constraints.
+The Dispatch API allows users to interact with a mathematical program that approximates Australia's National Electricity Market Dispatch Engine (NEMDE). The model is formulated as a single period economic dispatch problem that seeks to dispatch generators and loads such that demand is met at the lowest cost while respecting unit, network, and system constraints.
 
 The API can be used to investigate relationships between system parameters and dispatch outcomes, with possible applications including ex-post scenario and sensitivity analyses, or the tool's integration within forecasting frameworks.
 
@@ -17,7 +17,7 @@ The model used to approximate the NEMDE includes the following components:
 - two pass solution algorithm and inflexibility profiles for fast-start units;
 - tie-breaking model for price-tied energy offers.
 
-The [model validation section](/nemde-api-docs/model-validation/202011/model-validation) describes the data-driven approach used to assess the NEMDE API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the NEMDE API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:
+The [model validation section](/dispatch-api-docs/model-validation/202011/model-validation) describes the data-driven approach used to assess the Dispatch API's ability to emulate NEMDE outputs. Excellent correspondence is observed between solutions reported by the Dispatch API and those reported by the NEMDE. However, users should note the Dispatch API is subject to some important limitations:
 
 - FCAS prices are not reported;
 - generic constraint right-hand side (RHS) values are obtained from historical NEMDE solutions rather than computed from SCADA values;
@@ -25,36 +25,36 @@ The [model validation section](/nemde-api-docs/model-validation/202011/model-val
 - prices are not adjusted to the market price floor or cap if these thresholds are exceeded;
 - constraint relaxation algorithms are not implemented.
 
-The above list represents known material limitations associated with the model. Work is underway to address each of these points, with updates likely to be incorporated within future versions of the NEMDE API.
+The above list represents known material limitations associated with the model. Work is underway to address each of these points, with updates likely to be incorporated within future versions of the Dispatch API.
 
 ## How it works
 
-The NEMDE API allows users to interact with an online queue that coordinates the process of formulating and solving a model which approximates the NEMDE. Users first prepare parameters describing the National Electricity Market's state in the form of a case file. Parameters include:
+The Dispatch API allows users to interact with an online queue that coordinates the process of formulating and solving a model which approximates the NEMDE. Users first prepare parameters describing the National Electricity Market's state in the form of a case file. Parameters include:
 
 - offers and bids made by generators and loads;
 - initial conditions for units, interconnectors, and regions;
 - interconnector loss model factors;
 - generic constraint terms. 
 
-See the [parameter reference page](/nemde-api-docs/parameter-reference) for more details regarding the data that can be submitted via the API. 
+See the [parameter reference page](/dispatch-api-docs/parameter-reference) for more details regarding the data that can be submitted via the API. 
 
-Once a case file has been prepared, it can be submitted to an online queue via the NEMDE API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.
+Once a case file has been prepared, it can be submitted to an online queue via the Dispatch API. A pool of workers constantly monitor the queue for new case files. If a worker is idle when a case file enters the queue it will use the parameters submitted by the user to formulate and solve a model approximating the NEMDE. If all workers are occupied when the case file is submitted, the case file will 'wait' in the queue until a worker is available. Upon solving the model the worker posts its results back to queue, which can then be retrieved by the user. Results remain within the queue for a limited time (2 hours) at which point they are deleted.
 
 The following diagram illustrates the workflow used when solving a model using the Dispatch API.
 
-![queue model](/nemde-api-docs/images/dispatch-api-site.png)
+![queue model](/dispatch-api-docs/images/dispatch-api-site.png)
 
 Multiple workers can monitor the queue simultaneously, allowing models to be solved in parallel. This capability allows large-scale scenario anlayses to be underaken.
 
 ## Getting started
 ### Tutorials
-The tutorials section gives an overview of the NEMDE API's features and provides examples on how to setup scenario analyses and associated workflows. The [Running a Model](/nemde-api-docs/tutorials/running-a-model) tutorial is the recommended starting point for new users. 
+The tutorials section gives an overview of the Dispatch API's features and provides examples on how to setup scenario analyses and associated workflows. The [Running a Model](/dispatch-api-docs/tutorials/running-a-model) tutorial is the recommended starting point for new users. 
 
 ### Case file reference
-The [parameter reference page](/nemde-api-docs/parameter-reference) shows the parameters that can be meaningfully updated when modifying or constructing case files.
+The [parameter reference page](/dispatch-api-docs/parameter-reference) shows the parameters that can be meaningfully updated when modifying or constructing case files.
 
 ### Model validation
-See how the solution returned by the NEMDE API compares to results obtained from NEMDE in the [model validation section](/nemde-api-docs/model-validation/202011/model-validation).
+See how the solution returned by the Dispatch API compares to results obtained from NEMDE in the [model validation section](/dispatch-api-docs/model-validation/202011/model-validation).
 
 ### Case studies
-See potential applications of the NEMDE API via [case studies](/nemde-api-docs/case-studies/case-studies).
+See potential applications of the Dispatch API via [case studies](/dispatch-api-docs/case-studies/case-studies).

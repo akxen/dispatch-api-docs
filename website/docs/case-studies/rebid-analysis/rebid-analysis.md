@@ -1,5 +1,5 @@
 # Rebid Analysis
-The following sections demonstrate how the NEMDE API can be used estimate the contribution of a rebid to a change in dispatch prices.
+The following sections demonstrate how the Dispatch API can be used estimate the contribution of a rebid to a change in dispatch prices.
 
 ## Overview
 On 27 November 2020 at 4.15pm the dispatch price in NSW was approximately 96 $/MWh. Dispatch prices increased to 290 $/MWh in the following interval at 4.20pm before falling to 93 $/MWh at 4.25pm. Approximately 2 minutes before the interval in which the price spike occurred a unit at Bayswater power station (trader ID BW01) submitted a rebid which indicated the unit's max available capacity was 130 MW less than previously anticipated. The following figure plots the power output and max availability for this unit, along with NSW dispatch prices.
@@ -10,24 +10,24 @@ On 27 November 2020 at 4.15pm the dispatch price in NSW was approximately 96 $/M
     
 
 
-When analysing historical data it is difficult to estimate the extent to which a change in max availbility for BW01 contributed to the price movement at 4.20pm. The NEMDE API addresses this limitation by allowing users to estimate dispatch outcomes under counterfactual scenarios. For instance, a scenario can be constructed in which BW01 does not reduce its max availability at 4.20pm. Dispatch prices for this scenario can then be compared to historical outputs. As all other system parameters are kept constant, it is possible to isolate the rebid's contribution to the change in dispatch prices.
+When analysing historical data it is difficult to estimate the extent to which a change in max availbility for BW01 contributed to the price movement at 4.20pm. The Dispatch API addresses this limitation by allowing users to estimate dispatch outcomes under counterfactual scenarios. For instance, a scenario can be constructed in which BW01 does not reduce its max availability at 4.20pm. Dispatch prices for this scenario can then be compared to historical outputs. As all other system parameters are kept constant, it is possible to isolate the rebid's contribution to the change in dispatch prices.
 
 ## Aims and scope
-The following analysis investigates how the rebid submitted by BW01 impacted dispatch prices observed at 4.20pm on 27 Novermber 2020. First, model validation is undertaken to assess the NEMDE API's ability to emulate NEMDE outputs for the interval under investigation. If close correspondence is observed between NEMDE API and NEMDE solutions then counterfactual scenarios will be constructed to estimate dispatch prices that would have arisen if BW01 had not rebid its capacity. 
+The following analysis investigates how the rebid submitted by BW01 impacted dispatch prices observed at 4.20pm on 27 Novermber 2020. First, model validation is undertaken to assess the Dispatch API's ability to emulate NEMDE outputs for the interval under investigation. If close correspondence is observed between Dispatch API and NEMDE solutions then counterfactual scenarios will be constructed to estimate dispatch prices that would have arisen if BW01 had not rebid its capacity. 
 
 ## Validation
-Historical NEMDE case files include the outputs returned by NEMDE when run for a given set of inputs describing the NEM's state. Model validation is performed by passing the same parameters to the NEMDE API as were passed to NEMDE, and comparing the NEMDE API's solution to historical NEMDE outputs. The degree to which solutions obtained from the NEMDE API correspond with NEMDE outputs indicates the NEMDE API's ability to emulate NEMDE for the dispatch interval under investigation. If close correspondence between the two solutions is observed then it is appropriate to proceed with the counterfactual scenario analysis.
+Historical NEMDE case files include the outputs returned by NEMDE when run for a given set of inputs describing the NEM's state. Model validation is performed by passing the same parameters to the Dispatch API as were passed to NEMDE, and comparing the Dispatch API's solution to historical NEMDE outputs. The degree to which solutions obtained from the Dispatch API correspond with NEMDE outputs indicates the Dispatch API's ability to emulate NEMDE for the dispatch interval under investigation. If close correspondence between the two solutions is observed then it is appropriate to proceed with the counterfactual scenario analysis.
 
-The following sections summarise the difference between the results obtained from the NEMDE API and historical NEMDE outputs for the dispatch interval ending at 4.20pm on 27 November 2020 - the interval for which the price spike is observed. 
+The following sections summarise the difference between the results obtained from the Dispatch API and historical NEMDE outputs for the dispatch interval ending at 4.20pm on 27 November 2020 - the interval for which the price spike is observed. 
 
 ### Trader solution
-Summary statistics are computed for the difference between the NEMDE API's solution and NEMDE outputs, with the difference defined as follows: 
+Summary statistics are computed for the difference between the Dispatch API's solution and NEMDE outputs, with the difference defined as follows: 
 
 ```
-Solution Difference = NEMDE API Solution - NEMDE Solution.
+Solution Difference = Dispatch API Solution - NEMDE Solution.
 ```
 
-Statistics for the difference between the trader solution obtained from the NEMDE API and NEMDE are shown below.
+Statistics for the difference between the trader solution obtained from the Dispatch API and NEMDE are shown below.
 
 
 
@@ -57,7 +57,7 @@ Statistics for the difference between the trader solution obtained from the NEMD
 
 
 
-The following figures visualise the correspondence between the dispatch targets obtained from the NEMDE API and those returned by NEMDE for each trade type. Each point represents a dispatch target for a given trader. The horizontal axis denotes the solution obtained from the NEMDE API, while the vertical axis denotes the solution obtained from NEMDE. The dashed line has a slope of one, and indicates perfect correspondence between the NEMDE API and NEMDE solutions.
+The following figures visualise the correspondence between the dispatch targets obtained from the Dispatch API and those returned by NEMDE for each trade type. Each point represents a dispatch target for a given trader. The horizontal axis denotes the solution obtained from the Dispatch API, while the vertical axis denotes the solution obtained from NEMDE. The dashed line has a slope of one, and indicates perfect correspondence between the Dispatch API and NEMDE solutions.
 
 
     
@@ -110,7 +110,7 @@ Summary statistics are also presented for interconnector solution metrics.
 
 
 ### Validation summary
-Close correpsondence is observed between the NEMDE API's solution and outputs obtained from NEMDE, suggesting it is appropriate to undertake counterfactual scenario analysis for the interval in question.
+Close correpsondence is observed between the Dispatch API's solution and outputs obtained from NEMDE, suggesting it is appropriate to undertake counterfactual scenario analysis for the interval in question.
 
 ## Contribution of rebid to region price change
 The bid for BW01 at 4.15pm is compared with the bid at 4.20pm in the following table.
@@ -134,7 +134,7 @@ The bid for BW01 at 4.15pm is compared with the bid at 4.20pm in the following t
 
 
 
-The case file corresponding to the 4.20pm dispatch interval is updated such that the bid for BW01 applying at 4.15pm also applies at 4.20pm (the MaxAvail parameter for BW01 is set to 590MW for the 4.20pm case file). The NEMDE API is used to run the augmented case file, with region solution metrics corresponding to this scenario shown in the following table.
+The case file corresponding to the 4.20pm dispatch interval is updated such that the bid for BW01 applying at 4.15pm also applies at 4.20pm (the MaxAvail parameter for BW01 is set to 590MW for the 4.20pm case file). The Dispatch API is used to run the augmented case file, with region solution metrics corresponding to this scenario shown in the following table.
 
 
 
@@ -149,7 +149,7 @@ The case file corresponding to the 4.20pm dispatch interval is updated such that
 
 
 
-The NEMDE API is then used to run the base case scenario in which no changes are made to the historical case file. Note excellent correspondence was observed between NEMDE and NEMDE API energy prices in the model validation section. Region solution results for the base case are shown below.
+The Dispatch API is then used to run the base case scenario in which no changes are made to the historical case file. Note excellent correspondence was observed between NEMDE and Dispatch API energy prices in the model validation section. Region solution results for the base case are shown below.
 
 
 
@@ -182,4 +182,4 @@ The difference between the counterfactual scenario and the base case is as follo
 The analysis suggests the rebid led to slightly higher prices in New South Wales and Queensland, but reduced prices in Tasmania. These price differences are small relative to the magnitude of the price spike, suggesting the rebid made by BW01 was not a determinative factor in the large price change observed.
 
 ## Summary
-The NEMDE API has been used to estimate dispatch prices that would arise if BW01 had not rebid its max availability. Model validation is first performed to assess the NEMDE API's ability to emulate NEMDE outputs for the dispatch interval in question, with close correspondence between the NEMDE API's solution and NEMDE outputs observed. A counterfactual scenario is then constructed which assumes no reduction in max availablity for BW01 at 4.20pm. This scenario is compared with the base case in which BW01 does rebid its capacity, with the results suggesting the rebid has a negligible impact on prices at 4:20pm - it is likely other factors, unrelated to the rebid submitted by BW01, are driving the price movement in this dispatch interval.
+The Dispatch API has been used to estimate dispatch prices that would arise if BW01 had not rebid its max availability. Model validation is first performed to assess the Dispatch API's ability to emulate NEMDE outputs for the dispatch interval in question, with close correspondence between the Dispatch API's solution and NEMDE outputs observed. A counterfactual scenario is then constructed which assumes no reduction in max availablity for BW01 at 4.20pm. This scenario is compared with the base case in which BW01 does rebid its capacity, with the results suggesting the rebid has a negligible impact on prices at 4:20pm - it is likely other factors, unrelated to the rebid submitted by BW01, are driving the price movement in this dispatch interval.

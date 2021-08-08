@@ -1,6 +1,6 @@
 # Scenario analysis - creating a heatmap
 
-The following sections extend the analysis presented in the [previous tutorial](/nemde-api-docs/tutorials/scenario-analysis-line-plot). Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. 
+The following sections extend the analysis presented in the [previous tutorial](/dispatch-api-docs/tutorials/scenario-analysis-line-plot). Instead of examining relationships between a single system parameter and a single system variable it is also worthwhile exploring how the joint interaction of two or more system parameters affects dispatch outcomes. 
 
 Building on the preceeding tutorial, in addition to augmenting the Demand Forecast for South Australia, the Demand Forecast for Victoria will also be modified. The goal of the analysis is to investigate how jointly varying these parameters would likely impact power flow over the Heywood interconnector, and also energy prices in South Australia. Results will be presented in the form of heatmaps, allowing the data to be visually represented in three dimensions. Note the same methods can be used to examine relationships between other system parameters and variables.
 
@@ -24,7 +24,7 @@ from jsonpath_ng.ext import parse
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
-# Base URL endpoint for the NEMDE API
+# Base URL endpoint for the Dispatch API
 base_url = 'http://nemde-api-host:8080/api/v1/'
 ```
 
@@ -546,4 +546,4 @@ plot_sa_energy_price(job_parameters=job_parameters, job_results=job_results, sha
 
 
 ## Summary
-The NEMDE API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the NEMDE API when exploring the likely solution space of dispatch outcomes.
+The Dispatch API allows users to explore relationships between the joint interaction of system parameters and system variables. When two system parameters are examined heatmaps can be used to visualise results in three dimensions. This type of scenario analysis can easily be extended to different system parameters and variables, demonstrating the flexibility provided by the Dispatch API when exploring the likely solution space of dispatch outcomes.

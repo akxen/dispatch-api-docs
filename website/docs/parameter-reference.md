@@ -1,7 +1,7 @@
 # Case file parameters
-Case files submitted via the NEMDE API follow the same data structure as NEMDE case files (see [this tutorial](/tutorials/converting-a-case-file) to learn how to convert historical NEMDE case files into a format that can be consumed by the NEMDE API). This assists development efforts as historical case files provide an excellent foundation on which new features can be built. However, there are limitations that arise from this approach. For instance, the NEMDE API only uses a subset of the data contained within historical case files when formulating a mathematical program. Ambiguities may also arise when inspecting case files as some parameters are duplicated while others may be ignored. The following sections seek to address these ambiguities by explicitly outlining the parameters used when formulating a mathematical program via the NEMDE API. Updates made to these parameters will be reflected in the formulated model, while changes to all other parameters are ignored and will have no effect. 
+Case files submitted via the Dispatch API follow the same data structure as NEMDE case files (see [this tutorial](/tutorials/converting-a-case-file) to learn how to convert historical NEMDE case files into a format that can be consumed by the Dispatch API). This assists development efforts as historical case files provide an excellent foundation on which new features can be built. However, there are limitations that arise from this approach. For instance, the Dispatch API only uses a subset of the data contained within historical case files when formulating a mathematical program. Ambiguities may also arise when inspecting case files as some parameters are duplicated while others may be ignored. The following sections seek to address these ambiguities by explicitly outlining the parameters used when formulating a mathematical program via the Dispatch API. Updates made to these parameters will be reflected in the formulated model, while changes to all other parameters are ignored and will have no effect. 
 
-Paths to parameters within a JSON case file document are provided. Filters may need to be used when referencing specific elements (e.g. to identify a specific trader, interconnector, region, or constraint). Where practical, tables are used to summarise possible values for these query parameters. Note that this document may be updated over time as additional information is incorporated into the model used by the NEMDE API.
+Paths to parameters within a JSON case file document are provided. Filters may need to be used when referencing specific elements (e.g. to identify a specific trader, interconnector, region, or constraint). Where practical, tables are used to summarise possible values for these query parameters. Note that this document may be updated over time as additional information is incorporated into the model used by the Dispatch API.
 
 
 ## Case
@@ -401,7 +401,7 @@ Example region factors:
 ```
 
 ### Right-hand side (RHS)
-<span style="color:red">This is parameter is obtained from NEMDE outputs. This is a limitation of the NEMDE API, as the NEMDE uses SCADA values to compute RHS values. Functionality to compute RHS values from SCADA values is under active development.</span>
+<span style="color:red">This is parameter is obtained from NEMDE outputs. This is a limitation of the Dispatch API, as the NEMDE uses SCADA values to compute RHS values. Functionality to compute RHS values from SCADA values is under active development.</span>
 
 ```python
 NEMSPDCaseFile.NemSpdOutputs.ConstraintSolution[?(@ConstraintID="constraint_id" && @Intervention="intervention")].@RHS
