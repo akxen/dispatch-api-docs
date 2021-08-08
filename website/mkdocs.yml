@@ -1,4 +1,4 @@
-site_name: NEMDE API
+site_name: Dispatch API
 theme:
     name: material
     palette:

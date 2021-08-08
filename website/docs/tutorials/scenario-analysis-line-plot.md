@@ -1,6 +1,6 @@
 # Scenario analysis - creating a line plot
 
-The ability to examine relationships between system parameters and system variables is a powerful capability offered by the NEMDE API. This notebook outlines a workflow that can be used to perform ex-post scenario analyses using historical case file data. While the following sections examine how changes to demand forecasts would likely influences prices in a given region, the same principles can be applied to examine other relationships.
+The ability to examine relationships between system parameters and system variables is a powerful capability offered by the Dispatch API. This notebook outlines a workflow that can be used to perform ex-post scenario analyses using historical case file data. While the following sections examine how changes to demand forecasts would likely influences prices in a given region, the same principles can be applied to examine other relationships.
 
 ## Imports and authentication
 
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from jsonpath_ng import jsonpath
 from jsonpath_ng.ext import parse
 
-# Base URL endpoint for the NEMDE API
+# Base URL endpoint for the Dispatch API
 base_url = 'http://nemde-api-host:8080/api/v1/'
 ```
 
@@ -277,6 +277,6 @@ plt.show()
 The plot illustrates the range of `@DF` values over which the energy price in South Australia is unaffected, and also the `@DF` values which begin to alter prices. This type of analysis can help identify how sensitive prices are to changes in demand.
 
 ## Summary
-This notebook outlines a workflow that can be used to perform sensitivity analyses. Relationships between other parameters and variables can be readily investigated, making the NEMDE API a flexibile tool that can facilitate a number of different studies. For instance, one may wish to know how prices or other system variables are impacted by a contingency such as sudden reduction in interconnector power flow limits, or the tripping of a generator.
+This notebook outlines a workflow that can be used to perform sensitivity analyses. Relationships between other parameters and variables can be readily investigated, making the Dispatch API a flexibile tool that can facilitate a number of different studies. For instance, one may wish to know how prices or other system variables are impacted by a contingency such as sudden reduction in interconnector power flow limits, or the tripping of a generator.
 
-While this tutorial has used historical data to perform an ex-post sensitivity analysis, the NEMDE API can also be used with customised case files. This lends the NEMDE API to a number of forecasting applications - user supplied forecasts for case file parameters could allow sensitivies to be computed in real time.
+While this tutorial has used historical data to perform an ex-post sensitivity analysis, the Dispatch API can also be used with customised case files. This lends the Dispatch API to a number of forecasting applications - user supplied forecasts for case file parameters could allow sensitivies to be computed in real time.

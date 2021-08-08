@@ -1,7 +1,7 @@
 # Price volatility
 
 ## Overview
-Over the span of two hours on 17 November 2020 South Australian dispatch prices increased from 45 $/MWh to over 250 $/MWh before falling to 62 $/MWh. The following analysis uses the NEMDE API to explore the underlying factors responsible for this price volatility.
+Over the span of two hours on 17 November 2020 South Australian dispatch prices increased from 45 $/MWh to over 250 $/MWh before falling to 62 $/MWh. The following analysis uses the Dispatch API to explore the underlying factors responsible for this price volatility.
 
 ## Analysis
 Dispatch prices for the period under investigation are shown in Figure 1. When examining the historical price series from 5.10pm to 5.45pm there appears be no indication that South Australian dispatch prices are on the verge of experiencing significant volatility over the following hour. Were the price movements from 5.50pm to 6.45pm due to a contingency event, or were there changes occurring to system dynamics in the lead up to 5.50pm that only began to be reflected in prices at 5.55pm? Sensitivity analyses can assist in answering these questions by estimating the prices that would be realised under different operating scenarios.
@@ -12,7 +12,7 @@ Dispatch prices for the period under investigation are shown in Figure 1. When e
     
 
 
-Understanding the relationship between demand and dispatch prices is particularly important as it can help exposit underlying dynamics relating to changes in the system's state. The NEMDE API is used to investigate this relationship by incrementally augmenting the Demand Forecast (DF) parameter for each dispatch interval and observing the resulting dispatch price. The DF parameter corresponds to the amount by which demand is expected to change over a dispatch interval. For example, a value of 10 MW denotes that demand is expected to be 10 MW higher at the end of a dispatch interval relative to the start of the interval. 
+Understanding the relationship between demand and dispatch prices is particularly important as it can help exposit underlying dynamics relating to changes in the system's state. The Dispatch API is used to investigate this relationship by incrementally augmenting the Demand Forecast (DF) parameter for each dispatch interval and observing the resulting dispatch price. The DF parameter corresponds to the amount by which demand is expected to change over a dispatch interval. For example, a value of 10 MW denotes that demand is expected to be 10 MW higher at the end of a dispatch interval relative to the start of the interval. 
 
 Scenarios are constructed by varying the DF parameter from -500MW to 500MW at 25 MW incremenets for each interval from 5.10pm to 7.00pm, with the results shown in Figure 2. Each dispatch interval is represented by a column comprised of rectangles. Each rectangle represents a demand forecast scenario, with the colour of the rectangle denoting the price observed for the scenario - lighter colours correspond to higher prices. These columns illustrate the relationship between demand and dispatch prices for each interval.
 
@@ -55,4 +55,4 @@ The following animation illustrates how prices become more sensitive to changes 
 Gradual shifts in the supply curve from 5.10pm to 5.55pm, coupled with the rapid increase in demand and reduction in output from semi-scheduled plant provides preliminary evidence suggesting demand and supply dynamics are the primary drivers of the price volatility observed. The impact of interconnector capabilities, generator availabilities, and generic constraints on South Australian dispatch prices could also be assessed, but is beyond the scope of this analysis.
 
 ## Summary
-The NEMDE API allows otherwise unobservable relationships between system parameters and dispatch outcomes to be investigated. While this analysis has examined how changes to demand in South Australia affect dispatch prices in the same region, the NEMDE API can also be used to explore how other parameters such as interconnector capabilities, generator availabilities, or output from wind and solar plant impact dispatch outcomes.
+The Dispatch API allows otherwise unobservable relationships between system parameters and dispatch outcomes to be investigated. While this analysis has examined how changes to demand in South Australia affect dispatch prices in the same region, the Dispatch API can also be used to explore how other parameters such as interconnector capabilities, generator availabilities, or output from wind and solar plant impact dispatch outcomes.

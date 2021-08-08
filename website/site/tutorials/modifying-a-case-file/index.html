@@ -520,8 +520,8 @@
 <span class="n">casefile</span> <span class="o">=</span> <span class="n">convert_casefile</span><span class="p">(</span><span class="s1">&#39;../../data/NEMSPDOutputs_2021040100100.loaded&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="method-1-traverse-dictionary">Method 1 - Traverse dictionary</h2>
-<p>The simplest strategy is to traverse the case file dictionary and update parameters directly. The <a href="/parameter-reference">parameter reference page</a> can be used to see which parameters can be meaningfully updated.</p>
-<p>Let's update the Demand Forecast (<code>@DF</code>) parameter for South Australia as an example. This parameter corresponds to the amount by which demand is expected to change over the dispatch interval. From the <a href="/parameter-reference/#demand-forecast">parameter reference page</a> we can see the path to this parameter is as follows:</p>
+<p>The simplest strategy is to traverse the case file dictionary and update parameters directly. The <a href="/nemde-api-docs/parameter-reference">parameter reference page</a> can be used to see which parameters can be meaningfully updated.</p>
+<p>Let's update the Demand Forecast (<code>@DF</code>) parameter for South Australia as an example. This parameter corresponds to the amount by which demand is expected to change over the dispatch interval. From the <a href="/nemde-api-docs/parameter-reference/#demand-forecast">parameter reference page</a> we can see the path to this parameter is as follows:</p>
 <div class="highlight"><pre><span></span><code>NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.RegionPeriodCollection.RegionPeriod[?(@RegionID=&quot;{region_id}&quot;)].@DF
 </code></pre></div>
 <p>Using this path we can traverse nodes within the dictionary:</p>
@@ -665,7 +665,7 @@
               (&#39;@Suspension_Schedule_LReg_Price&#39;, &#39;9.72&#39;)])]
 </code></pre></div>
 <h3 id="submitting-a-modified-case-file">Submitting a modified case file</h3>
-<p>The same steps outlined in the <a href="/tutorials/running-a-model">previous tutorial</a> can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.</p>
+<p>The same steps outlined in the <a href="/nemde-api-docs/tutorials/running-a-model">previous tutorial</a> can be followed to submit a job using the modified case file. An option can also be included to return the (augmented) case file.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">submit_casefile</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">casefile</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Submit case file to job queue&quot;&quot;&quot;</span>
 
@@ -795,7 +795,7 @@
 <span class="s2">              .RegionPeriod[?(@RegionID==&#39;SA1&#39;)] </span><span class="se">\</span>
 <span class="s2">              .@DF&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Note this expression corresponds to the path outlined on the <a href="/parameter-reference/#demand-forecast">parameter reference page</a>. When seeking to update parameters users can consult this document to find paths corresponding to parameters of interest. </p>
+<p>Note this expression corresponds to the path outlined on the <a href="/nemde-api-docs/parameter-reference/#demand-forecast">parameter reference page</a>. When seeking to update parameters users can consult this document to find paths corresponding to parameters of interest. </p>
 <p>The following functions can be used to get and update parameters using a JSON path expression.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_casefile_parameter</span><span class="p">(</span><span class="n">casefile</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
