@@ -22,4 +22,4 @@ uv run mkdocs serve        # preview at http://127.0.0.1:8000/dispatch-api-docs/
 uv run jupyter lab         # edit and run the notebooks
 ```
 
-Pushes to `master` build the site and deploy it to the `gh-pages` branch (`.github/workflows/docs.yml`).
+Pushes to `main` build the site and deploy it to the `gh-pages` branch (`.github/workflows/docs.yml`).

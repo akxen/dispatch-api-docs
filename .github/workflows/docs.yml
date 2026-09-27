@@ -2,7 +2,7 @@ name: docs
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -27,7 +27,7 @@ jobs:
         run: uv run --only-group docs mkdocs build --strict
 
       - name: Deploy to gh-pages
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
