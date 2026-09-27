@@ -1,7 +1,7 @@
 # Case file parameters
-Case files submitted via the Dispatch API follow the same data structure as NEMDE case files (see [this tutorial](/dispatch-api-docs/tutorials/converting-a-case-file) to learn how to convert historical NEMDE case files into a format that can be consumed by the Dispatch API). This assists development efforts as historical case files provide an excellent foundation on which new features can be built. However, there are limitations that arise from this approach. For instance, the Dispatch API only uses a subset of the data contained within historical case files when formulating a mathematical program. Ambiguities may also arise when inspecting case files as some parameters are duplicated while others may be ignored. The following sections seek to address these ambiguities by explicitly outlining the parameters used when formulating a mathematical program via the Dispatch API. Updates made to these parameters will be reflected in the formulated model, while changes to all other parameters are ignored and will have no effect. 
+Case files submitted via the Dispatch API follow the same data structure as NEMDE case files. They can be sent as the original XML, or as JSON after conversion with `xmltodict` (see [this tutorial](/dispatch-api-docs/tutorials/converting-a-case-file)). This assists development efforts as historical case files provide an excellent foundation on which new features can be built. However, there are limitations that arise from this approach. For instance, the Dispatch API only uses a subset of the data contained within historical case files when formulating a mathematical program. Ambiguities may also arise when inspecting case files as some parameters are duplicated while others may be ignored. The following sections seek to address these ambiguities by explicitly outlining the parameters used when formulating a mathematical program via the Dispatch API. Updates made to these parameters will be reflected in the formulated model, while changes to all other parameters are ignored and will have no effect. 
 
-Paths to parameters within a JSON case file document are provided. Filters may need to be used when referencing specific elements (e.g. to identify a specific trader, interconnector, region, or constraint). Where practical, tables are used to summarise possible values for these query parameters. Note that this document may be updated over time as additional information is incorporated into the model used by the Dispatch API.
+Paths are given in the JSON form of a case file, where XML attributes are prefixed with `@`. Filters may need to be used when referencing specific elements (e.g. to identify a specific trader, interconnector, region, or constraint). Where practical, tables are used to summarise possible values for these query parameters. Note that this document may be updated over time as additional information is incorporated into the model used by the Dispatch API.
 
 
 ## Case
@@ -31,7 +31,7 @@ NEMSPDCaseFile.NemSpdInputs.Case.@FastStartThreshold
 ### Initial conditions
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.RegionCollection.Region[?(@RegionID="region_id")].RegionInitialConditionCollection.RegionInitialCondition[?(@InitialConditionID="initial_condition_id"})].@Value
+NEMSPDCaseFile.NemSpdInputs.RegionCollection.Region[?(@RegionID="region_id")].RegionInitialConditionCollection.RegionInitialCondition[?(@InitialConditionID="initial_condition_id")].@Value
 ```
 
 | region_id | Description |
@@ -67,7 +67,7 @@ NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@S
 | Key | Description |
 | :------ | :---------- |
 | @TraderID | Unique trader ID. Same as Dispatchable Unit Identifier (DUID). |
-| @TraderType | Either "GENERATOR", "LOAD", or "NORMALLY_ON_LOAD" |
+| @TraderType | One of "GENERATOR", "LOAD", "NORMALLY_ON_LOAD", "BIDIRECTIONAL" (e.g. a battery that can both generate and consume), or "WDR" (wholesale demand response unit) |
 | @SemiDispatch | Flag indicating if unit is semi-dispatchable. "1"=semi-dispatchable unit (e.g. wind / solar), "0"=dispatchable unit |
 
 From TraderPeriodCollection:
@@ -100,31 +100,42 @@ NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].Tr
 ### Price bands
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@TradeType
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand1
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand2
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand3
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand4
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand5
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand6
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand7
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand8
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand9
-NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.[?(@TradeType="trade_type")].@PriceBand10
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@TradeType
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand1
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand2
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand3
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand4
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand5
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand6
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand7
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand8
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand9
+NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].TradePriceStructureCollection.TradePriceStructure.TradeTypePriceStructureCollection.TradeTypePriceStructure[?(@TradeType="trade_type")].@PriceBand10
 ```
 
 | trade_type | Description |
 | :-------- | :---------- |
 | ENOF | Generator energy market offer |
 | LDOF | Load energy market offer |
+| BDOF | Bidirectional unit energy market offer (see @Direction below) |
+| DROF | Wholesale demand response offer |
+| R1SE | Contingency FCAS raise 1s offer |
 | R6SE | Contingency FCAS raise 6s offer |
 | R60S | Contingency FCAS raise 60s offer |
 | R5MI | Contingency FCAS raise 5min offer |
 | R5RE | Regulation FCAS raise offer |
+| L1SE | Contingency FCAS lower 1s offer |
 | L6SE | Contingency FCAS lower 6s offer |
 | L60S | Contingency FCAS lower 60s offer |
 | L5MI | Contingency FCAS lower 5min offer |
 | L5RE | Regulation FCAS lower offer |
+
+Bidirectional units can submit two offers for the same @TradeType: one for their generating side and one for their consuming side. These are told apart by a @Direction attribute, which is present on both the price bands above and the quantity bands below:
+
+| @Direction | Description |
+| :-------- | :---------- |
+| GEN | Offer applies when the unit is generating |
+| LOAD | Offer applies when the unit is consuming |
 
 
 ### Quantity bands
@@ -145,14 +156,16 @@ NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.TraderPeriodCollection.Trade
 NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.TraderPeriodCollection.TraderPeriod[?(@TraderID="trader_id")].TradeCollection.Trade[@TradeType="trade_type"].@BandAvail10
 ```
 
-Ramp rate parameters must be included for energy market offers (i.e. @TradeType is either ENOF or LDOF):
+Ramp rate parameters must be included for energy market offers (i.e. @TradeType is one of ENOF, LDOF, BDOF, or DROF):
 
 ```python
 NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.TraderPeriodCollection.TraderPeriod[?(@TraderID="trader_id")].TradeCollection.Trade[@TradeType="trade_type"].@RampUpRate
 NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.TraderPeriodCollection.TraderPeriod[?(@TraderID="trader_id")].TradeCollection.Trade[@TradeType="trade_type"].@RampDnRate
 ```
 
-FCAS trapezium parameters must be included for FCAS offers (i.e. @TradeType is in [R6SE, R60S, R6MI, R5RE, L6SE, L60S, L5MI, L5RE]):
+The model does not use the offered ramp rates directly. It uses an effective ramp rate: the lower of the offered rate and the SCADA ramp rate from the trader's initial conditions (`SCADARampUpRate` / `SCADARampDnRate`). For bidirectional units, the offered rate is first combined across the GEN and LOAD offers, taking the unit's initial output into account. Changing either the offered or the SCADA ramp rate can therefore change dispatch.
+
+FCAS trapezium parameters must be included for FCAS offers (i.e. @TradeType is in [R1SE, R6SE, R60S, R5MI, R5RE, L1SE, L6SE, L60S, L5MI, L5RE]):
 
 ```python
 NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.TraderPeriodCollection.TraderPeriod[?(@TraderID="trader_id")].TradeCollection.Trade[@TradeType="trade_type"].@EnablementMin
@@ -181,6 +194,9 @@ NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@T
 NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@T3
 NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@T4
 ```
+
+### Bidirectional unit storage parameters
+Case files for bidirectional units also carry energy storage parameters: @MaxStorageCapacity, @MinEnergyLimit, @MaxEnergyLimit, @ImportEfficiencyFactor, @ExportEfficiencyFactor, and the InitialEnergyStorage / WhatIfInitialEnergyStorage initial conditions. The model reads these values, but they currently have no effect on dispatch. AEMO applies the related energy limit constraints in pre-dispatch only, not in the 5-minute dispatch run that the model approximates. Changing these parameters will not change the solution.
 
 ## Interconnectors
 
@@ -226,7 +242,7 @@ NEMSPDCaseFile.NemSpdInputs.PeriodCollection.Period.InterconnectorPeriodCollecti
 ### Initial conditions
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].InterconnectorInitialConditionCollection.InterconnectorInitialCondition[?(@InitialConditionID="initial_condition_id")].@Value
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].InterconnectorInitialConditionCollection.InterconnectorInitialCondition[?(@InitialConditionID="initial_condition_id")].@Value
 ```
                         
 | initial_condition_id | Description |
@@ -237,8 +253,8 @@ NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@Interconn
 ### Loss model
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].LossModelCollection.LossModelCollection.@LossLowerLimit
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].LossModelCollection.LossModelCollection.@LossShare
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].LossModelCollection.LossModel.@LossLowerLimit
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].LossModelCollection.LossModel.@LossShare
 ```
 
 | Key | Description |
@@ -249,8 +265,8 @@ NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@Interconn
 The interconnector loss model uses a piecewise linear function to describe interconnector losses as a function of interconnector power flow. Loss model segments denote marginal losses for each interval of the piecewise linear function.
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].LossModelCollection.LossModelCollection.SegmentCollection.Segment[n].@Limit
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].LossModelCollection.LossModelCollection.SegmentCollection.Segment[n].@Factor
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].LossModelCollection.LossModel.SegmentCollection.Segment[n].@Limit
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].LossModelCollection.LossModel.SegmentCollection.Segment[n].@Factor
 ```
 
 | Key | Description |
@@ -263,31 +279,31 @@ NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@Interconn
 <!-- Additional parameters defined for T-V-MNSP1: -->
 
 <!-- ```
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLF
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLF
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLFImport
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@FromRegionLFExport
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLFImport
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].@ToRegionLFExport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@FromRegionLF
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@ToRegionLF
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@FromRegionLFImport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@FromRegionLFExport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@ToRegionLFImport
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].@ToRegionLFExport
 ``` -->
 
 ### Basslink
-Market network service providers submit offers into the market for energy much like traders. Offers are made in the @FromRegion and @ToRegion for the interconnector.
+Basslink (T-V-MNSP1) is currently the only interconnector with @MNSP="1". Market network service providers submit offers into the market for energy much like traders. Offers are made in the @FromRegion and @ToRegion for the interconnector.
 
 #### Price bands
 
 ```python
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@RegionID
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand1
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand2
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand3
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand4
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand5
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand6
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand7
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand8
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand9
-NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id"].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand10
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@RegionID
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand1
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand2
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand3
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand4
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand5
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand6
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand7
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand8
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand9
+NEMSPDCaseFile.NemSpdInputs.InterconnectorCollection.Interconnector[?(@InterconnectorID="interconnector_id")].MNSPPriceStructureCollection.MNSPPriceStructure.MNSPRegionPriceStructureCollection.MNSPRegionPriceStructure[?(@RegionID="region_id")].@PriceBand10
 ```
 
 #### Quantity bands
@@ -401,7 +417,7 @@ Example region factors:
 ```
 
 ### Right-hand side (RHS)
-<span style="color:red">This is parameter is obtained from NEMDE outputs. This is a limitation of the Dispatch API, as the NEMDE uses SCADA values to compute RHS values. Functionality to compute RHS values from SCADA values is under active development.</span>
+<span style="color:red">This parameter is obtained from NEMDE outputs, so case files must include the `NemSpdOutputs` section. This is a limitation of the Dispatch API: NEMDE computes RHS values from SCADA values, which the model does not do.</span>
 
 ```python
 NEMSPDCaseFile.NemSpdOutputs.ConstraintSolution[?(@ConstraintID="constraint_id" && @Intervention="intervention")].@RHS
