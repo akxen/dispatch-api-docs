@@ -28,7 +28,6 @@ Users should note the Dispatch API is subject to some important limitations:
 - intervention pricing runs are not supported;
 - prices are not adjusted to the market price floor or cap if these thresholds are exceeded;
 - constraint relaxation algorithms are not implemented;
-- energy storage limits for bidirectional units are not enforced (AEMO applies these in pre-dispatch only).
 
 ## How it works
 
@@ -108,8 +107,6 @@ Historical NEMDE case files can be downloaded from AEMO's [NEMWeb archive](https
 ## Getting started
 ### Tutorials
 The tutorials section gives an overview of the Dispatch API's features and provides examples on how to setup scenario analyses and associated workflows. The [Running a Model](/dispatch-api-docs/tutorials/running-a-model) tutorial is the recommended starting point for new users.
-
-> The tutorials were written for an earlier, hosted version of the Dispatch API that used a job queue. They are being updated for the current version. Until then, replace the steps that submit a job and poll for its results with a single request to `/solve`, as shown above.
 
 ### Case file reference
 The [parameter reference page](/dispatch-api-docs/parameter-reference) shows the parameters that can be meaningfully updated when modifying or constructing case files.

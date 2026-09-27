@@ -195,9 +195,6 @@ NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@T
 NEMSPDCaseFile.NemSpdInputs.TraderCollection.Trader[?(@TraderID="trader_id")].@T4
 ```
 
-### Bidirectional unit storage parameters
-Case files for bidirectional units also carry energy storage parameters: @MaxStorageCapacity, @MinEnergyLimit, @MaxEnergyLimit, @ImportEfficiencyFactor, @ExportEfficiencyFactor, and the InitialEnergyStorage / WhatIfInitialEnergyStorage initial conditions. The model reads these values, but they currently have no effect on dispatch. AEMO applies the related energy limit constraints in pre-dispatch only, not in the 5-minute dispatch run that the model approximates. Changing these parameters will not change the solution.
-
 ## Interconnectors
 
 ### Metadata
