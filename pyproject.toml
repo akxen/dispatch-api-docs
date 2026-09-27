@@ -7,17 +7,17 @@ requires-python = ">=3.14"
 dependencies = []
 
 [dependency-groups]
-# Builds the site in website/ (cd website && mkdocs serve).
+# Builds the site from docs/ (uv run mkdocs serve). Notebooks are rendered by
+# mkdocs-jupyter from their saved outputs.
 # Don't move to mkdocs 2.0: it breaks mkdocs-material themes and plugins.
 docs = [
     "mkdocs==1.6.1",
+    "mkdocs-jupyter==0.26.3",
     "mkdocs-material==9.7.7",
 ]
-# Runs the notebooks in tutorials/, case-studies/ and model-validation/,
-# and converts them to markdown (website/notebooks_to_markdown.sh).
+# Runs the notebooks under docs/.
 notebooks = [
     "jupyterlab==4.6.4",
-    "nbconvert==7.17.1",
     "pandas==3.0.6",
     "tabulate==0.10.0",
     "numpy==2.5.3",

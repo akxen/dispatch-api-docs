@@ -1,0 +1,50 @@
+site_name: Dispatch API
+site_url: https://akxen.github.io/dispatch-api-docs/
+theme:
+    name: material
+    palette:
+      primary: white
+nav:
+    - Home: index.md
+    - Model validation:
+      - November 2020: model-validation/202011/model-validation.ipynb
+      - April 2021: model-validation/202104/model-validation.ipynb
+    - Tutorials:
+      - Running a model: tutorials/running-a-model.ipynb
+      - Modifying a case file: tutorials/modifying-a-case-file.ipynb
+      - Scenario analysis - line plot: tutorials/scenario-analysis-line-plot.ipynb
+      - Scenario analysis - heatmap: tutorials/scenario-analysis-heatmap.ipynb
+      - Converting a case file: tutorials/converting-a-case-file.ipynb
+    - Case file parameters: parameter-reference.md
+    - Case studies:
+      - Overview: case-studies/case-studies.md
+      - Price volatility: case-studies/price-volatility/price-volatility.ipynb
+      - Rebid analysis: case-studies/rebid-analysis/rebid-analysis.ipynb
+
+# The notebooks read and write these folders relative to their own location.
+# Keep their contents (API responses, downloaded data, .env files) off the site.
+exclude_docs: |
+  config/
+  data/
+  output/
+  results/
+  tmp/
+
+# Built with the site but not linked from the nav (as before the restructure).
+# It has no source notebook, so it can't be regenerated.
+not_in_nav: |
+  tutorials/validating-results.md
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      # Render the saved outputs; running the notebooks needs a live API.
+      execute: false
+      # Case studies and model validation tag their code cells to show results only.
+      remove_tag_config:
+        remove_input_tags:
+          - hide-input
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
