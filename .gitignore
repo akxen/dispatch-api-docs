@@ -1,0 +1,5 @@
+.venv/
+**/.ipynb_checkpoints/
+# Built by mkdocs (deployed to the gh-pages branch by CI) and its notebook cache
+site/
+.cache/
