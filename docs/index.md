@@ -4,7 +4,7 @@ The Dispatch API allows users to interact with a mathematical program that appro
 
 The API can be used to investigate relationships between system parameters and dispatch outcomes, with possible applications including ex-post scenario and sensitivity analyses, or the tool's integration within forecasting frameworks.
 
-> **This is not AEMO's model.** It is a best-effort reconstruction built from publicly available NEMDE documentation and from behaviour observed in published case files. It does not use AEMO's source code or exact formulation, it will not match NEMDE exactly, and it is provided with no warranty of any kind.
+> <span style="color: #d32f2f">**This is not AEMO's model.** It is a best-effort reconstruction built from publicly available NEMDE documentation and from behaviour observed in published case files. It does not use AEMO's source code or exact formulation, it will not match NEMDE exactly, and it is provided with no warranty of any kind.</span>
 
 ## Features and known limitations
 
